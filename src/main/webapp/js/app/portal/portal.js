@@ -316,12 +316,13 @@ function loadLineChart(reportMonth) {
 }
 
 
+/**
+ *
+ * @param value 当前月份值
+ * @param step 前后偏移
+ * @returns {number} 返回月份显示值
+ */
 function getMonthAdd(value, step) {
-
-    var monthValue = 0;
-    console.log("当前月份--------" + value);
-    console.log("step--------" + step);
-    monthValue = (value + step) % 12;
-    return monthValue;
+    return (value + step) % 12;
 
 }

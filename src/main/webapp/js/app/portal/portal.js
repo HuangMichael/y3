@@ -138,8 +138,8 @@ function loadReportFinishChart(reportMonth) {
     function get3MonthTitle(reportMonth) {
         var title = [];
         var date = new Date();
-        title.push(getMonthAdd(date.getMonth(),- 1) + "月");
-        title.push(getMonthAdd(date.getMonth(),0) + "月");
+        title.push(getMonthAdd(date.getMonth(), -1) + "月");
+        title.push(getMonthAdd(date.getMonth(), 0) + "月");
         title.push(getMonthAdd(date.getMonth(), 1) + "月");
 
         return title;
@@ -316,17 +316,12 @@ function loadLineChart(reportMonth) {
 }
 
 
-function getMonthAdd(value,step){
+function getMonthAdd(value, step) {
 
-    var monthValue=0;
-    console.log("value--------"+value);
-    console.log("step--------"+step);
-    if(value+step<=0){
-        monthValue= value+step+12;
-    }
-    if(value+step==1){
-        monthValue= 1;
-    }
+    var monthValue = 0;
+    console.log("当前月份--------" + value);
+    console.log("step--------" + step);
+    monthValue = (value + step) % 12;
     return monthValue;
 
 }

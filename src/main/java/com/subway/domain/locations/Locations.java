@@ -14,10 +14,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "T_LOCATIONS")
 @Data
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Locations implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,7 +34,7 @@ public class Locations implements java.io.Serializable {
 
     private Long parent;
 
-    @Column(length = 1)
+    @Column(length = 1, nullable = false)
     private Long locLevel;
 
 

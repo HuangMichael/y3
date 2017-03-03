@@ -3,6 +3,7 @@ package com.subway.service.equipmentsClassification;
 import com.subway.dao.equipments.EquipmentsClassificationRepository;
 import com.subway.dao.outsourcingUnit.OutsourcingUnitRepository;
 import com.subway.domain.equipments.EquipmentsClassification;
+import com.subway.domain.locations.Locations;
 import com.subway.domain.units.Units;
 import com.subway.object.ReturnObject;
 import com.subway.service.app.BaseService;
@@ -165,6 +166,7 @@ public class EquipmentsClassificationService extends BaseService {
                 classList = equipmentsClassificationRepository.findByClassTypeAndDescription(classType, classDesc);
                 if (classList.isEmpty()) {
                     newClass = new EquipmentsClassification();
+                    newClass.setClassId(getClassId(equipmentsClassification));
                     newClass.setClassType(classType);
                     newClass.setDescription(classDesc);
                     newClass.setHasChild("0");
@@ -180,4 +182,30 @@ public class EquipmentsClassificationService extends BaseService {
         }
         return commonDataService.getReturnType(records != 0, records + "条设备分类导入成功！", "设备分类导入失败！");
     }
+
+
+
+    /**
+     * @param equipmentsClassification    设备分类对象
+     * @return 根据设备分类对象生成设备分类编码
+     */
+    public String getClassId(EquipmentsClassification  equipmentsClassification) {
+        List<EquipmentsClassification> eqClassList = equipmentsClassificationRepository.findNodeByParent(equipmentsClassification);
+        String classId = "";
+        if (!eqClassList.isEmpty()) {
+            EquipmentsClassification youngestChild = eqClassList.get(0);
+            if (youngestChild != null) {
+                String location = youngestChild.getClassId();
+                String index = location.substring(location.length() - 2, location.length());
+                if (index != null && !index.equals("")) {
+                    long n = (Long.parseLong(index) + 1);
+                    classId = equipmentsClassification.getClassId() + ((n < 10) ? "0" + n : n);
+                }
+            }
+        } else {
+            classId = equipmentsClassification.getClassId() + "01";
+        }
+        return classId;
+    }
+
 }

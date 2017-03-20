@@ -22,4 +22,13 @@ public interface VeqClassRepository extends CrudRepository<VeqClass, Long> {
     VeqClass findById(long id);
 
 
+
+    /**
+     * 查询所有设备分类视图信息
+     * @param classType 根据位置类型查询
+     * @return
+     */
+    List<VeqClass> findByClassType(String classType);
+
+
 }

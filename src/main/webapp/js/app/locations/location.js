@@ -225,6 +225,7 @@ function reportByLocation() {
     var locationId = getSelectedNode().id;
     var status = "0";
     var path = "/location/findById/" + locationId;
+    console.log("path---------------" + path);
     $.getJSON(path, function (data) {
         status = data["status"]
     });
@@ -251,6 +252,8 @@ function reportByLocation() {
             $("#show_loc_modal").modal("show")
         })
     } else if (status == "1") {
+
+        console.log("here-------------------");
         $("#rptLoc").val(getSelectedNode().name);
         $("#loc_modal").modal("show");
 

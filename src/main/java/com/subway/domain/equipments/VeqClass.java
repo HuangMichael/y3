@@ -1,7 +1,7 @@
 package com.subway.domain.equipments;
 
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 
@@ -12,15 +12,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "V_EQ_CLASS")
 @Data
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class VeqClass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(length = 50,name = "cname")
     private String cname;
+    @Column(length = 1)
+    private String classType;
 }
 

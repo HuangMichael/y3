@@ -25,7 +25,7 @@
 
             <li class="dropdown" id="header-notification">
                 <a class="dropdown-toggle" data-toggle="dropdown" id="reportOrder" title="报修车信息">
-                    <i class="fa  fa-wrench"></i>
+                    <i class="fa  fa-wrench" id="linkTag"></i>
                     <span class="badge" id="reportOrderSize"></span>
                 </a>
                 <ul class="dropdown-menu notification">
@@ -124,6 +124,15 @@
                 $("#orderMsgCnt").html(data.length + "个报修信息");
                 $("#orderBox").html(html)
             })
+        });
+
+
+        $("#linkTag").on("click",function () {
+            var dataUrl='/workOrderReportCart/list'
+            $("#main-content").load(dataUrl, function () {
+                $(this).removeData("url");
+            });
+
         });
         var expiredCount = getExpiredCount();
 

@@ -43,4 +43,8 @@ public class Locations implements java.io.Serializable {
     @Column(length = 1)
     private String hasChild;  //是否有孩子节点
 
+
+    @Column(length = 1)
+    private String locationType;  //位置类型  1段区 2站区
+
 }

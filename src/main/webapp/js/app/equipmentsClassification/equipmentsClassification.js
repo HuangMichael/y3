@@ -62,17 +62,6 @@ $(document).ready(function () {
         if (h < 530) h = 530;
         demoIframe.height(h);
     }
-
-
-    $("input[name = 'unit']").on("click", function () {
-        alert($(this).val());
-
-    });
-
-
-    //查询当前选中的分类对应的外委单位
-
-
 });
 
 

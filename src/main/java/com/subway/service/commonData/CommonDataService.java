@@ -96,7 +96,6 @@ public class CommonDataService extends BaseService {
     WorkOrderReportCartService workOrderReportCartService;
 
 
-
     /**
      * @param location 位置编号
      * @return 查询我的下属位置信息
@@ -185,9 +184,6 @@ public class CommonDataService extends BaseService {
     }
 
 
-
-
-
     /**
      * @param httpSession
      * @return 查询设备种类信息
@@ -206,6 +202,16 @@ public class CommonDataService extends BaseService {
         }
         return eqClassList;
     }
+
+    /**
+     * @param type        位置类型  1为段区  2为站区
+     * @return 查询设备种类信息
+     */
+    public List<VeqClass> findVeqClassByType(String type) {
+        List<VeqClass> eqClassList = veqClassRepository.findByClassType(type);
+        return eqClassList;
+    }
+
     /**
      * @param httpSession
      * @return 查询设备种类信息

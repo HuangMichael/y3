@@ -15,6 +15,7 @@ import com.subway.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -106,6 +107,22 @@ public class CommonDataController extends BaseController {
         if (httpSession != null) {
             veqClassList = commonDataService.findVeqClass(httpSession);
         }
+        return veqClassList;
+    }
+
+
+    /**
+     * @param type
+     * @return 查询分类视图信息
+     */
+    @RequestMapping(value = "/findVEqClass/{type}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<VeqClass> findVeqClassByType(@PathVariable("type") String type) {
+        List<VeqClass> veqClassList = null;
+            if (type == null) {
+                type = "";
+            }
+        veqClassList = commonDataService.findVeqClassByType(type);
         return veqClassList;
     }
 

@@ -224,15 +224,18 @@ function reportByLocation() {
     var location = getSelectedNode().location;
     var locationId = getSelectedNode().id;
     var status = "0";
+    var locType = "";
     var path = "/location/findById/" + locationId;
     $.getJSON(path, function (data) {
-        status = data["status"]
+        status = data["status"];
+        locType = data["locationType"];
     });
     if (!location) {
         showMessageBox("danger", "请先选中位置再进行报修操作!");
         return
     }
-    var url = "/commonData/findVEqClass";
+    var url = "/commonData/findVEqClass/"+locType;
+    console.log("url-------------"+url);
     $.getJSON(url, function (data) {
         eqClasses = data;
     });
@@ -251,6 +254,8 @@ function reportByLocation() {
             $("#show_loc_modal").modal("show")
         })
     } else if (status == "1") {
+
+        console.log("here-------------------");
         $("#rptLoc").val(getSelectedNode().name);
         $("#loc_modal").modal("show");
 

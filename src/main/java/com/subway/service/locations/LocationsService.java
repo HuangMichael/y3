@@ -233,6 +233,7 @@ public class LocationsService extends BaseService {
             if (locationsList.isEmpty()) {
                 newLoc = new Locations();
                 location = getLocationsNo(locations);
+                newLoc.setLocationType(locations.getLocationType());
                 newLoc.setDescription(classDesc);
                 newLoc.setLocation(location);
                 newLoc.setLocLevel(locations.getLocLevel() + 1);

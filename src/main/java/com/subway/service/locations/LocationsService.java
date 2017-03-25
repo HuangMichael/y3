@@ -233,8 +233,12 @@ public class LocationsService extends BaseService {
             if (locationsList.isEmpty()) {
                 newLoc = new Locations();
                 location = getLocationsNo(locations);
+                newLoc.setLocationType(locations.getLocationType());
                 newLoc.setDescription(classDesc);
                 newLoc.setLocation(location);
+                newLoc.setLine(locations.getLine());
+                newLoc.setStation(locations.getStation());
+                newLoc.setLine(locations.getLine());
                 newLoc.setLocLevel(locations.getLocLevel() + 1);
                 newLoc.setHasChild("0");
                 newLoc.setParent(locations.getId());

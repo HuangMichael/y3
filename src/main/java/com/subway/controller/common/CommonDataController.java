@@ -119,9 +119,9 @@ public class CommonDataController extends BaseController {
     @ResponseBody
     public List<VeqClass> findVeqClassByType(@PathVariable("type") String type) {
         List<VeqClass> veqClassList = null;
-            if (type == null) {
-                type = "";
-            }
+        if (type == null) {
+            type = "";
+        }
         veqClassList = commonDataService.findVeqClassByType(type);
         return veqClassList;
     }

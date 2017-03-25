@@ -2,4 +2,6 @@
 target
 test
 .idea
+target/
+./idea/workspace.xml
 

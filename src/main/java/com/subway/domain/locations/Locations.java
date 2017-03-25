@@ -3,7 +3,7 @@ package com.subway.domain.locations;
 
 import com.subway.domain.line.Line;
 import com.subway.domain.line.Station;
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 

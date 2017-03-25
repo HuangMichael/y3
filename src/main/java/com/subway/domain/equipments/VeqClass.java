@@ -1,7 +1,7 @@
 package com.subway.domain.equipments;
 
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 

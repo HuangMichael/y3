@@ -127,8 +127,8 @@
         });
 
 
-        $("#linkTag").on("click",function () {
-            var dataUrl='/workOrderReportCart/list'
+        $("#linkTag").on("click", function () {
+            var dataUrl = '/workOrderReportCart/list'
             $("#main-content").load(dataUrl, function () {
                 $(this).removeData("url");
             });

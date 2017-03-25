@@ -234,8 +234,8 @@ function reportByLocation() {
         showMessageBox("danger", "请先选中位置再进行报修操作!");
         return
     }
-    var url = "/commonData/findVEqClass/"+locType;
-    console.log("url-------------"+url);
+    var url = "/commonData/findVEqClass/" + locType;
+    console.log("url-------------" + url);
     $.getJSON(url, function (data) {
         eqClasses = data;
     });

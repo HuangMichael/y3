@@ -204,7 +204,7 @@ public class CommonDataService extends BaseService {
     }
 
     /**
-     * @param type        位置类型  1为段区  2为站区
+     * @param type 位置类型  1为段区  2为站区
      * @return 查询设备种类信息
      */
     public List<VeqClass> findVeqClassByType(String type) {

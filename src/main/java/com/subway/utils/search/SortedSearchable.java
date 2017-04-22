@@ -23,6 +23,15 @@ public interface SortedSearchable {
 
     /**
      * @param searchPhrase 搜索关键字组合
+     * @param idList       多选id集合
+     * @param paramSize    搜索条件个数
+     * @return
+     */
+//    List findByConditionsAndIdIn(String searchPhrase, List<Long> idList, int paramSize);
+
+
+    /**
+     * @param searchPhrase 搜索关键字组合
      * @param paramSize    搜索条件个数
      * @param pageable
      * @return

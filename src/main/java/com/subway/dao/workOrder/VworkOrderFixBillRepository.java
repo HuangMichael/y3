@@ -66,6 +66,19 @@ public interface VworkOrderFixBillRepository extends PagingAndSortingRepository<
 
 
     /**
+     * @param nodeStatus
+     * @param orderLineNo
+     * @param orderDesc
+     * @param location
+     * @param eqClass
+     * @param expired
+     * @param idList
+     * @return 勾选
+     */
+    List<VworkOrderFixBill> findByNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContainsAndIdInOrderByIdDesc(String nodeStatus, String orderLineNo, String orderDesc, String location, String eqClass, String expired, List<Long> idList);
+
+
+    /**
      * @return 统计已派工  已超期的工单数量
      */
     @Query(value = "select count(v)  from VworkOrderFixBill v where v.nodeState='已派工' and v.expired ='已超期' ")

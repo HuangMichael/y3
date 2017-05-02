@@ -91,7 +91,7 @@ public class Equipments {
     private String location; //加入冗余字段location 方便模糊查询
 
 
-    @Column(length = 20)
+    @Column(length = 50)
     private String eqModel;  //设备型号
     @Column(length = 20)
     private String eamNo;  //EAM编号

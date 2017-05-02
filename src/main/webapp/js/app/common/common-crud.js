@@ -131,7 +131,7 @@ function findObjById(objName, id) {
     }
     var url = objName + "/findById/" + id;
 
-    console.log("url----------"+url);
+    console.log("url----------" + url);
     $.getJSON(url, function (data) {
         object = data;
     });
@@ -294,6 +294,9 @@ function findAllRecordId() {
  *导出excel
  */
 function exportExcel() {
+
+    var selectedIds = $(dataTableName).bootgrid("getSelectedRows");
+    console.log("selectedRows------------" + JSON.stringify(selectedIds));
     var param = $(dataTableName).bootgrid("getSearchPhrase");
     var columnSettings = $(dataTableName).bootgrid("getColumnSettings");
     var titles = [];
@@ -307,6 +310,9 @@ function exportExcel() {
     }
     docName = (docName) ? (docName) : ("导出数据");
     var url = getMainObject() + "/exportExcel?param=" + param + "&docName=" + docName + "&titles=" + titles + "&colNames=" + colNames;
+    if (selectedIds) {
+        url += "&selectedIds= " + selectedIds.join(",");
+    }
     url = url.trim();
     bootbox.confirm({
         message: "确定导出查询结果记录么?",

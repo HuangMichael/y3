@@ -30,7 +30,7 @@ public class StringUtils {
         List<Long> longList = new ArrayList<Long>();
         String[] array = arrayStr.split(separator);
         for (String str : array) {
-            longList.add(Long.parseLong(str));
+            longList.add(Long.parseLong(str.trim()));
         }
         return longList;
     }
@@ -81,7 +81,6 @@ public class StringUtils {
     public static String upperCaseCamel(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1, str.length());
     }
-
 
 
     /**

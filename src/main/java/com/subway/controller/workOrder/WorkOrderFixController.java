@@ -18,6 +18,7 @@ import com.subway.service.workOrder.WorkOrderReportService;
 import com.subway.utils.DateUtils;
 import com.subway.utils.PageUtils;
 import com.subway.utils.SessionUtil;
+import com.subway.utils.StringUtils;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -207,8 +208,16 @@ public class WorkOrderFixController extends BaseController {
                             @RequestParam("param") String param,
                             @RequestParam("docName") String docName,
                             @RequestParam("titles") String titles[],
-                            @RequestParam("colNames") String[] colNames) {
-        List<VworkOrderFixBill> dataList = workOrderFixSearchService.findByConditions(param, 6);
+                            @RequestParam("colNames") String[] colNames,
+                            @RequestParam("selectedIds") String selectedIds
+    ) {
+        List<VworkOrderFixBill> dataList;
+        List<Long> idList = StringUtils.str2List(selectedIds, ",");
+        if (idList.isEmpty()) {
+            dataList = workOrderFixSearchService.findByConditions(param, 6);
+        } else {
+            dataList = workOrderFixSearchService.findByConditionsAndIdIn(param, idList, 6);
+        }
         workOrderFixService.setDataList(dataList);
         workOrderFixService.exportExcel(request, response, docName, titles, colNames);
     }

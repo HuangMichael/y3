@@ -11,6 +11,7 @@ import com.subway.dao.locations.LocationsRepository;
 import com.subway.dao.locations.VlocationsRepository;
 import com.subway.dao.outsourcingUnit.OutsourcingUnitRepository;
 import com.subway.dao.person.PersonRepository;
+import com.subway.dao.workOrder.WorkOrderReportCartRepository;
 import com.subway.domain.app.resoure.Resource;
 import com.subway.domain.equipments.EquipmentsClassification;
 import com.subway.domain.equipments.VeqClass;
@@ -47,6 +48,9 @@ import java.util.List;
  */
 @Service
 public class CommonDataService extends BaseService {
+
+    @Autowired
+    WorkOrderReportCartRepository workOrderReportCartRepository;
 
     @Autowired
     LocationsRepository locationsRepository;
@@ -428,27 +432,10 @@ public class CommonDataService extends BaseService {
      * @return 根据序号生成
      */
     public String genWorkOrderLineNo() {
-        //先查询该月工单数量
-        String workOrderLineNo;
-        String startNo = DateUtils.convertDate2Str(new Date(), "yyMM");
-        //工单模糊查询数量
-        List<WorkOrderReportCart> workOrderReportCartList = workOrderReportCartService.findByOrderLineNoContaining(startNo);
-        if (workOrderReportCartList.size() > 0) {
-            // 如果本月存在工单  取单号最大的
-            workOrderLineNo = workOrderReportCartList.get(workOrderReportCartList.size() - 1).getOrderLineNo();
-            int len = 8;
-            String endNo = workOrderLineNo.substring(len - 4);
-            long index = Long.parseLong(endNo) + 1;
-            String endStr = index + "";
-            for (int i = endStr.length(); i < 4; i++) {
-                endStr = "0" + endStr;
-            }
-            workOrderLineNo = startNo + endStr;
-        } else {
-            //如果不存在工单，从startNo+0001开始
-            workOrderLineNo = startNo + "0001";
-        }
-        return workOrderLineNo;
-
+        //先查出年月的
+        String startNo = DateUtils.convertDate2Str(new Date(), "yyyyMM");
+        startNo += workOrderReportCartRepository.getNextOrderNo();
+        //再查出序号 xxxx
+        return startNo;
     }
 }

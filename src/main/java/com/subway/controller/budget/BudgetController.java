@@ -29,7 +29,7 @@ import java.util.Map;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping("/budget")
-public class BudgetController extends BaseController {
+class BudgetController extends BaseController {
     @Autowired
     BudgeService budgeService;
     @Autowired

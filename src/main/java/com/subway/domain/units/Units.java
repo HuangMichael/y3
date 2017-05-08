@@ -18,8 +18,6 @@ import java.util.Set;
 @Entity
 @Table(name = "T_OUTSOURCING_UNIT")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Units implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

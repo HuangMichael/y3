@@ -53,3 +53,24 @@ function delCart(id) {
 function checkAll(obj) {
     $("#account input[type='checkbox']").prop("checked", $(obj).prop("checked"))
 }
+
+
+/**
+ *
+ * @param eid 设备id
+ * 根据设备ID信息查询设备详细信息  弹窗口显示
+ */
+function showEqDetailByEqId(eid) {
+    var url = "/equipment/findById/" + eid;
+    $.getJSON(url, function (data) {
+        console.log("data---------" + JSON.stringify(data));
+        $("#eqNo").val(data.eqCode);
+        $("#eqName").val(data.description);
+        $("#location").val(data.vlocations.locName);
+        $("#eqClass").val(data.equipmentsClassification.description);
+        $("#eqModel").val(data.eqModel);
+        $("#productFactory").val(data.productFactory);
+
+        $("#eqInfoModal").modal("show");
+    });
+}

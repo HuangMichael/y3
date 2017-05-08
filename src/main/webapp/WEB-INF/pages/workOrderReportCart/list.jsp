@@ -23,22 +23,22 @@
                                             <li>
                                                 <a href="#account" data-toggle="tab" class="wiz-step">
                                                     <span class="step-number">1</span>
-                                                            <span class="step-name"><i
-                                                                    class="fa fa-check"></i> 报修车信息</span>
+                                                    <span class="step-name"><i
+                                                            class="fa fa-check"></i> 报修车信息</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#payment" data-toggle="tab" class="wiz-step active">
                                                     <span class="step-number">2</span>
-                                                            <span class="step-name"><i
-                                                                    class="fa fa-check"></i>故障描述</span>
+                                                    <span class="step-name"><i
+                                                            class="fa fa-check"></i>故障描述</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#confirm" data-toggle="tab" class="wiz-step">
                                                     <span class="step-number">3</span>
-                                                            <span class="step-name"><i
-                                                                    class="fa fa-check"></i>提交报修单 </span>
+                                                    <span class="step-name"><i
+                                                            class="fa fa-check"></i>提交报修单 </span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -77,7 +77,9 @@
                                                             <td>${w.index+1}</td>
                                                             <td>${workOrder.orderLineNo}</td>
                                                             <td>${workOrder.equipments.eqCode}</td>
-                                                            <td>${workOrder.equipments.description}</td>
+                                                            <td>
+                                                                <a onclick="showEqDetailByEqId(${workOrder.equipments.id})">${workOrder.equipments.description}</a>
+                                                            </td>
                                                             <td>${workOrder.vlocations.locName}</td>
                                                             <td>${workOrder.equipmentsClassification.description}</td>
                                                             <td>${workOrder.reporter}</td>
@@ -96,7 +98,6 @@
 
                                             </div>
                                             <div class="tab-pane" id="confirm">
-
 
 
                                             </div>
@@ -129,6 +130,65 @@
         </div>
     </div>
 </div>
+
+<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="eqInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">设备详细信息</h4>
+            </div>
+            <div class="modal-body" id="mBody1">
+                <form class="form-horizontal" role="form" id="formEq">
+                    <div class="form-group">
+                        <label for="eqNo" class="col-md-2 control-label">设备编号</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="eqNo" type="text" name="eqNo" READONLY/>
+                        </div>
+                        <label for="eqName" class="col-md-2 control-label">设备名称</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="eqName" type="text" name="eqName" READONLY/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eqNo" class="col-md-2 control-label">设备位置</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="location" type="text" name="eqNo" READONLY/>
+                        </div>
+                        <label for="eqName" class="col-md-2 control-label">设备分类</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="eqClass" type="text" name="eqClass" READONLY/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eqNo" class="col-md-2 control-label">设备型号</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="eqModel" type="text" name="eqModel" READONLY/>
+                        </div>
+                        <label for="eqName" class="col-md-2 control-label">生产厂家</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="productFactory" type="text" name="productFactory" READONLY/>
+                        </div>
+                    </div>
+                    <%--<div class="form-group" >--%>
+                    <%--<label for="eqNo" class="col-md-2 control-label">设备编号</label>--%>
+                    <%--<div class="col-md-4 ">--%>
+                    <%--<input class="form-control" id="eqNo" type="text" name="eqNo" READONLY />--%>
+                    <%--</div>--%>
+                    <%--<label for="eqName" class="col-md-2 control-label">设备名称</label>--%>
+                    <%--<div class="col-md-4 ">--%>
+                    <%--<input class="form-control" id="eqName" type="text" name="eqName" READONLY />--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript" src="/js/bootstrap-wizard/form-wizard.min.js"></script>
 <script type="text/javascript" src="/js/app/workOrder/reportCart.js"></script>
 

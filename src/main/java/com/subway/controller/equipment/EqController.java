@@ -65,8 +65,6 @@ public class EqController {
     }
 
 
-
-
     /**
      * @param eqName
      * @param locName
@@ -91,9 +89,18 @@ public class EqController {
         }
         Pageable pageable = new PageRequest(pageIndex, pageCount);
         Page<Vequipments> vequipmentsPage = vEqRepository.findByEqNameContainsAndLocNameContainsAndEqClassContains(eqName, locName, eqClass, pageable);
-        System.out.println("pageIndex---------" + pageIndex);
-        System.out.println("pageCount---------" + pageCount);
         modelMap.put("vequipmentsList", vequipmentsPage.getContent());
         return "/eq/eqList";
+    }
+
+    /**
+     * @param id 设备ID编号
+     * @return 返回设备信息
+     */
+    @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Vequipments findById(@PathVariable Long id) {
+        Vequipments vequipments = vEqRepository.findOne(id);
+        return vequipments;
     }
 }

@@ -12,8 +12,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "V_EQUIPMENTS")
 @Data
-@Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vequipments {

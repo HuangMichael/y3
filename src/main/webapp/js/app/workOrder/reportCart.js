@@ -41,14 +41,29 @@ function save() {
     }
 }
 function delCart(id) {
-    var confirm = window.confirm("确认将该报修信息移出报修车么？");
-    if (confirm) {
-        var url = "/workOrderReportCart/delCart";
-        $.post(url, {id: id}, function (data) {
-            $("#tr" + id).remove();
-            showMessageBox("info", "已将报修信息移出报修车")
-        })
-    }
+    bootbox.confirm({
+        message: "确认将该报修信息移出报修车么?",
+        buttons: {
+            confirm: {
+                label: '是',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: '否',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+
+                var url = "/workOrderReportCart/delCart";
+                $.post(url, {id: id}, function (data) {
+                    $("#tr" + id).remove();
+                    showMessageBox("info", "已将报修信息移出报修车");
+                });
+            }
+        }
+    });
 }
 function checkAll(obj) {
     $("#account input[type='checkbox']").prop("checked", $(obj).prop("checked"))
@@ -63,7 +78,6 @@ function checkAll(obj) {
 function showEqDetailByEqId(eid) {
     var url = "/equipment/findById/" + eid;
     $.getJSON(url, function (data) {
-        console.log("data---------" + JSON.stringify(data));
         $("#eqNo").val(data.eqCode);
         $("#eqName").val(data.description);
         $("#location").val(data.vlocations.locName);

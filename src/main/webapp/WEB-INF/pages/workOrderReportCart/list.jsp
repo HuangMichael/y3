@@ -172,16 +172,6 @@
                             <input class="form-control" id="productFactory" type="text" name="productFactory" READONLY/>
                         </div>
                     </div>
-                    <%--<div class="form-group" >--%>
-                    <%--<label for="eqNo" class="col-md-2 control-label">设备编号</label>--%>
-                    <%--<div class="col-md-4 ">--%>
-                    <%--<input class="form-control" id="eqNo" type="text" name="eqNo" READONLY />--%>
-                    <%--</div>--%>
-                    <%--<label for="eqName" class="col-md-2 control-label">设备名称</label>--%>
-                    <%--<div class="col-md-4 ">--%>
-                    <%--<input class="form-control" id="eqName" type="text" name="eqName" READONLY />--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
                 </form>
             </div>
         </div>

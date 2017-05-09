@@ -14,8 +14,6 @@ import java.util.List;
  **/
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class MyPage {
     private int current; //当前页
     private Long rowCount; //每页行数

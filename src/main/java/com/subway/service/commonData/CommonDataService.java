@@ -23,7 +23,6 @@ import com.subway.domain.locations.Vlocations;
 import com.subway.domain.person.Person;
 import com.subway.domain.units.Units;
 import com.subway.domain.user.User;
-import com.subway.domain.workOrder.WorkOrderReportCart;
 import com.subway.object.ListObject;
 import com.subway.object.ReturnObject;
 import com.subway.service.app.BaseService;
@@ -433,7 +432,7 @@ public class CommonDataService extends BaseService {
      */
     public String genWorkOrderLineNo() {
         //先查出年月的
-        String startNo = DateUtils.convertDate2Str(new Date(), "yyyyMM");
+        String startNo = DateUtils.convertDate2Str(new Date(), "yyMMdd");
         startNo += workOrderReportCartRepository.getNextOrderNo();
         //再查出序号 xxxx
         return startNo;

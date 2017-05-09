@@ -108,7 +108,6 @@ $(function () {
     var url = "/commonData/findVEqClass";
     $.getJSON(url, function (data) {
         eqClasses = data;
-        console.log(JSON.stringify(eqClasses));
     });
 
 

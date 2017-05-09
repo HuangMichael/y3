@@ -558,10 +558,31 @@ function search() {
             searchParams += value + ",";
         }
 
+        console.log("searchParams-------------"+searchParams);
+
     });
     $(dataTableName).bootgrid("setSearchPhrase", searchParams).bootgrid("reload");
 }
 
+
+
+
+function complexSearch() {
+    //组装模型
+    var params = $("#searchBox :input");
+    var searchParams = "";
+    $.each(params, function (i, p) {
+        var id = $(p).attr("id");
+        if (!$(p).is(":button")) {
+            var value = ($(p).val()) ? $(p).val().trim() : "";
+            searchParams += value + ",";
+        }
+
+        console.log("searchParams-------------"+searchParams);
+
+    });
+    $(dataTableName).bootgrid("setSearchPhrase", searchParams).bootgrid("reload");
+}
 
 function searchMore() {
     //组装模型

@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-=======
-
->>>>>>> cfede88eada1f11b4dbb0fdb6ee27512d6f2ec99
 set sql_safe_updates = 0;
 UPDATE t_locations l
         JOIN

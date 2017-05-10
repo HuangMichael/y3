@@ -61,8 +61,8 @@ $(document).ready(function () {
 
     $(":checkbox").on("click", function () {
         if ($(this).prop("checked")) {
-            $(this).siblings().attr("checked",false);
-            $(this).attr("checked",true);
+            $(this).siblings().attr("checked", false);
+            $(this).attr("checked", true);
         }
     })
 
@@ -205,6 +205,49 @@ function abort() {
     dealResult(orderId, operationType, operationDesc);
 }
 
+/**
+ *
+ * @param eid 设备id
+ * 根据设备ID信息查询设备详细信息  弹窗口显示
+ */
+function showEqDetailByEqId(eid) {
+    var url = "/equipment/findById/" + eid;
+    $.getJSON(url, function (data) {
+        $("#eqNo").val(data.eqCode);
+        $("#eqName").val(data.description);
+        $("#location").val(data.vlocations.locName);
+        $("#eqClass").val(data.equipmentsClassification.description);
+        $("#eqModel").val(data.eqModel);
+        $("#productFactory").val(data.productFactory);
+        $("#eqInfoModal").modal("show");
+    });
+}
 
+
+/**
+ * 批量完工
+ */
+function finishOrderBatch() {
+    var orderIds = $(dataTableName).bootgrid("getSelectedRows");
+    if (orderIds.length == 0) {
+        showMessageBox("danger", "请选择要完工的工单!");
+        return;
+    }
+    var url = "/workOrderFix/finishBatch";
+    var data =
+            {
+                orderIds: orderIds.join(",")
+            }
+        ;
+    $.post(url, data, function (data) {
+        if (data.result) {
+            showMessageBox("info", data.resultDesc);
+            complexSearch();
+        } else {
+            showMessageBox("danger", data.resultDesc);
+        }
+
+    });
+}
 
 

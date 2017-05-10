@@ -201,4 +201,54 @@
         </div>
     </div>
 </div>
+
+
+<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="eqInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">设备详细信息</h4>
+            </div>
+            <div class="modal-body" id="mBody1">
+                <form class="form-horizontal" role="form" id="formEq">
+                    <div class="form-group">
+                        <label for="eqNo" class="col-md-2 control-label">设备编号</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="eqNo" type="text" name="eqNo" READONLY/>
+                        </div>
+                        <label for="eqName" class="col-md-2 control-label">设备名称</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="eqName" type="text" name="eqName" READONLY/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eqNo" class="col-md-2 control-label">设备位置</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="location" type="text" name="eqNo" READONLY/>
+                        </div>
+                        <label for="eqName" class="col-md-2 control-label">设备分类</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="eqClass" type="text" name="eqClass" READONLY/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eqNo" class="col-md-2 control-label">设备型号</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="eqModel" type="text" name="eqModel" READONLY/>
+                        </div>
+                        <label for="eqName" class="col-md-2 control-label">生产厂家</label>
+                        <div class="col-md-4 ">
+                            <input class="form-control" id="productFactory" type="text" name="productFactory" READONLY/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript" src="/js/app/fix/fix.js"></script>

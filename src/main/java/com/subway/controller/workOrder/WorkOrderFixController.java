@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -228,6 +229,24 @@ public class WorkOrderFixController extends BaseController {
     public Long findExpired() {
 
         return workOrderFixService.findExpired();
+    }
+
+
+    /**
+     * @param orderIds
+     * @return 批量完成维修工单
+     */
+    @ResponseBody
+    @RequestMapping(value = "/finishBatch", method = RequestMethod.POST)
+    public ReturnObject finishBatch(@RequestParam(value = "orderIds") String orderIds) {
+        List<WorkOrderHistory> workOrderHistoryList = new ArrayList<WorkOrderHistory>();
+        String[] ids = orderIds.split(",");
+        for (String id : ids) {
+            Long workOrderId = Long.parseLong(id);
+            WorkOrderReportCart workOrderReportCart = workOrderReportCartRepository.findById(workOrderId);
+            workOrderHistoryList.add(workOrderFixService.handleWorkOrder(workOrderReportCart, "批量完工", "已完工"));
+        }
+        return commonDataService.getReturnType(workOrderHistoryList.size() == ids.length, workOrderHistoryList.size() + "个维修单完工成功!", "维修单完工失败!");
     }
 
 }

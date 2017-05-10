@@ -84,7 +84,6 @@ function showEqDetailByEqId(eid) {
         $("#eqClass").val(data.equipmentsClassification.description);
         $("#eqModel").val(data.eqModel);
         $("#productFactory").val(data.productFactory);
-
         $("#eqInfoModal").modal("show");
     });
 }

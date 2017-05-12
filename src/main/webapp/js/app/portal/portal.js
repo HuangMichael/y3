@@ -135,13 +135,21 @@ function loadReportFinishChart(reportMonth) {
     seriesOptions.push(option1);
 
 
-    function get3MonthTitle(reportMonth) {
+    /**
+     *
+     * @param reportMonth
+     * @returns {Array}
+     */
+    function get3MonthTitle() {
         var title = [];
         var date = new Date();
         title.push(getMonthAdd(date.getMonth(), -1) + "月");
         title.push(getMonthAdd(date.getMonth(), 0) + "月");
         title.push(getMonthAdd(date.getMonth(), 1) + "月");
 
+
+
+        console.log("title month--------------"+title);
         return title;
     }
 
@@ -159,6 +167,8 @@ function loadReportFinishChart(reportMonth) {
                 }
             }
         });
+
+        console.log("reportNums-----------------------"+reportNums);
         return reportNums;
     }
 

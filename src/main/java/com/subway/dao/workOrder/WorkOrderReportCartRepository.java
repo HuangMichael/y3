@@ -225,5 +225,11 @@ public interface WorkOrderReportCartRepository extends CrudRepository<WorkOrderR
     @Query(nativeQuery = true, value = "SELECT LPAD(COUNT(1) +1, 3, '0') AS orderNo FROM t_work_order_report_cart c WHERE  DATE_FORMAT(c.report_time, '%Y%m') = DATE_FORMAT(NOW(), '%Y%m')")
     String getNextOrderNo();
 
+    /**
+     * @param equipments
+     * @return 根据设备查询报修记录
+     */
+    List<WorkOrderReportCart> findByEquipmentsOrderByReportTimeDesc(Equipments equipments);
+
 
 }

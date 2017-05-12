@@ -13,6 +13,7 @@ import com.subway.domain.equipments.VEqRecord;
 import com.subway.domain.equipments.Vequipments;
 import com.subway.domain.locations.Locations;
 import com.subway.domain.user.User;
+import com.subway.domain.workOrder.WorkOrderReportCart;
 import com.subway.object.ReturnObject;
 import com.subway.service.app.ResourceService;
 import com.subway.service.commonData.CommonDataService;
@@ -20,6 +21,7 @@ import com.subway.service.equipments.EqUpdateBillService;
 import com.subway.service.equipments.EquipmentAccountService;
 import com.subway.service.equipments.EquipmentSearchService;
 import com.subway.service.locations.LocationsService;
+import com.subway.service.workOrder.WorkOrderReportService;
 import com.subway.utils.LocationSeparatable;
 import com.subway.utils.PageUtils;
 import com.subway.utils.SessionUtil;
@@ -77,6 +79,9 @@ public class EquipmentController extends BaseController implements LocationSepar
     EquipmentSearchService equipmentSearchService;
     @Autowired
     CommonDataService commonDataService;
+
+    @Autowired
+    WorkOrderReportService workOrderReportService;
 
 
     /**
@@ -285,6 +290,17 @@ public class EquipmentController extends BaseController implements LocationSepar
 
 
     /**
+     * 查询设备对应的维修历史
+     */
+    @RequestMapping(value = "/showFixList")
+    public String loadFixHistory(@RequestParam("eid") Long eid, ModelMap modelMap) {
+        List<WorkOrderReportCart> fixHistoryList = workOrderReportService.findByEid(eid);
+        modelMap.put("fixHistoryList", fixHistoryList);
+        return "/workOrderReport/eqFixList";
+    }
+
+
+    /**
      * 查询根节点
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -370,7 +386,7 @@ public class EquipmentController extends BaseController implements LocationSepar
      */
     @ResponseBody
     @RequestMapping(value = "/exportExcel", method = RequestMethod.GET)
-    public void exportExcel(HttpSession session,HttpServletRequest request, HttpServletResponse response, @RequestParam("param") String param, @RequestParam("docName") String docName, @RequestParam("titles") String titles[], @RequestParam("colNames") String[] colNames) {
+    public void exportExcel(HttpSession session, HttpServletRequest request, HttpServletResponse response, @RequestParam("param") String param, @RequestParam("docName") String docName, @RequestParam("titles") String titles[], @RequestParam("colNames") String[] colNames) {
         String location = SessionUtil.getCurrentUserLocationBySession(session);
         if (separatable) {
             param += location + ",";

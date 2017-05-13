@@ -301,6 +301,17 @@ public class EquipmentController extends BaseController implements LocationSepar
 
 
     /**
+     * 查询设备对应的维修历史
+     */
+    @RequestMapping(value = "/showClassFixList")
+    public String showClassFixList(@RequestParam("lid") Long lid,@RequestParam("cid") Long cid, ModelMap modelMap) {
+        List<WorkOrderReportCart> fixClassHistoryList = workOrderReportService.findByLidAndEid(lid,cid);
+        modelMap.put("fixClassHistoryList", fixClassHistoryList);
+        return "/workOrderReport/eqClassFixList";
+    }
+
+
+    /**
      * 查询根节点
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)

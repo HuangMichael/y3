@@ -1,6 +1,8 @@
 package com.subway.dao.workOrder;
 
 import com.subway.domain.equipments.Equipments;
+import com.subway.domain.equipments.EquipmentsClassification;
+import com.subway.domain.locations.Locations;
 import com.subway.domain.workOrder.WorkOrderReportCart;
 import com.subway.object.statistics.StatisticsDistributedObject;
 import com.subway.object.statistics.StatisticsFinishedObject;
@@ -226,7 +228,15 @@ public interface WorkOrderReportCartRepository extends CrudRepository<WorkOrderR
     String getNextOrderNo();
 
     /**
-     * @param equipments
+     * @param locations  设备位置
+     * @param equipmentsClassification 设备分类信息
+     * @return 根据设备位置和设备分类查询报修记录
+     */
+    List<WorkOrderReportCart> findByLocationsAndEquipmentsClassificationOrderByReportTimeDesc(Locations locations, EquipmentsClassification equipmentsClassification);
+
+
+    /**
+     * @param equipments 设备信息
      * @return 根据设备查询报修记录
      */
     List<WorkOrderReportCart> findByEquipmentsOrderByReportTimeDesc(Equipments equipments);

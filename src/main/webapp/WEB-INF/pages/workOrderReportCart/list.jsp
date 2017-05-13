@@ -205,6 +205,22 @@
     </div>
 </div>
 
+<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="locClassFixModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">本站同类设备设备维修历史信息</h4>
+            </div>
+            <div class="modal-body" id="locClassFixBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript" src="/js/bootstrap-wizard/form-wizard.min.js"></script>
 <script type="text/javascript" src="/js/app/workOrder/reportCart.js"></script>

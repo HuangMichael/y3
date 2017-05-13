@@ -21,6 +21,14 @@ public interface LineRepository extends CrudRepository<Line, Long>, PagingAndSor
     @Query("select l from Line l where l.description <> '-' order by l.id")
     List<Line> findAll();
 
+
+    @Query(value = " SELECT DISTINCT vl.line FROM v_month_line vl ORDER BY vl.line ", nativeQuery = true)
+    List<String> findLines();
+
+    @Query(value = " SELECT DISTINCT vl.line_no FROM v_month_line vl ORDER BY vl.line_no ", nativeQuery = true)
+    List<String> findLineNos();
+
+
     /**
      * 根据状态查询线路
      */

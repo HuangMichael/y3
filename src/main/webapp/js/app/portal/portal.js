@@ -40,7 +40,7 @@ $(document).ready(function () {
 function loadChartData(reportMonth) {
     loadEqClassChart(reportMonth);
     loadReportFinishChart(reportMonth);
-    loadLineChart(reportMonth);
+    loadLineChart(reportMonth, '已报修');
 }
 
 /**
@@ -148,8 +148,7 @@ function loadReportFinishChart(reportMonth) {
         title.push(getMonthAdd(date.getMonth(), 1) + "月");
 
 
-
-        console.log("title month--------------"+title);
+        console.log("title month--------------" + title);
         return title;
     }
 
@@ -168,7 +167,7 @@ function loadReportFinishChart(reportMonth) {
             }
         });
 
-        console.log("reportNums-----------------------"+reportNums);
+        console.log("reportNums-----------------------" + reportNums);
         return reportNums;
     }
 
@@ -228,111 +227,330 @@ function loadReportFinishChart(reportMonth) {
  * 根据线路统计各状态的订单数量
  * @param reportMonth
  */
-function loadLineChart(reportMonth) {
-    function loadByStatus(status) {
-        var url = "/portal/getLineReportNum/" + reportMonth + "/" + status;
-        var dataList = [];
-        $.ajaxSettings.async = false;
-        $.getJSON(url, function (data) {
-            for (var x in data) {
-                if (data[x]['num']) {
-                    dataList[x] = data[x]['num'];
-                }
-            }
-        });
-        return dataList;
-    }
-
-
-    var orderStatus = ["待分配", "维修中", "完工", "暂停", "取消"];
-    var url = "/line/findAllLines";
-    var lines = [];
-    $.ajaxSettings.async = false;
-    $.getJSON(url, function (data) {
-        for (var x in data) {
-            if (data[x]['description']) {
-                lines[x] = data[x]['description'];
-            }
-        }
-    });
-    $('#highCharts2').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: reportMonth + '月维修单状态按线别统计'
-        },
-        xAxis: {
-            categories: lines,
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
+function loadLineChart(reportMonth, status) {
+    var dataList0 = findLineStatusStat(reportMonth, '报修车');
+    var dataList1 = findLineStatusStat(reportMonth, '已报修');
+    var dataList2 = findLineStatusStat(reportMonth, '已完工');
+    var dataList3 = findLineStatusStat(reportMonth, '已取消');
+    var dataList4 = findLineStatusStat(reportMonth, '已暂停');
+    // var drillDownSeries = getDrillDownSeries(reportMonth, status);
+    $('#highCharts2').highcharts(
+        {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: '工单数量(单位:个)'
-            }
-        },
-        lang: {
-            noData: "当前无显示数据"
-        },
-        noData: {
-            style: {
-                fontWeight: 'bold',
-                fontSize: '15px',
-                color: '#303030'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [
-            {
-                name: orderStatus[0],
-                data: loadByStatus(0)
-
-            }, {
-                name: orderStatus[1],
-                data: loadByStatus(1)
-
+                text: reportMonth + '各站区/段区维修单按照状态统计'
             },
+            xAxis: {
+                // type: 'category',
 
-            {
-                name: orderStatus[2],
-                data: loadByStatus(2)
+                categories: findLines("2017-05", "")
             },
-            {
-                name: orderStatus[3],
-                data: loadByStatus(3)
-
+            yAxis: {
+                title: {
+                    text: '维修工单数量'
+                }
             },
-            {
-                name: orderStatus[4],
-                data: loadByStatus(4)
+            legend: {
+                enabled: true
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: false,
+                        format: '{point.y}'
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
+            },
+            series: [{
+                name: '报修车',
+                colorByPoint: true,
+                data: dataList0
+            },
+                {
+                    name: '已报修',
+                    colorByPoint: true,
+                    data: dataList1
+                },
+                {
+                    name: '已完工',
+                    colorByPoint: true,
+                    data: dataList2
+                },
+                {
+                    name: '已取消',
+                    colorByPoint: true,
+                    data: dataList3
+                },
+                {
+                    name: '已暂停',
+                    colorByPoint: true,
+                    data: dataList4
+                }
 
-            }
-        ]
-    });
+
+            ]
+        }
+    );
 }
 
 
 /**
  *
- * @param value 当前月份值
+ * @param value 当前月份值yi
  * @param step 前后偏移
  * @returns {number} 返回月份显示值
  */
 function getMonthAdd(value, step) {
     return (value + step) % 12;
+
+}
+
+
+/**
+ *
+ * @param reportMonth 月份
+ * @param status 工单状态 汉字描述
+ * @returns {Array}
+ */
+function findLineStatusStat(reportMonth, status) {
+    var lineData = [];
+    $.ajaxSettings.async = false;
+    var url = "/portal/findLineStatusStat";
+    var data = {
+        reportMonth: reportMonth,
+        status: status
+    };
+    $.post(url, data, function (data) {
+        lineData = data;
+    });
+
+    console.log("lineData-------------" + JSON.stringify(lineData));
+    return lineData;
+}
+
+
+/**
+ *
+ * @param reportMonth 月份
+ * @param status 工单状态 汉字描述
+ * @returns {Array}
+ */
+function findLines(reportMonth, status) {
+    var lines = [];
+    $.ajaxSettings.async = false;
+    var url = "/portal/findLineStatusStat";
+    var data = {
+        reportMonth: reportMonth,
+        status: status
+    };
+    $.post(url, data, function (data) {
+        for (var x in data) {
+            lines[x] = data[x]["name"];
+        }
+    });
+
+    return lines;
+}
+
+function getDrillDownSeries(reportMonth, status) {
+    $.ajaxSettings.async = false;
+    var drillDownSeries = [];
+    // var url = "/portal/findStationStatusStat";
+    // var params = {
+    //     reportMonth: reportMonth,
+    //     status: status
+    // };
+    // $.post(url, params, function (data) {
+    //     for (var x in data) {
+    //         if (data[x]) {
+    //             console.log("--------------------------" + JSON.stringify(data[x]));
+    //             var d = data[x]["data"];
+    //             for (var i in d) {
+    //                 var obj = [];
+    //                 if (d[i]) {
+    //                     obj.push(d[i]["str"]);
+    //                     obj.push(d[i]["value"]);
+    //                 }
+    //             }
+    //             drillDownSeries[x] = {id: data[x]["id"], name: data[x]["name"], data: obj};
+    //         }
+    //
+    //     }
+    // });
+    // console.log("drillDownSeries-------------" + JSON.stringify(drillDownSeries));
+
+
+    drillDownSeries =
+        [{
+            name: 'BJ02',
+            id: 'BJ02',
+            data: [
+                [
+                    'v11.0',
+                    24.13
+                ],
+                [
+                    'v8.0',
+                    17.2
+                ],
+                [
+                    'v9.0',
+                    8.11
+                ],
+                [
+                    'v10.0',
+                    5.33
+                ],
+                [
+                    'v6.0',
+                    1.06
+                ],
+                [
+                    'v7.0',
+                    0.5
+                ]
+            ]
+        }, {
+            name: 'BJ08',
+            id: 'BJ08',
+            data: [
+                [
+                    'v40.0',
+                    5
+                ],
+                [
+                    'v41.0',
+                    4.32
+                ],
+                [
+                    'v42.0',
+                    3.68
+                ],
+                [
+                    'v39.0',
+                    2.96
+                ],
+                [
+                    'v36.0',
+                    2.53
+                ],
+                [
+                    'v43.0',
+                    1.45
+                ],
+                [
+                    'v31.0',
+                    1.24
+                ],
+                [
+                    'v35.0',
+                    0.85
+                ],
+                [
+                    'v38.0',
+                    0.6
+                ],
+                [
+                    'v32.0',
+                    0.55
+                ],
+                [
+                    'v37.0',
+                    0.38
+                ],
+                [
+                    'v33.0',
+                    0.19
+                ],
+                [
+                    'v34.0',
+                    0.14
+                ],
+                [
+                    'v30.0',
+                    0.14
+                ]
+            ]
+        }, {
+            name: 'BJ010',
+            id: 'BJ010',
+            data: [
+                [
+                    'v35',
+                    2.76
+                ],
+                [
+                    'v36',
+                    2.32
+                ],
+                [
+                    'v37',
+                    2.31
+                ],
+                [
+                    'v34',
+                    1.27
+                ],
+                [
+                    'v38',
+                    1.02
+                ],
+                [
+                    'v31',
+                    0.33
+                ],
+                [
+                    'v33',
+                    0.22
+                ],
+                [
+                    'v32',
+                    0.15
+                ]
+            ]
+        }, {
+            name: 'BJ13',
+            id: 'BJ13',
+            data: [
+                [
+                    'v8.0',
+                    2.56
+                ],
+                [
+                    'v7.1',
+                    0.77
+                ],
+                [
+                    'v5.1',
+                    0.42
+                ],
+                [
+                    'v5.0',
+                    0.3
+                ],
+                [
+                    'v6.1',
+                    0.29
+                ],
+                [
+                    'v7.0',
+                    0.26
+                ],
+                [
+                    'v6.2',
+                    0.17
+                ]
+            ]
+        }]
+
+
+    return drillDownSeries;
 
 }

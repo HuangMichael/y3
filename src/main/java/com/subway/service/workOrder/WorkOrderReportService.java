@@ -4,6 +4,7 @@ import com.subway.dao.equipments.EquipmentsRepository;
 import com.subway.dao.locations.VlocationsRepository;
 import com.subway.dao.outsourcingUnit.OutsourcingUnitRepository;
 import com.subway.dao.workOrder.*;
+import com.subway.domain.equipments.Equipments;
 import com.subway.domain.equipments.EquipmentsClassification;
 import com.subway.domain.units.Units;
 import com.subway.domain.workOrder.*;
@@ -173,6 +174,17 @@ public class WorkOrderReportService extends BaseService implements SortedSearcha
 
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
         return vworkOrderReportBillRepository.findByOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContains(array[0], array[1], array[2], array[3]);
+
+    }
+
+
+    /**
+     * @param eid
+     * @return 根据设备查询报修记录
+     */
+    public List<WorkOrderReportCart> findByEid(Long eid) {
+        Equipments equipments = equipmentsRepository.findById(eid);
+        return workOrderReportCartRepository.findByEquipmentsOrderByReportTimeDesc(equipments);
 
     }
 }

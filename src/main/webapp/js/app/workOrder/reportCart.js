@@ -87,3 +87,47 @@ function showEqDetailByEqId(eid) {
         $("#eqInfoModal").modal("show");
     });
 }
+
+
+/**
+ *
+ * @param eid
+ */
+function showFixList(eid) {
+    //先判断是否eid有效
+    if (eid) {
+        var url = "/equipment/showFixList";
+
+        $("#eqFixBody").load(url, {eid: eid}, function (data) {
+
+            $("#eqFixModal").modal("show");
+        });
+
+    } else {
+        showMessageBox("danger", "该报修单未关联设备信息！");
+    }
+
+    //异步加载该设备维修记录
+
+
+}
+
+/**
+ *
+ * @param eid
+ * @param lid
+ */
+function showClassFixList(lid, cid) {
+
+    //先判断是否lid,cid有效
+
+    //异步加载该设备维修记录
+    if (lid || cid) {
+        showMessageBox("info", "加载设备维修历史");
+    } else {
+        showMessageBox("danger", "该报修单未关联设备信息！");
+    }
+
+}
+
+

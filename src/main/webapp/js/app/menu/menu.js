@@ -34,9 +34,14 @@ $(function () {
         $(this).css("cursor", "hand");
         var url = $(this).data("url");
         if (url) {
-            $("#main-content").load(url, function () {
-                $(this).removeData("url");
+
+            $("#main-content").slideDown(function () {
+                $("#main-content").load(url, function () {
+                    $(this).removeData("url");
+
+                });
             });
+
         }
     });
 })

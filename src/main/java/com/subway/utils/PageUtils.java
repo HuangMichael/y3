@@ -52,6 +52,8 @@ public class PageUtils {
      * @return
      */
     public MyPage searchBySortService(SortedSearchable sortedSearchable, String searchPhrase, int paramSize, int current, Long rowCount, Pageable pageable) {
+        int paramsCount = searchPhrase.split(",").length;
+        paramSize = (paramsCount<paramSize)?paramSize:paramsCount;
         Page page = sortedSearchable.findByConditions(searchPhrase, paramSize, pageable);
         MyPage myPage = new MyPage();
         myPage.setRows(page.getContent());

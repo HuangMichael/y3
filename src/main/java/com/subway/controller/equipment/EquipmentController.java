@@ -114,8 +114,11 @@ public class EquipmentController extends BaseController implements LocationSepar
     public MyPage data(HttpSession session, HttpServletRequest request, @RequestParam(value = "current", defaultValue = "0") int current, @RequestParam(value = "rowCount", defaultValue = "10") Long rowCount, @RequestParam(value = "searchPhrase", required = false) String searchPhrase) {
         String location = SessionUtil.getCurrentUserLocationBySession(session);
         Map<String, String[]> parameterMap = request.getParameterMap();
-        if (separatable) {
-            searchPhrase += location + ",";
+        if (searchPhrase.split(",").length < 4) {
+            searchPhrase += ",,,,";
+            if (separatable) {
+                searchPhrase += location + ",";
+            }
         }
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
         return new PageUtils().searchBySortService(equipmentSearchService, searchPhrase, 5, current, rowCount, pageable);
@@ -304,8 +307,8 @@ public class EquipmentController extends BaseController implements LocationSepar
      * 查询设备对应的维修历史
      */
     @RequestMapping(value = "/showClassFixList")
-    public String showClassFixList(@RequestParam("lid") Long lid,@RequestParam("cid") Long cid, ModelMap modelMap) {
-        List<WorkOrderReportCart> fixClassHistoryList = workOrderReportService.findByLidAndEid(lid,cid);
+    public String showClassFixList(@RequestParam("lid") Long lid, @RequestParam("cid") Long cid, ModelMap modelMap) {
+        List<WorkOrderReportCart> fixClassHistoryList = workOrderReportService.findByLidAndEid(lid, cid);
         modelMap.put("fixClassHistoryList", fixClassHistoryList);
         return "/workOrderReport/eqClassFixList";
     }

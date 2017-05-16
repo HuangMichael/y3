@@ -117,6 +117,16 @@ public class LineController extends BaseController {
 
 
     /**
+     * @return 查询所有的线路
+     */
+    @RequestMapping(value = "/findLinesStr")
+    @ResponseBody
+    public List<String> findLinesStr() {
+        List<String> lineList = lineService.findLinesStr();
+        return lineList;
+    }
+
+    /**
      * @param id 根据id删除设备信息
      */
     @RequestMapping(value = "/delete/{id}")

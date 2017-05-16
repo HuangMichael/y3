@@ -27,7 +27,9 @@ public class SetWorkOrderExpiredTask {
     @Autowired
     WorkOrderReportCartService workOrderReportCartService;
 
-    @Scheduled(cron = "0 0 0 * * *")
+
+    //每天上午十点执行
+    @Scheduled(cron = "0 0 10 * * *")
     public void updateFixTaskStatus() {
         List<WorkOrderReportCart> workOrderReportCartList = workOrderReportCartService.findBeingExpired();
         int num = workOrderReportCartService.handleExpiredOrders(workOrderReportCartList);

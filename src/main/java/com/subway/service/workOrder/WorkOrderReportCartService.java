@@ -433,12 +433,12 @@ public class WorkOrderReportCartService extends BaseService {
      * @param workOrderReportCartList 未过期工单集合
      */
     public int handleExpiredOrders(List<WorkOrderReportCart> workOrderReportCartList) {
-
-        Date now = new Date();
+        Calendar cal = Calendar.getInstance();
+        Date today = cal.getTime();
         int dealNum = 0;
         //对其时间进行处理  并与当前时间比较
         for (WorkOrderReportCart workOrder : workOrderReportCartList) {
-            if ((workOrder.getDeadLine() != null) && workOrder.getDeadLine().before(now)) {
+            if ((workOrder.getDeadLine() != null) && workOrder.getDeadLine().before(today)) {
                 workOrder.setExpired(true);
                 workOrderReportCartRepository.save(workOrder);
                 dealNum++;

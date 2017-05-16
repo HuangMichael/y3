@@ -1,14 +1,18 @@
 package com.subway.service.workOrder;
 
+import com.subway.dao.equipments.EquipmentsClassificationRepository;
 import com.subway.dao.equipments.EquipmentsRepository;
+import com.subway.dao.locations.LocationsRepository;
 import com.subway.dao.locations.VlocationsRepository;
 import com.subway.dao.outsourcingUnit.OutsourcingUnitRepository;
 import com.subway.dao.workOrder.*;
 import com.subway.domain.equipments.Equipments;
 import com.subway.domain.equipments.EquipmentsClassification;
+import com.subway.domain.locations.Locations;
 import com.subway.domain.units.Units;
 import com.subway.domain.workOrder.*;
 import com.subway.service.app.BaseService;
+import com.subway.utils.LocationSeparatable;
 import com.subway.utils.StringUtils;
 import com.subway.utils.search.SortedSearchable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +57,12 @@ public class WorkOrderReportService extends BaseService implements SortedSearcha
 
     @Autowired
     VworkOrderReportBillRepository vworkOrderReportBillRepository;
+
+    @Autowired
+    LocationsRepository locationsRepository;
+
+    @Autowired
+    EquipmentsClassificationRepository equipmentsClassificationRepository;
 
     /**
      * @param ids 选中的报修车列表id集合
@@ -185,6 +195,17 @@ public class WorkOrderReportService extends BaseService implements SortedSearcha
     public List<WorkOrderReportCart> findByEid(Long eid) {
         Equipments equipments = equipmentsRepository.findById(eid);
         return workOrderReportCartRepository.findByEquipmentsOrderByReportTimeDesc(equipments);
+    }
 
+
+    /**
+     * @param lid 位置id
+     * @param cid 设备分类id
+     * @return 根据设备查询报修记录
+     */
+    public List<WorkOrderReportCart> findByLidAndEid(Long lid, Long cid) {
+        Locations locations = locationsRepository.findById(lid);
+        EquipmentsClassification equipmentsClassification = equipmentsClassificationRepository.findById(cid);
+        return workOrderReportCartRepository.findByLocationsAndEquipmentsClassificationOrderByReportTimeDesc(locations, equipmentsClassification);
     }
 }

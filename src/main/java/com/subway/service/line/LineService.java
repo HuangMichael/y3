@@ -71,6 +71,13 @@ public class LineService extends BaseService {
 
 
     /**
+     * @return 查询所有线
+     */
+    public List<String> findLinesStr() {
+        return lineRepository.findLines();
+    }
+
+    /**
      * @return 查询所有段
      */
     public List<Line> findSegs() {

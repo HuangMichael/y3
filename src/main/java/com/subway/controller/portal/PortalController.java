@@ -1,6 +1,8 @@
 package com.subway.controller.portal;
 
 
+import com.subway.domain.workOrder.VworkOrderLineCompare;
+import com.subway.domain.workOrder.VworkOrderStationCompareVo;
 import com.subway.service.portal.PortalService;
 import com.subway.service.workOrder.WorkOrderReportCartService;
 import com.subway.domain.workOrder.VlineMonth;
@@ -72,6 +74,31 @@ public class PortalController {
         return portalService.getLineReportNumReportMonth(reportMonth, name);
     }
 
+
+    /**
+     * @param reportMonth 报修月份
+     * @param status      工单状态
+     * @return
+     */
+
+    @RequestMapping(value = "/findLineStatusStat", method = RequestMethod.POST)
+    @ResponseBody
+    public List<VworkOrderLineCompare> findByReportMonthAndStatusOrderByLineNoAsc(@RequestParam("reportMonth") String reportMonth, @RequestParam("status") String status) {
+        return portalService.findByReportMonthAndStatusOrderByNameAsc(reportMonth, status);
+    }
+
+
+    /**
+     * @param reportMonth 报修月份
+     * @param status      工单状态
+     * @return
+     */
+
+    @RequestMapping(value = "/findStationStatusStat", method = RequestMethod.POST)
+    @ResponseBody
+    public List<VworkOrderStationCompareVo> findByReportMonthAndStatusOrderByStationNoAsc(@RequestParam("reportMonth") String reportMonth, @RequestParam("status") String status) {
+        return portalService.findByReportMonthAndStatusOrderByStationNoAsc(reportMonth, status);
+    }
 
 }
 

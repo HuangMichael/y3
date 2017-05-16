@@ -285,7 +285,6 @@ function findAllRecordId() {
     $.getJSON(url, function (data) {
         ids = data;
     });
-    console.log("ids----------" + JSON.stringify(ids));
     return ids;
 }
 
@@ -296,7 +295,6 @@ function findAllRecordId() {
 function exportExcel() {
 
     var selectedIds = $(dataTableName).bootgrid("getSelectedRows");
-    console.log("selectedRows------------" + JSON.stringify(selectedIds));
     var param = $(dataTableName).bootgrid("getSearchPhrase");
     var columnSettings = $(dataTableName).bootgrid("getColumnSettings");
     var titles = [];
@@ -421,6 +419,8 @@ function initBootGrid(dataTableName) {
             return a - b
         });
     });
+
+    $(dataTableName).slideDown("slow");
 }
 
 
@@ -428,6 +428,7 @@ function initBootGrid(dataTableName) {
  * 初始化bootgrid表格 并监听选择时间
  */
 function initBootGridMenu(dataTableName, config) {
+
 
     if (!config) {
         config = {
@@ -440,6 +441,8 @@ function initBootGridMenu(dataTableName, config) {
 
         }
     }
+
+    // $(dataTableName).bootgrid("setSearchPhrase", getSearchConfig());
     //初始化加载列表
     $(dataTableName).bootgrid(config).on("selected.rs.jquery.bootgrid", function (e, rows) {
         //如果默认全部选中
@@ -461,6 +464,8 @@ function initBootGridMenu(dataTableName, config) {
             return a - b
         });
     });
+
+
 }
 
 
@@ -557,17 +562,20 @@ function search() {
             var value = ($(p).val()) ? $(p).val().trim() : "";
             searchParams += value + ",";
         }
-
-        console.log("searchParams-------------"+searchParams);
+        console.log("searchParams-------------" + searchParams);
 
     });
-    $(dataTableName).bootgrid("setSearchPhrase", searchParams).bootgrid("reload");
+    // $(dataTableName).bootgrid("setSearchPhrase", searchParams).bootgrid("reload");
 }
 
 
-
-
 function complexSearch() {
+    //组装模型
+    $(dataTableName).bootgrid("setSearchPhrase", getSearchConfig()).bootgrid("reload");
+}
+
+
+function getSearchConfig() {
     //组装模型
     var params = $("#searchBox :input");
     var searchParams = "";
@@ -577,13 +585,13 @@ function complexSearch() {
             var value = ($(p).val()) ? $(p).val().trim() : "";
             searchParams += value + ",";
         }
-
-        console.log("searchParams-------------"+searchParams);
+        console.log("searchParams-------------" + searchParams);
 
     });
-    $(dataTableName).bootgrid("setSearchPhrase", searchParams).bootgrid("reload");
-}
 
+    return searchParams;
+
+}
 function searchMore() {
     //组装模型
     var params = $("#searchBox :input");

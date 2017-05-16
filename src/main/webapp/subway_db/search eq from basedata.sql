@@ -27,4 +27,10 @@ SELECT
     '0' AS eam_no,
     '0' AS img_url
 FROM
-    t_basedata b
+    t_basedata b;
+
+
+set sql_safe_updates = 0;
+
+
+

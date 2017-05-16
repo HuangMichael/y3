@@ -401,7 +401,7 @@ public class EquipmentController extends BaseController implements LocationSepar
      * @return 一键导入设备数据
      */
     public ReturnObject oneKeyImport() {
-        equipmentAccountService.oneKeyImport();
+//        equipmentAccountService.oneKeyImport();
 
         return commonDataService.getReturnType(true, "数据导入成功", "数据导入失败");
     }

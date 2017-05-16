@@ -18,4 +18,15 @@ SET
 SET 
     b.eq_class_id = c.id
 WHERE
-    c.class_type = 2
+    c.class_type = 2;
+
+
+set sql_safe_updates = 0;
+
+
+
+    UPDATE t_basedata t
+        JOIN
+    t_locations l ON LEFT(t.loccode, 6) = LEFT(l.location, 6)
+SET
+    t.station = l.description

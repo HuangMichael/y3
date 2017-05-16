@@ -22,7 +22,7 @@ public interface LineRepository extends CrudRepository<Line, Long>, PagingAndSor
     List<Line> findAll();
 
 
-    @Query(value = " SELECT DISTINCT vl.line FROM v_month_line vl ORDER BY vl.line ", nativeQuery = true)
+    @Query(value = " SELECT DISTINCT vl.line_no,vl.line FROM v_month_line vl ORDER BY vl.line_no asc ", nativeQuery = true)
     List<String> findLines();
 
     @Query(value = " SELECT DISTINCT vl.line_no FROM v_month_line vl ORDER BY vl.line_no ", nativeQuery = true)

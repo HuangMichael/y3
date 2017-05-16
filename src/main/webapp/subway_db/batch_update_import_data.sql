@@ -1,12 +1,13 @@
     
-#批量更新设备位置
-    
-UPDATE t_basedata b
+
+
+
+    UPDATE t_basedata b
         JOIN
-    v_locations v ON v.loc_Name = CONCAT(b.line, b.station, b.locdesc) 
-SET 
-    b.location_id = v.id,
-    b.loccode = v.location;
+    v_locations v ON v.location = b.loccode
+SET
+    b.location_id = v.id;
+
     
     
    #批量更新设备分类 

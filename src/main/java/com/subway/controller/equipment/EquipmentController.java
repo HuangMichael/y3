@@ -395,4 +395,14 @@ public class EquipmentController extends BaseController implements LocationSepar
         equipmentSearchService.setDataList(dataList);
         equipmentSearchService.exportExcel(request, response, docName, titles, colNames);
     }
+
+
+    /**
+     * @return 一键导入设备数据
+     */
+    public ReturnObject oneKeyImport() {
+        equipmentAccountService.oneKeyImport();
+
+        return commonDataService.getReturnType(true, "数据导入成功", "数据导入失败");
+    }
 }

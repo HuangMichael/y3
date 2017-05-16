@@ -173,4 +173,17 @@ public class EquipmentAccountService extends BaseService {
         equipmentsRepository.save(list);
     }
 
+
+    Long oneKeyImport() {
+
+        //根据编号查询出所有的位置数据
+
+        //首先导入位置数据
+
+        //保存在设备信息中
+
+
+        return 0l;
+    }
+
 }

@@ -10,6 +10,7 @@ import com.subway.service.locations.LocationsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,8 @@ import java.util.List;
  * 设备台账业务类
  */
 @Service
+
 public class EquipmentAccountService extends BaseService {
-
-    Log log = LogFactory.getLog(this.getClass());
-
 
     @Autowired
     EquipmentsRepository equipmentsRepository;
@@ -173,17 +172,5 @@ public class EquipmentAccountService extends BaseService {
         equipmentsRepository.save(list);
     }
 
-
-    Long oneKeyImport() {
-
-        //根据编号查询出所有的位置数据
-
-        //首先导入位置数据
-
-        //保存在设备信息中
-
-
-        return 0l;
-    }
 
 }

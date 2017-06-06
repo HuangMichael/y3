@@ -63,6 +63,7 @@
                                                         <th class="hidden-xs hidden-sm">
                                                             报告时间
                                                         </th>
+                                                        <th>维修记录</th>
 
                                                     </tr>
                                                     </thead>
@@ -80,6 +81,14 @@
                                                             <td>${workOrder.equipmentsClassification.description}</td>
                                                             <td>${workOrder.orderDesc}</td>
                                                             <td><fmt:formatDate value="${workOrder.reportTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+
+                                                            <td><a class="btn  btn-default btn-xs"
+                                                                   onclick="showFixList(${workOrder.equipments.id})"
+                                                                   title="查看该设备维修记录"><i
+                                                                    class="glyphicon glyphicon-search"></i></a><a class="btn  btn-default btn-xs"
+                                                                                                                  onclick="showClassFixList(${workOrder.locations.id},${workOrder.equipmentsClassification.id})"
+                                                                                                                  title="查看该站同类设备维修记录"><i
+                                                                    class="glyphicon glyphicon-list"></i></a></td>
                                                         </tr>
                                                     </c:forEach>
                                                     </tbody>
@@ -167,6 +176,39 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="eqFixModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">设备维修历史信息</h4>
+            </div>
+            <div class="modal-body" id="eqFixBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+<div class="modal fade" id="locClassFixModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">本站同类设备设备维修历史信息</h4>
+            </div>
+            <div class="modal-body" id="locClassFixBody">
+
             </div>
         </div>
     </div>

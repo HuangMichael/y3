@@ -106,8 +106,6 @@ function showFixList(eid) {
     }
 
     //异步加载该设备维修记录
-
-
 }
 
 /**

@@ -113,7 +113,6 @@ public class CommonDataService extends BaseService {
         } else {
             if (location != null && !location.equals("")) {
                 locationsList = locationsRepository.findByLocationStartingWith(location);
-                log.info(this.getClass().getCanonicalName() + "------------从缓存中查询位置信息");
             }
         }
         return locationsList;
@@ -131,11 +130,9 @@ public class CommonDataService extends BaseService {
         Object object = httpSession.getAttribute("locationsList");
         if (object != null) {
             locationsList = (ArrayList<Vlocations>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询位置信息");
         } else {
             if (location != null && !location.equals("")) {
                 locationsList = vlocationsRepository.findByLocationStartingWith(location);
-                log.info(this.getClass().getCanonicalName() + "------------从缓存中查询位置信息");
             }
         }
         return locationsList;
@@ -153,11 +150,9 @@ public class CommonDataService extends BaseService {
         Object object = httpSession.getAttribute("vequipmentsList");
         if (object != null) {
             vequipmentsList = (ArrayList<Vequipments>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询位置信息");
         } else {
             if (location != null && !location.equals("")) {
                 vequipmentsList = vequipmentsRepository.findByLocationStartingWith(location);
-                log.info(this.getClass().getCanonicalName() + "------------从缓存中查询位置信息");
             }
         }
         return vequipmentsList;
@@ -173,13 +168,9 @@ public class CommonDataService extends BaseService {
         Object object = httpSession.getAttribute("equipmentsClassificationList");
         if (object != null) {
             equipmentsClassificationList = (ArrayList<EquipmentsClassification>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询设备种类");
-
         } else {
             equipmentsClassificationList = equipmentsClassificationRepository.findAll();
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询设备种类");
             httpSession.setAttribute("equipmentsClassificationList", equipmentsClassificationList);
-            log.info(this.getClass().getCanonicalName() + "------------设备种类放入缓存");
         }
         return equipmentsClassificationList;
 
@@ -196,12 +187,9 @@ public class CommonDataService extends BaseService {
         Object object = httpSession.getAttribute("eqClassList");
         if (object != null) {
             eqClassList = (ArrayList<VeqClass>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询设备种类视图");
         } else {
             eqClassList = veqClassRepository.findAll();
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询设备种类视图");
             httpSession.setAttribute("eqClassList", eqClassList);
-            log.info(this.getClass().getCanonicalName() + "------------设备种类视图放入缓存");
         }
         return eqClassList;
     }
@@ -224,12 +212,9 @@ public class CommonDataService extends BaseService {
         Object object = httpSession.getAttribute("menusList");
         if (object != null) {
             menusList = (ArrayList<Resource>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询菜单");
         } else {
             menusList = resourceRepository.findByResourceLevel(1L);
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询菜单");
             httpSession.setAttribute("menusList", menusList);
-            log.info(this.getClass().getCanonicalName() + "------------将菜单放入缓存");
         }
         return menusList;
 
@@ -246,13 +231,10 @@ public class CommonDataService extends BaseService {
         Object object = httpSession.getAttribute("eqStatusList");
         if (object != null) {
             eqStatusList = (ArrayList<ListObject>) httpSession.getAttribute("eqStatusList");
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询设备状态");
         } else {
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询设备状态");
             eqStatusList.add(new ListObject("0", "维修"));
             eqStatusList.add(new ListObject("1", "投用"));
             eqStatusList.add(new ListObject("2", "报废"));
-            log.info(this.getClass().getCanonicalName() + "------------设备状态放入缓存");
             httpSession.setAttribute("eqStatusList", eqStatusList);
         }
         return eqStatusList;

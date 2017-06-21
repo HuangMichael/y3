@@ -78,8 +78,6 @@ function getFormJsonData(formId) {
  */
 function getFormDataAsJSON(formId) {
     var array = $(formId).serializeArray();
-
-
     console.log("array-------------" + JSON.stringify(array));
     var objStr = "{";
     for (var x in array) {

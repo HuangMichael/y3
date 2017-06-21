@@ -566,7 +566,7 @@ function search() {
         console.log("searchParams-------------" + searchParams);
 
     });
-    // $(dataTableName).bootgrid("setSearchPhrase", searchParams).bootgrid("reload");
+    $(dataTableName).bootgrid("setSearchPhrase", searchParams).bootgrid("reload");
 }
 
 

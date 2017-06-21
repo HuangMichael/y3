@@ -10,10 +10,6 @@ import java.util.List;
  * 返回对象
  */
 @Data
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ReturnObject {
     private Boolean result;  //返回结果
     private String resultDesc;//返回描述

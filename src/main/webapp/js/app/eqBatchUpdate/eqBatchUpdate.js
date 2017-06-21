@@ -341,15 +341,35 @@ function add2LocCart() {
     }
 
     $("#locReportForm #locationId").val(nodeId);
+
+
     var obj = getFormJsonData("locReportForm");
     var objJson = JSON.parse(obj);
+    var url = "eqBatch/test";
 
 
-    var url = "/eqUpdateBill/save";
-    console.log("-------------------" + JSON.stringify(objJson));
-    $.post(url, objJson, function (data) {
+    var object = {
+        applicant: applicant,
+        loc: nodeId,
+        eqClassId: eqClassId,
+        applyDep: applyDep,
+        purpose: purpose,
+        approver: approver,
+        handler: handler,
+        receiver: receiver
+    };
+
+    console.log("url------------------" + url);
+
+    console.log("object------------------"+JSON.stringify(object))
+    $.post(url, object, function (data) {
         $("#loc_modal").modal("hide");
-        showMessageBox("info", "设备更新申请已提交!")
+
+        if (data.result) {
+            showMessageBox("info", "设备更新申请已提交!")
+        } else {
+            showMessageBox("danger", "设备更新申请提交失败!")
+        }
     });
 
 }

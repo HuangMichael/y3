@@ -5,16 +5,19 @@
 <form class="form-horizontal" role="form" id="locReportForm">
     <div class="row">
         <div class="col-md-12">
+            <%--<div class="form-group">--%>
+                <%--<label class="col-md-2 control-label" for="rptLoc">设备位置</label>--%>
+                <%--<div class="col-md-10">--%>
+                    <%--<input type="hidden" class="form-control" id="locationId" name="location.id"/>--%>
+                    <%--&lt;%&ndash;<input type="text" class="form-control" id="rptLoc" name="rptLoc" readonly/>&ndash;%&gt;--%>
+                <%--</div>--%>
+            <%--</div>--%>
             <div class="form-group">
-                <label class="col-md-2 control-label" for="rptLoc">设备位置</label>
-                <div class="col-md-10">
-                    <input type="hidden" class="form-control" id="locationId" name="location.id"/>
-                    <input type="text" class="form-control" id="rptLoc" name="rptLoc" readonly/>
-                </div>
-            </div>
-            <div class="form-group">
+
                 <label class="col-md-2 control-label" for="equipmentsClassification_id">设备分类</label>
                 <div class="col-md-10">
+                    <input type="hidden" class="form-control" id="id" name="id"/>
+                    <input type="hidden" class="form-control" id="locationId" name="location.id"/>
                     <select class="form-control" id="equipmentsClassification_id" name="equipmentsClassification.id"
                             v-model="equipments.equipmentsClassification.id"
                             style="width:100%;background-color:#ffffce" required>

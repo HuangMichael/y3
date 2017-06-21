@@ -10,7 +10,7 @@
                     <!-- BOX -->
                     <div class="box border blue">
                         <div class="box-title">
-                            <h4><i class="fa fa-sitemap"></i>设备批量更新信息</h4>
+                            <h4><i class="fa fa-sitemap"></i>设备更新信息</h4>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-md-9">
                     <div class="box border blue">
-                    <%@include file='../common/common-menubar.jsp' %>
+                        <%@include file='../common/common-menubar.jsp' %>
                     </div>
                     <div class="divide-2"></div>
                     <!-- BOX -->
@@ -40,9 +40,7 @@
     </div>
     <!-- /CONTENT-->
 </div>
-
-
-<div class="modal fade " id="report_modal" tabindex="-1"
+<div class="modal fade " id="loc_modal" tabindex="-1"
      role="dialog" aria-labelledby="myModalLabel2">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -50,14 +48,12 @@
                 <button type="button" class="close" data-dismiss="modal"
                         aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2">请输入批量更新申请信息</h4>
+                <h4 class="modal-title" id="myModalLabel2">请输入设备更新申请信息</h4>
             </div>
             <div class="modal-body">
-                <%@include file="applyForm.jsp" %>
+                <%@include file="locationReport.jsp" %>
             </div>
         </div>
     </div>
 </div>
-
-
 <script type="text/javascript" src="/js/app/eqBatchUpdate/eqBatchUpdate.js"></script>

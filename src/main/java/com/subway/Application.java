@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan
 @SpringBootApplication
 @EnableScheduling //开启调度
-//@EnableCaching //开启缓存
+@EnableCaching //开启缓存
 
 public class Application {
     public static void main(String[] args) {

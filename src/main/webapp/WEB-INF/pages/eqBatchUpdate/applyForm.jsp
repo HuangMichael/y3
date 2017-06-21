@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="v-bind" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="v-on" uri="http://www.springframework.org/tags/form" %>
-<form class="form-horizontal myform" id="batchUpdateForm" method="post">
+<form class="form-horizontal myform" id="batchUpdateForm">
     <div class="form-group">
         <label for="applicant" class="col-md-2 control-label ">申请人</label>
         <div class="col-md-10 ">
@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="modal-footer ">
-        <button  id="saveBtn" name="saveBtn " class="btn btn-primary btn-danger " onclick="saveBatchBill()">保存记录
+        <button  id="applyBtn" name="applyBtn" class="btn btn-primary btn-danger " onclick="commitApply()">保存记录
         </button>
     </div>
 </form>

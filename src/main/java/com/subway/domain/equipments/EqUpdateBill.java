@@ -1,8 +1,10 @@
 package com.subway.domain.equipments;
 
+import com.subway.domain.locations.Locations;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.xml.stream.Location;
 
 /**
  * 采购申请单
@@ -44,10 +46,17 @@ public class EqUpdateBill {
     @Column(length = 20)
     private String eqCode; //设备编号
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "equipment_id", referencedColumnName = "id")
-    private Equipments equipments; //位置
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    private Locations location; //设备位置
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "eq_class_id", referencedColumnName = "id")
+    private EquipmentsClassification equipmentsClassification; //设备分类
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipment_id", referencedColumnName = "id")
+    private Equipments equipments; //设备位置
 
     @Column(length = 1, columnDefinition = "default '2'")
     private String dataType; //数据分类 1为新置  2为更新

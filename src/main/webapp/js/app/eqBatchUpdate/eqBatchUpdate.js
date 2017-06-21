@@ -9,6 +9,8 @@ var setting = {
     callback: {
         onClick: function (event, treeId, treeNode) {
             var locName = findLocNameById(treeNode.id);
+
+
             console.log("locName---------------" + locName);
             vdm.$set("locName", locName);
 
@@ -26,17 +28,17 @@ var zNodes = [];
 var validationConfig = {
     message: '该值无效 ',
     fields: {
-        "applicant": {
-            message: '申请人无效',
+        "location": {
+            message: '位置编号无效',
             validators: {
                 notEmpty: {
-                    message: '申请人不能为空!'
+                    message: '位置编号不能为空!'
                 }
                 ,
                 stringLength: {
                     min: 2,
                     max: 20,
-                    message: '申请人长度为2到20个字符'
+                    message: '位置编号长度为2到20个字符'
                 }
             }
         }
@@ -82,7 +84,12 @@ $(document).ready(function () {
         demoIframe.bind("load", loadReady);
         zTree = $.fn.zTree.getZTreeObj("tree");
         zTree.selectNode(zTree.getNodeByParam("id", zNodes[0]));
+        //firstLoad(zNodes[0]);
+
+
         afterClick.call(zNodes[0]["id"]);
+
+
     });
 
     function loadReady() {
@@ -111,15 +118,261 @@ $(document).ready(function () {
 
         }
     });
+
+
     initSelect();
 
 
     $("#saveBtn").on("click", function () {
 
-        alert(123123);
 
-    });
+        console.log("save---------------------");
+    })
 });
+var flag = false;
+
+
+function add() {
+    // var parent = addNode();
+    var url = mainObject + "/create/" + getSelectedNode().id;
+    $.getJSON(url, function (data) {
+        vdm.$set(mainObject, data);
+    })
+    setFormReadStatus(formName, false, "location");
+    $("#locNameDiv").hide();
+}
+
+
+var reportId;
+
+function report(id) {
+    var status = "0";
+    var path = "/equipment/findById/" + id;
+    $.getJSON(path, function (data) {
+        status = data["status"]
+    });
+    var curl = "/workOrderReportCart/loadReportedEqPage/" + id;
+    if (status == "0") {
+        $("#eqList").load(curl, function (data) {
+            $("#show_eq_modal").modal("show");
+            eqId = id;
+            reportId = id;
+        })
+    } else {
+        equipReport(id);
+    }
+}
+
+function equipReport(id) {
+    var url = "/workOrderReportCart/add2Cart";
+    $.post(url, {equipmentId: id}, function (data) {
+        var size = $("#reportOrderSize").html();
+        if (!size) {
+            size = 0
+        }
+        $("#reportOrderSize").html(parseInt(size) + 1);
+        showMessageBox("info", "已将设备报修加入到维修车!")
+    })
+}
+
+
+/**
+ *  删除位置信息
+ */
+function del() {
+    var zTree = $.fn.zTree.getZTreeObj("tree");
+    var selectedNode = zTree.getSelectedNodes()[0];
+    var id = selectedNode.id;
+    var url = "/location/delete/" + id;
+
+    if (id) {
+        bootbox.confirm({
+            message: "确定要删除该记录么？?",
+            buttons: {
+                confirm: {
+                    label: '是',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: '否',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        success: function (msg) {
+                            if (msg.result) {
+                                showMessageBox("info", msg["resultDesc"]);
+                                var zTree = $.fn.zTree.getZTreeObj("tree");
+                                zTree.removeNode(zTree.getSelectedNodes()[0]);
+                                zTree.selectNode(zTree.getNodeByParam("id", 1));
+                            }
+                        },
+                        error: function (msg) {
+                            showMessageBox("danger", msg["resultDesc"]);
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 位置保修
+ */
+function batchUpdateReport() {
+    var location = getSelectedNode().location;
+    var locationId = getSelectedNode().id;
+    var status = "0";
+    var locType = "";
+    var path = "/location/findById/" + locationId;
+    $.getJSON(path, function (data) {
+        status = data["status"];
+        locType = data["locationType"];
+    });
+    if (!location) {
+        showMessageBox("danger", "请先选中位置再进行设备更新操作!");
+        return
+    }
+    var url = "/commonData/findVEqClass";
+    $.getJSON(url, function (data) {
+        eqClasses = data;
+    });
+
+    console.log("---------------------" + JSON.stringify(eqClasses));
+    //新建一个数据模型
+    //初始化请求设备分类
+    reportModel = new Vue({
+        el: "#locReportForm",
+        data: {
+            eqClasses: eqClasses
+
+        }
+    });
+    console.log("here-------------------");
+    $("#rptLoc").val(getSelectedNode().name);
+    $("#loc_modal").modal("show");
+}
+
+/**
+ *  已经报修提示重复报修 选择继续
+ */
+function continueLocReport() {
+    $("#show_loc_modal").modal("hide");
+    //再次报修时  将原来的输入清空
+    $("#orderDesc").val("");
+    $("#rptLoc").val(getSelectedNode().name);
+    $("#loc_modal").modal("show");
+}
+
+/**
+ * 加入位置报修
+ */
+function add2LocCart() {
+    var nodeId = getSelectedNodeId();
+
+    var applicant = $("#applicant").val();
+    var applyDep = $("#applyDep").val();
+    var applyDate = $("#applyDate").val();
+    var purpose = $("#purpose").val();
+    var approver = $("#approver").val();
+    var handler = $("#handler").val();
+    var receiver = $("#receiver").val();
+
+
+    var eqClassId = $("#equipmentsClassification_id").val();
+
+    if (!nodeId) {
+        showMessageBox("danger", "请选中设备更新位置!");
+        return;
+    }
+
+    if (!eqClassId) {
+        showMessageBox("danger", "请选择要更新的设备类型!");
+        $("#equipmentsClassification_id").focus();
+        $("#equipmentsClassification_id").css("border", "dashed 1px red");
+        return;
+    }
+    if (!applicant) {
+        showMessageBox("danger", "申请人不能为空!");
+        $("#applicant").focus();
+        $("#applicant").css("border", "dashed 1px red");
+        return
+    }
+    if (!applyDep) {
+        showMessageBox("danger", "申请部门不能为空!");
+        $("#applyDep").focus();
+        $("#applyDep").css("border", "dashed 1px red");
+        return
+    }
+    if (!purpose) {
+        showMessageBox("danger", "申请用途不能为空!");
+        $("#purpose").focus();
+        $("#purpose").css("border", "dashed 1px red");
+        return
+    }
+    if (!applyDate) {
+        showMessageBox("danger", "申请日期不能为空!");
+        $("#applyDate").focus();
+        $("#applyDate").css("border", "dashed 1px red");
+        return
+    }
+    if (!approver) {
+        showMessageBox("danger", "批准人人不能为空!");
+        $("#approver").focus();
+        $("#approver").css("border", "dashed 1px red");
+        return
+    }
+    if (!handler) {
+        showMessageBox("danger", "经办人不能为空!");
+        $("#handler").focus();
+        $("#handler").css("border", "dashed 1px red");
+        return
+    }
+    if (!receiver) {
+        showMessageBox("danger", " 接收人不能为空!");
+        $("#receiver").focus();
+        $("#receiver").css("border", "dashed 1px red");
+        return
+    }
+
+    $("#locReportForm #locationId").val(nodeId);
+    var obj = getFormJsonData("locReportForm");
+    var objJson = JSON.parse(obj);
+
+
+    var url = "/eqUpdateBill/save";
+    console.log("-------------------" + JSON.stringify(objJson));
+    $.post(url, objJson, function (data) {
+        $("#loc_modal").modal("hide");
+        showMessageBox("info", "设备更新申请已提交!")
+    });
+
+}
+
+/**
+ *
+ * @param data
+ * 首次加载函数 在form中显示第一条记录内容
+ */
+
+/*
+ function firstLoad(data) {
+ if (data.length > 0) {
+ $("#form #lid").val(data.id);
+ $("#form #location").val(data.location);
+ $("#form #description").val(data.name);
+ $("#form #superior").val(data.superior);
+ //$("#parent_id").val(null).attr("readonly", "readonly");
+
+ }
+ }
+ */
+
 
 /**
  *
@@ -217,28 +470,3 @@ function sysnLoc() {
         $("#importLocModal").modal("hide");
     });
 }
-
-
-function batchUpdateReport() {
-    var lid = getSelectedNodeId();
-    console.log("------------------" + lid);
-    $("#report_modal :input").removeAttr("readonly");
-    $("#report_modal").modal("show");
-
-
-}
-
-
-/**
- *
- */
-function saveBatchBill() {
-
-    var obj = getFormJsonData("batchUpdateForm");
-
-    console.log("obj-----------"+obj);
-    $("#report_modal").modal("hide");
-}
-
-
-

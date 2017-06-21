@@ -44,7 +44,7 @@ public class CommonDataController extends BaseController {
         String location = SessionUtil.getCurrentUserLocationBySession(httpSession);
         List<Locations> locationList = null;
         if (location != null && !location.equals("")) {
-            locationList = commonDataService.findMyLocation(location, httpSession);
+            locationList = commonDataService.findMyLocation(location);
         }
         return locationList;
     }
@@ -58,11 +58,7 @@ public class CommonDataController extends BaseController {
     @ResponseBody
     public List<Vlocations> findMyLoc(HttpSession httpSession) {
         String location = SessionUtil.getCurrentUserLocationBySession(httpSession);
-        List<Vlocations> locationList = null;
-        if (location != null && !location.equals("")) {
-            locationList = commonDataService.findMyVLocation(location, httpSession);
-        }
-        return locationList;
+        return commonDataService.findMyVLocation(location);
     }
 
 

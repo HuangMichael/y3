@@ -33,6 +33,8 @@ import com.subway.service.workOrder.WorkOrderReportCartService;
 import com.subway.utils.CommonStatusType;
 import com.subway.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -46,6 +48,7 @@ import java.util.List;
  * Created by huangbin on 2016/3/24.
  */
 @Service
+@CacheConfig
 public class CommonDataService extends BaseService {
 
     @Autowired
@@ -104,38 +107,20 @@ public class CommonDataService extends BaseService {
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    public List<Locations> findMyLocation(String location, HttpSession httpSession) {
-        List<Locations> locationsList = null;
-        Object object = httpSession.getAttribute("locationsList");
-        if (object != null) {
-            locationsList = (ArrayList<Locations>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询位置信息");
-        } else {
-            if (location != null && !location.equals("")) {
-                locationsList = locationsRepository.findByLocationStartingWith(location);
-            }
-        }
-        return locationsList;
+    @Cacheable(value = "locations", keyGenerator = "wiselyKeyGenerator")
+    public List<Locations> findMyLocation(String location) {
+        return locationsRepository.findByLocationStartingWith(location);
     }
 
 
     /**
      * @param location    位置编号
-     * @param httpSession 查询位置我的视图信息
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    public List<Vlocations> findMyVLocation(String location, HttpSession httpSession) {
-        List<Vlocations> locationsList = null;
-        Object object = httpSession.getAttribute("locationsList");
-        if (object != null) {
-            locationsList = (ArrayList<Vlocations>) object;
-        } else {
-            if (location != null && !location.equals("")) {
-                locationsList = vlocationsRepository.findByLocationStartingWith(location);
-            }
-        }
-        return locationsList;
+    @Cacheable(value = "vlocs", keyGenerator = "wiselyKeyGenerator")
+    public List<Vlocations> findMyVLocation(String location) {
+        return  vlocationsRepository.findByLocationStartingWith(location);
     }
 
 

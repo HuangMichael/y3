@@ -1,6 +1,7 @@
 package com.subway.domain.equipments;
 
 import com.subway.domain.locations.Locations;
+import com.subway.domain.locations.Vlocations;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,6 +28,10 @@ public class EqBatchUpdateBill {
     @Column(length = 50)
     private String purpose; //用途
 
+
+    @Column(length = 50)
+    private String model; //设备型号
+
     @Column(length = 10)
     private String approver; //批准人
 
@@ -39,13 +44,17 @@ public class EqBatchUpdateBill {
     @Column(length = 10)
     private String dataType; //类型
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "eq_class_id", referencedColumnName = "id")
-    private EquipmentsClassification equipmentsClassification; //位置
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(length = 100)
+    private String billContent; //内容
+
+    @ManyToOne
+    @JoinColumn(name = "eq_class_id", referencedColumnName = "id")
+    private VeqClass equipmentsClassification; //位置
+
+    @ManyToOne
     @JoinColumn(name = "location_id", referencedColumnName = "id")
-    private Locations locations; //位置
+    private Vlocations location; //位置
 
     @Column(length = 1,columnDefinition = "default 1")
     private String status; //类型

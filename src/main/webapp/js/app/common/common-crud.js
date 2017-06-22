@@ -485,7 +485,6 @@ function getMyLocs() {
  *查询我的位置
  * */
 function findMyLoc() {
-    console.log("---------------findMyLoc");
     var url_location = "/commonData/findMyLoc";
     $.getJSON(url_location, function (data) {
         locs = data;

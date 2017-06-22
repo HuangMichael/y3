@@ -35,7 +35,7 @@ import java.util.Map;
  */
 @Controller
 @EnableAutoConfiguration
-@RequestMapping("/eqBatch")
+@RequestMapping("/eqBatchUpdateBill")
 public class EqBatchUpdateBillController extends BaseController {
 
     @Autowired
@@ -70,47 +70,5 @@ public class EqBatchUpdateBillController extends BaseController {
         Map<String, String[]> parameterMap = request.getParameterMap();
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
         return new PageUtils().searchBySortService(eqBatchUpdateBillSearchService, searchPhrase, 2, current, rowCount, pageable);
-    }
-
-
-    /**
-     * @param applicant
-     * @return 保存人员信息
-     */
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    @ResponseBody
-    public ReturnObject save(@RequestParam("applicant") String applicant,
-                             @RequestParam("loc") long loc,
-                             @RequestParam("eqClassId") long eqClassId,
-                             @RequestParam("applyDep") String applyDep,
-                             @RequestParam("applyDate") String applyDate,
-                             @RequestParam("purpose") String purpose,
-                             @RequestParam("approver") String approver,
-                             @RequestParam("handler") String handler,
-                             @RequestParam("receiver") String receiver
-    ) {
-        EqBatchUpdateBill eqBatchUpdateBill = new EqBatchUpdateBill();
-        eqBatchUpdateBill.setApplicant(applicant);
-        eqBatchUpdateBill.setLocations(locationsService.findById(loc));
-        eqBatchUpdateBill.setEquipmentsClassification(equipmentsClassificationService.findById(eqClassId));
-        eqBatchUpdateBill.setApplyDep(applyDep);
-        eqBatchUpdateBill.setPurpose(purpose);
-        eqBatchUpdateBill.setApprover(approver);
-        eqBatchUpdateBill.setHandler(handler);
-        eqBatchUpdateBill.setReceiver(receiver);
-        eqBatchUpdateBill.setDataType("2");
-        eqBatchUpdateBill.setApplyDate(applyDate);
-        eqBatchUpdateBill.setStatus("1");
-        System.out.println("applicant--------" + applicant);
-        System.out.println("loc--------" + loc);
-        System.out.println("eqClassId--------" + eqClassId);
-        System.out.println("applyDep--------" + applyDep);
-        System.out.println("purpose--------" + purpose);
-        System.out.println("approver--------" + approver);
-        System.out.println("handler--------" + handler);
-        System.out.println("receiver--------" + receiver);
-        System.out.println("applyDate--------" + applyDate);
-        eqBatchUpdateBill = eqBatchUpdateBillService.save(eqBatchUpdateBill);
-        return commonDataService.getReturnType(eqBatchUpdateBill != null, "设备批量更新信息保存成功!", "设备批量更新信息保存失败!");
     }
 }

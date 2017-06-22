@@ -272,9 +272,8 @@ function continueLocReport() {
 /**
  * 加入位置报修
  */
-function add2LocCart() {
+function applyReport() {
     var nodeId = getSelectedNodeId();
-
     var applicant = $("#applicant").val();
     var applyDep = $("#applyDep").val();
     var applyDate = $("#applyDate").val();
@@ -344,27 +343,28 @@ function add2LocCart() {
 
 
     var obj = getFormJsonData("locReportForm");
+    obj["location.id"]= nodeId;
     var objJson = JSON.parse(obj);
-    var url = "eqBatch/test";
+    var url = "eqBatchUpdate/save";
 
 
-    var object = {
-        applicant: applicant,
-        loc: nodeId,
-        eqClassId: eqClassId,
-        applyDep: applyDep,
-        purpose: purpose,
-        approver: approver,
-        handler: handler,
-        receiver: receiver
-    };
+    // var object = {
+    //     applicant: applicant,
+    //     loc: nodeId,
+    //     eqClassId: eqClassId,
+    //     applyDep: applyDep,
+    //     applyDate: applyDate,
+    //     purpose: purpose,
+    //     approver: approver,
+    //     handler: handler,
+    //     receiver: receiver
+    // };
 
     console.log("url------------------" + url);
 
-    console.log("object------------------"+JSON.stringify(object))
-    $.post(url, object, function (data) {
+    console.log("object------------------" + JSON.stringify(objJson));
+    $.post(url, objJson, function (data) {
         $("#loc_modal").modal("hide");
-
         if (data.result) {
             showMessageBox("info", "设备更新申请已提交!")
         } else {

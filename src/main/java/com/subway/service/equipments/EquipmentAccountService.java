@@ -1,11 +1,19 @@
 package com.subway.service.equipments;
 
+import com.subway.dao.equipments.EqBatchUpdateBillRepository;
 import com.subway.dao.equipments.EquipmentsRepository;
 import com.subway.dao.equipments.VEqRepository;
+import com.subway.dao.equipments.VeqClassRepository;
+import com.subway.dao.locations.VlocationsRepository;
 import com.subway.dao.outsourcingUnit.OutsourcingUnitRepository;
+import com.subway.domain.equipments.EqBatchUpdateBill;
 import com.subway.domain.equipments.Equipments;
+import com.subway.domain.equipments.VeqClass;
 import com.subway.domain.equipments.Vequipments;
+import com.subway.domain.locations.Vlocations;
+import com.subway.object.ReturnObject;
 import com.subway.service.app.BaseService;
+import com.subway.service.commonData.CommonDataService;
 import com.subway.service.locations.LocationsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -40,6 +48,18 @@ public class EquipmentAccountService extends BaseService {
 
     @Autowired
     LocationsService locationsService;
+
+
+    @Autowired
+    VlocationsRepository vlocationsRepository;
+    @Autowired
+    VeqClassRepository veqClassRepository;
+    @Autowired
+    CommonDataService commonDataService;
+
+
+    @Autowired
+    EqBatchUpdateBillRepository eqBatchUpdateBillRepository;
 
 
     /**
@@ -172,5 +192,27 @@ public class EquipmentAccountService extends BaseService {
         equipmentsRepository.save(list);
     }
 
+
+    /**
+     * @param billId    申请单id
+     * @param locId     位置编号
+     * @param eqClassId 设备分类
+     * @return
+     */
+    public ReturnObject batchUpdateEqs(Long billId, Long locId, Long eqClassId) {
+        EqBatchUpdateBill batchUpdateBill = eqBatchUpdateBillRepository.getOne(billId);
+        Vlocations vlocations = vlocationsRepository.findById(locId);
+        VeqClass veqClass = veqClassRepository.findById(eqClassId);
+        List<Equipments> equipmentsList = equipmentsRepository.findByLocationAndEquipmentsClassificationAndStatus(vlocations, veqClass, "1");
+        int eqNum = equipmentsList.size();
+        String contentDesc = vlocations.getLocName() + veqClass.getCname() + eqNum + "台设备";
+//修改设备的型号；
+        for (Equipments equipments : equipmentsList) {
+            equipments.setEqModel(batchUpdateBill.getModel());
+            equipmentsRepository.save(equipments);
+            batchUpdateBill.setDataType("已更新");
+        }
+        return commonDataService.getReturnType(true, contentDesc + "设备更新成功!", contentDesc + "设备更新失败!");
+    }
 
 }

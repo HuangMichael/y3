@@ -5,6 +5,7 @@ import com.subway.domain.equipments.Equipments;
 import com.subway.domain.equipments.VeqClass;
 import com.subway.domain.equipments.Vequipments;
 import com.subway.domain.locations.Locations;
+import com.subway.domain.locations.Vlocations;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -147,5 +148,15 @@ public interface EquipmentsRepository extends CrudRepository<Equipments, Long> {
 
     @Query("select e.id from Vequipments e  order by e.id asc")
     List<Long> findAllId();
+
+
+    /**
+     * @param vlocations
+     * @param veqClass
+     * @param status
+     * @return 根据设备位置和设备分类 设备状态查询设备
+     */
+    List<Equipments> findByLocationAndEquipmentsClassificationAndStatus(Vlocations vlocations, VeqClass veqClass, String status);
+
 
 }

@@ -7,9 +7,9 @@ import com.subway.domain.equipments.*;
 import com.subway.object.ReturnObject;
 import com.subway.service.app.ResourceService;
 import com.subway.service.commonData.CommonDataService;
-import com.subway.service.equipments.EqUpdateBillSearchService;
-import com.subway.service.equipments.EqUpdateBillService;
-import com.subway.service.equipments.EquipmentAccountService;
+import com.subway.service.equipments.*;
+import com.subway.service.equipmentsClassification.EquipmentsClassificationService;
+import com.subway.service.locations.LocationsService;
 import com.subway.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -43,6 +43,20 @@ public class EqBatchUpdateController extends BaseController {
 
     @Autowired
     EquipmentAccountService equipmentAccountService;
+
+
+    @Autowired
+    EqBatchUpdateBillSearchService eqBatchUpdateBillSearchService;
+
+    @Autowired
+    EqBatchUpdateBillService eqBatchUpdateBillService;
+
+
+    @Autowired
+    LocationsService locationsService;
+
+    @Autowired
+    EquipmentsClassificationService equipmentsClassificationService;
 
     /**
      * 初始化分页查询设备更新申请单信息
@@ -85,22 +99,22 @@ public class EqBatchUpdateController extends BaseController {
     }
 
 
-    /**
-     * @param budgetBill 保存或者更新设备更新申请单
-     * @return
-     */
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ResponseBody
-    public ReturnObject save(EqUpdateBill budgetBill) {
-        EqUpdateBill budgetObj;
-        String operation = "保存";
-        if (budgetBill.getId() != null) {
-            operation = "更新";
-        }
-        budgetObj = eqUpdateBillService.save(budgetBill);
-        return commonDataService.getReturnType(budgetObj != null, "设备更新申请单" + operation + "成功!", "设备更新申请单" + operation + "失败!");
-
-    }
+//    /**
+//     * @param budgetBill 保存或者更新设备更新申请单
+//     * @return
+//     */
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ReturnObject save(EqUpdateBill budgetBill) {
+//        EqUpdateBill budgetObj;
+//        String operation = "保存";
+//        if (budgetBill.getId() != null) {
+//            operation = "更新";
+//        }
+//        budgetObj = eqUpdateBillService.save(budgetBill);
+//        return commonDataService.getReturnType(budgetObj != null, "设备更新申请单" + operation + "成功!", "设备更新申请单" + operation + "失败!");
+//
+//    }
 
 
     /**
@@ -160,5 +174,60 @@ public class EqBatchUpdateController extends BaseController {
         List<VEqUpdateBill> dataList = eqUpdateBillSearchService.findByConditions(param, 5);
         eqUpdateBillService.setDataList(dataList);
         eqUpdateBillService.exportExcel(request, response, docName, titles, colNames);
+    }
+
+
+//    /**
+//     * @param applicant
+//     * @return 保存人员信息
+//     */
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ReturnObject save(@RequestParam("applicant") String applicant,
+//                             @RequestParam("loc") long loc,
+//                             @RequestParam("eqClassId") long eqClassId,
+//                             @RequestParam("applyDep") String applyDep,
+//                             @RequestParam("applyDate") String applyDate,
+//                             @RequestParam("purpose") String purpose,
+//                             @RequestParam("approver") String approver,
+//                             @RequestParam("handler") String handler,
+//                             @RequestParam("receiver") String receiver
+//    ) {
+//        EqBatchUpdateBill eqBatchUpdateBill = new EqBatchUpdateBill();
+//        eqBatchUpdateBill.setApplicant(applicant);
+//        eqBatchUpdateBill.setLocations(locationsService.findById(loc));
+//        eqBatchUpdateBill.setEquipmentsClassification(equipmentsClassificationService.findById(eqClassId));
+//        eqBatchUpdateBill.setApplyDep(applyDep);
+//        eqBatchUpdateBill.setPurpose(purpose);
+//        eqBatchUpdateBill.setApprover(approver);
+//        eqBatchUpdateBill.setHandler(handler);
+//        eqBatchUpdateBill.setReceiver(receiver);
+//        eqBatchUpdateBill.setDataType("2");
+//        eqBatchUpdateBill.setApplyDate(applyDate);
+//        eqBatchUpdateBill.setStatus("1");
+//        System.out.println("applicant--------" + applicant);
+//        System.out.println("loc--------" + loc);
+//        System.out.println("eqClassId--------" + eqClassId);
+//        System.out.println("applyDep--------" + applyDep);
+//        System.out.println("purpose--------" + purpose);
+//        System.out.println("approver--------" + approver);
+//        System.out.println("handler--------" + handler);
+//        System.out.println("receiver--------" + receiver);
+//        System.out.println("applyDate--------" + applyDate);
+//        eqBatchUpdateBillService.save(eqBatchUpdateBill);
+//        return commonDataService.getReturnType(eqBatchUpdateBill != null, "设备批量更新信息保存成功!", "设备批量更新信息保存失败!");
+//    }
+
+
+    /**
+     * @param eqBatchUpdateBill
+     * @return 保存人员信息
+     */
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @ResponseBody
+    public ReturnObject save(EqBatchUpdateBill eqBatchUpdateBill) {
+        eqBatchUpdateBill.setStatus("1");
+        eqBatchUpdateBill = eqBatchUpdateBillService.save(eqBatchUpdateBill);
+        return commonDataService.getReturnType(eqBatchUpdateBill != null, "设备批量更新信息保存成功!", "设备批量更新信息保存失败!");
     }
 }

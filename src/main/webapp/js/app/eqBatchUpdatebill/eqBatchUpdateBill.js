@@ -13,8 +13,24 @@ $(function () {
     searchModel = [{"param": "locName", "paramDesc": " 位置"}, {"param": "eqClass", "paramDesc": "设备分类"}];
 
     //配置动态列表
+    var tableConfig =
+        {
+            selection: true,
+            multiSelect: true,
+            sorting: true,
+            rowSelect: true,
+            keepSelection: true,
+            navigation: 0,
+            rowCount: [8],
+            formatters: {
+                "updateEq": function (column, row) {
+                    return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> "
+                }
+            }
+        }
 
-    initBootGridMenu(dataTableName, null);
+    ;
+    $(dataTableName).bootgrid(tableConfig);
     initSelect.call();
     // //初始化查询所有的
     // ids = findAllRecordId();

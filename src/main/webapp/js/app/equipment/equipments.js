@@ -175,6 +175,13 @@ $(function () {
         multiSelect: true,
         rowSelect: true,
         keepSelection: true,
+        ajax: true,
+        post: function () {
+            return {
+                id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+            };
+        },
+        url: "/equipment/data",
         formatters: {
             "report": function (column, row) {
                 return '<a class="btn btn-default btn-xs"  onclick="report(' + row.id + ')" title="报修" ><i class="glyphicon glyphicon-wrench"></i></a>'
@@ -183,7 +190,12 @@ $(function () {
         }
     };
     //初始化加载列表
-    initBootGridMenu(dataTableName, config);
+    // initBootGridMenu(dataTableName, config);
+
+
+    loadEqList(dataTableName, config);
+
+
     //验证保存信息
     validateForm(validateOptions);
     initSelect();
@@ -306,7 +318,109 @@ function equipReport(id) {
         showMessageBox("info", "已将设备报修加入到维修车!")
     })
 }
+
 function continueEqReport() {
     $("#show_eq_modal").modal("hide");
     equipReport(reportId);
+}
+
+
+/**
+ *
+ * @param dataTableName
+ * @param config
+ */
+function loadEqList(dataTableName, config) {
+    $(dataTableName).bootgrid(config);
+}
+
+
+/**
+ * 批量更新申请
+ */
+function eqBatchUpdate() {
+    var selectedId = $(dataTableName).bootgrid("getSelectedRows");
+    if (selectedId.length == 0) {
+        showMessageBox("danger", "请选中设备信息再进行更新申请操作！");
+        return;
+    }
+    $("#loc_modal").modal("show");
+}
+
+
+/**
+ * 加入位置报修
+ */
+function applyReport() {
+    // var nodeId = getSelectedNodeId();
+    var applicant = $("#applicant").val();
+    var applyDep = $("#applyDep").val();
+    var applyDate = $("#applyDate").val();
+    var purpose = $("#purpose").val();
+    var approver = $("#approver").val();
+    var handler = $("#handler").val();
+    var receiver = $("#receiver").val();
+
+    // var eqClassId = $("#equipmentsClassification_id").val();
+
+    // if (!eqClassId) {
+    //     showMessageBox("danger", "请选择要更新的设备类型!");
+    //     $("#equipmentsClassification_id").focus();
+    //     $("#equipmentsClassification_id").css("border", "dashed 1px red");
+    //     return;
+    // }
+    if (!applicant) {
+        showMessageBox("danger", "申请人不能为空!");
+        $("#applicant").focus();
+        $("#applicant").css("border", "dashed 1px red");
+        return
+    }
+    if (!applyDep) {
+        showMessageBox("danger", "申请部门不能为空!");
+        $("#applyDep").focus();
+        $("#applyDep").css("border", "dashed 1px red");
+        return
+    }
+    if (!purpose) {
+        showMessageBox("danger", "申请用途不能为空!");
+        $("#purpose").focus();
+        $("#purpose").css("border", "dashed 1px red");
+        return
+    }
+    if (!applyDate) {
+        showMessageBox("danger", "申请日期不能为空!");
+        $("#applyDate").focus();
+        $("#applyDate").css("border", "dashed 1px red");
+        return
+    }
+    if (!approver) {
+        showMessageBox("danger", "批准人人不能为空!");
+        $("#approver").focus();
+        $("#approver").css("border", "dashed 1px red");
+        return
+    }
+    if (!handler) {
+        showMessageBox("danger", "经办人不能为空!");
+        $("#handler").focus();
+        $("#handler").css("border", "dashed 1px red");
+        return
+    }
+    if (!receiver) {
+        showMessageBox("danger", " 接收人不能为空!");
+        $("#receiver").focus();
+        $("#receiver").css("border", "dashed 1px red");
+        return
+    }
+    var obj = getFormJsonData("locReportForm");
+    var objJson = JSON.parse(obj);
+    var url = "eqBatchUpdate/save";
+    $.post(url, objJson, function (data) {
+        $("#loc_modal").modal("hide");
+        if (data.result) {
+            showMessageBox("info", "设备更新申请已提交!")
+        } else {
+            showMessageBox("danger", "设备更新申请提交失败!")
+        }
+    });
+
 }

@@ -17,15 +17,15 @@ public interface EqBatchUpdateBillRepository extends JpaRepository<EqBatchUpdate
      * @param pageable    分页参数
      * @return
      */
-    Page<EqBatchUpdateBill> findByEquipmentsClassification_CnameContainsAndLocation_LocNameContains(String eqClassDesc, String locDesc, Pageable pageable);
-
-
-    /**
-     * @param eqClassDesc 设备分类描述
-     * @param locDesc     位置描述
-     * @return
-     */
-    List<EqBatchUpdateBill> findByEquipmentsClassification_CnameContainsAndLocation_LocNameContains(String eqClassDesc, String locDesc);
+//    Page<EqBatchUpdateBill> findByEquipmentsClassification_CnameContainsAndLocation_LocNameContains(String eqClassDesc, String locDesc, Pageable pageable);
+//
+//
+//    /**
+//     * @param eqClassDesc 设备分类描述
+//     * @param locDesc     位置描述
+//     * @return
+//     */
+//    List<EqBatchUpdateBill> findByEquipmentsClassification_CnameContainsAndLocation_LocNameContains(String eqClassDesc, String locDesc);
 
 
     /**

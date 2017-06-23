@@ -70,7 +70,8 @@
 
 
                                             <div class="col-md-2">
-                                                <button id="searchBtn" class="btn btn-default" onclick="complexSearch()">查询
+                                                <button id="searchBtn" class="btn btn-default"
+                                                        onclick="complexSearch()">查询
                                                 </button>
                                             </div>
                                         </div>
@@ -143,6 +144,23 @@
             </div>
             <div class="modal-body" id="fix-history">
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " id="loc_modal" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel2">请输入设备更新申请信息</h4>
+            </div>
+            <div class="modal-body">
+                <%@include file="locationReport.jsp" %>
             </div>
         </div>
     </div>

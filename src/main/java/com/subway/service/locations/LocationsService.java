@@ -21,8 +21,6 @@ import java.util.List;
  */
 @Service
 public class LocationsService extends BaseService {
-
-
     @Autowired
     LocationsRepository locationsRepository;
 

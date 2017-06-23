@@ -925,7 +925,9 @@ var text = Object.freeze({
      * @type {Boolean}
      */
 
-    silent: false,
+
+    //忽略warning
+    silent: true,
 
     /**
      * Whether to use async rendering.
@@ -9502,6 +9504,10 @@ var template = Object.freeze({
    * @param {Object} [options]
    * @public
    */
+
+
+
+
 
   function Vue(options) {
     this._init(options);

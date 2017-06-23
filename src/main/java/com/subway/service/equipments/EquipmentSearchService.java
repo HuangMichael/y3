@@ -3,6 +3,7 @@ package com.subway.service.equipments;
 import com.subway.dao.equipments.VEqRepository;
 import com.subway.domain.equipments.Vequipments;
 import com.subway.service.app.BaseService;
+import com.subway.utils.SessionUtil;
 import com.subway.utils.dataAuth.DataSeparatable;
 import com.subway.utils.search.SortedSearchable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,14 @@ import java.util.List;
  * 设备查询类
  */
 @Service
-public class EquipmentSearchService extends BaseService implements SortedSearchable,DataSeparatable {
+public class EquipmentSearchService extends BaseService implements SortedSearchable, DataSeparatable {
 
     @Autowired
     VEqRepository vEqRepository;
+
     public Page<Vequipments> findByConditions(String searchPhrase, int paramsSize, Pageable pageable) {
-        String array[] = super.assembleSearchArray(searchPhrase, paramsSize,true,"");
-        return vEqRepository.findByEqCodeContainsAndEqNameContainsAndLocNameContainsAndEqClassContainsAndLocationContains(array[0], array[1], array[2], array[3],array[4], pageable);
+        String array[] = super.assembleSearchArray(searchPhrase, paramsSize, true, addConditionToService());
+        return vEqRepository.findByEqCodeContainsAndEqNameContainsAndLocNameContainsAndEqClassContainsAndLocationContains(array[0], array[1], array[2], array[3], array[4], pageable);
     }
 
 
@@ -38,8 +40,11 @@ public class EquipmentSearchService extends BaseService implements SortedSearcha
     }
 
 
+    /**
+     * @return 添加过滤条件
+     */
+    public String addConditionToService() {
 
-    public void addConditionToService() {
-
+        return "";
     }
 }

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<table id="equipmentsDataTable" class=" table table-striped table-bordered table-hover" data-toggle="bootgrid" data-ajax="true" data-url="/equipment/data">
+<table id="equipmentsDataTable" class=" table table-striped table-bordered table-hover">
     <thead>
     <tr>
         <th data-column-id="id" data-width="3%">序号</th>
@@ -13,3 +13,4 @@
     </tr>
     </thead>
 </table>
+

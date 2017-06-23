@@ -28,7 +28,6 @@ public class EqBatchUpdateBill {
     @Column(length = 50)
     private String purpose; //用途
 
-
     @Column(length = 50)
     private String model; //设备型号
 
@@ -48,13 +47,13 @@ public class EqBatchUpdateBill {
     @Column(length = 100)
     private String billContent; //内容
 
-    @ManyToOne
-    @JoinColumn(name = "eq_class_id", referencedColumnName = "id")
-    private VeqClass equipmentsClassification; //位置
+//    @ManyToOne
+//    @JoinColumn(name = "eq_class_id", referencedColumnName = "id")
+//    private VeqClass equipmentsClassification; //位置
 
-    @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "id")
-    private Vlocations location; //位置
+//    @ManyToOne
+//    @JoinColumn(name = "location_id", referencedColumnName = "id")
+//    private Vlocations location; //位置
 
     @Column(length = 1,columnDefinition = "default 1")
     private String status; //类型

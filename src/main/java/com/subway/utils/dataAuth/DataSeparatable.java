@@ -12,5 +12,5 @@ public interface DataSeparatable {
     /**
      * 添加条件到业务类
      */
-    void addConditionToService();
+    String addConditionToService();
 }

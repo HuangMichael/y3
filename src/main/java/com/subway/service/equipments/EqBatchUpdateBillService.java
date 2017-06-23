@@ -34,11 +34,11 @@ public class EqBatchUpdateBillService extends BaseService {
     public EqBatchUpdateBill save(EqBatchUpdateBill eqBatchUpdateBill) {
         eqBatchUpdateBill.setDataType("未更新");
         eqBatchUpdateBill = eqBatchUpdateBillRepository.save(eqBatchUpdateBill);
-        Long locId = eqBatchUpdateBill.getLocation().getId();
-        Long eqClassId = eqBatchUpdateBill.getEquipmentsClassification().getId();
-        String loc = vlocationsRepository.findById(locId).getLocName();
-        String eqClass = veqClassRepository.findById(eqClassId).getCname();
-        String billContent = loc + eqClass + "设备更新";
+//        Long locId = eqBatchUpdateBill.getLocation().getId();
+//        Long eqClassId = eqBatchUpdateBill.getEquipmentsClassification().getId();
+//        String loc = vlocationsRepository.findById(locId).getLocName();
+//        String eqClass = veqClassRepository.findById(eqClassId).getCname();
+        String billContent = "设备更新";
         eqBatchUpdateBill.setBillContent(billContent);
         eqBatchUpdateBill = eqBatchUpdateBillRepository.save(eqBatchUpdateBill);
         return eqBatchUpdateBill;

@@ -1,6 +1,7 @@
 package com.subway.domain.equipments;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.subway.domain.locations.Locations;
 import com.subway.domain.locations.Vlocations;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by huangbin on 2016/03/14 0023.
@@ -71,14 +74,6 @@ public class Equipments {
     @JoinColumn(name = "vlocations_id", referencedColumnName = "id")
     private Vlocations vlocations;  //所属位置
 
-
-
-   /* @Transient
-    @ManyToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name = "vlocations_id", referencedColumnName = "id")
-    private Vlocations vlocations;  //所属位置*/
-
-
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "equipments_Classification_id", referencedColumnName = "id")
     private EquipmentsClassification equipmentsClassification; //设备分类
@@ -114,7 +109,5 @@ public class Equipments {
     private String productDate; //出厂日期
     @Column(length = 2)
     private Long expectedYear; //预计年限
-
-
 
 }

@@ -47,14 +47,6 @@ public class EqUpdateBill {
     private String eqCode; //设备编号
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_id", referencedColumnName = "id")
-    private Locations location; //设备位置
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "eq_class_id", referencedColumnName = "id")
-    private EquipmentsClassification equipmentsClassification; //设备分类
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipment_id", referencedColumnName = "id")
     private Equipments equipments; //设备位置
 

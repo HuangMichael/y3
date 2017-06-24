@@ -361,14 +361,6 @@ function applyReport() {
     var handler = $("#handler").val();
     var receiver = $("#receiver").val();
 
-    // var eqClassId = $("#equipmentsClassification_id").val();
-
-    // if (!eqClassId) {
-    //     showMessageBox("danger", "请选择要更新的设备类型!");
-    //     $("#equipmentsClassification_id").focus();
-    //     $("#equipmentsClassification_id").css("border", "dashed 1px red");
-    //     return;
-    // }
     if (!applicant) {
         showMessageBox("danger", "申请人不能为空!");
         $("#applicant").focus();
@@ -411,6 +403,11 @@ function applyReport() {
         $("#receiver").css("border", "dashed 1px red");
         return
     }
+
+    var eqIds = $(dataTableName).bootgrid("getSelectedRows");
+    $("#locReportForm #eqIds").val(eqIds);
+
+
     var obj = getFormJsonData("locReportForm");
     var objJson = JSON.parse(obj);
     var url = "eqBatchUpdate/save";

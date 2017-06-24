@@ -53,6 +53,7 @@
                 <label for="receiver" class="col-md-2 control-label ">接收人</label>
                 <div class="col-md-10 ">
                     <input class="form-control " id="receiver" name="receiver" required/>
+                    <input class="form-control "  type="hidden" id="eqIds" name="eqIds"/>
                 </div>
             </div>
         </div>

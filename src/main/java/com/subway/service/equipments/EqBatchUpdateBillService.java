@@ -1,13 +1,19 @@
 package com.subway.service.equipments;
 
 import com.subway.dao.equipments.EqBatchUpdateBillRepository;
+import com.subway.dao.equipments.EquipmentsClassificationRepository;
 import com.subway.dao.equipments.VeqClassRepository;
 import com.subway.dao.locations.VlocationsRepository;
-import com.subway.domain.equipments.EqBatchUpdateBill;
+import com.subway.domain.equipments.*;
+import com.subway.object.ReturnObject;
 import com.subway.service.app.BaseService;
+import com.subway.service.commonData.CommonDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,6 +32,13 @@ public class EqBatchUpdateBillService extends BaseService {
     @Autowired
     VeqClassRepository veqClassRepository;
 
+    @Autowired
+    CommonDataService commonDataService;
+
+
+    @Autowired
+    EquipmentAccountService equipmentAccountService;
+
 
     /**
      * @param eqBatchUpdateBill 保存设备批量更新申请单信息
@@ -34,15 +47,37 @@ public class EqBatchUpdateBillService extends BaseService {
     public EqBatchUpdateBill save(EqBatchUpdateBill eqBatchUpdateBill) {
         eqBatchUpdateBill.setDataType("未更新");
         eqBatchUpdateBill = eqBatchUpdateBillRepository.save(eqBatchUpdateBill);
-//        Long locId = eqBatchUpdateBill.getLocation().getId();
-//        Long eqClassId = eqBatchUpdateBill.getEquipmentsClassification().getId();
-//        String loc = vlocationsRepository.findById(locId).getLocName();
-//        String eqClass = veqClassRepository.findById(eqClassId).getCname();
         String billContent = "设备更新";
         eqBatchUpdateBill.setBillContent(billContent);
+        List<EqBatchUpdateBillDetail> eqBatchUpdateBillDetailList = addEqList(eqBatchUpdateBill);
+        eqBatchUpdateBill.setBillDetailList(eqBatchUpdateBillDetailList);
+        Equipments equipments = eqBatchUpdateBillDetailList.get(0).getEquipments();
+        VeqClass veqClass = veqClassRepository.findById(equipments.getEquipmentsClassification().getId());
+        eqBatchUpdateBill.setEqClass(veqClass);
+        eqBatchUpdateBill.setLocations(equipments.getVlocations());
         eqBatchUpdateBill = eqBatchUpdateBillRepository.save(eqBatchUpdateBill);
         return eqBatchUpdateBill;
     }
 
+
+    /**
+     * @param eqBatchUpdateBill
+     * @return
+     */
+    public List<EqBatchUpdateBillDetail> addEqList(EqBatchUpdateBill eqBatchUpdateBill) {
+        EqBatchUpdateBillDetail eqBatchUpdateBillDetail;
+        List<EqBatchUpdateBillDetail> eqBatchUpdateBillDetailList = new ArrayList<EqBatchUpdateBillDetail>();
+        for (String eId : eqBatchUpdateBill.getEqIds().split(",")) {
+            Equipments equipments = equipmentAccountService.findById(Long.parseLong(eId));
+            eqBatchUpdateBillDetail = new EqBatchUpdateBillDetail();
+            eqBatchUpdateBillDetail.setEquipments(equipments);
+            eqBatchUpdateBillDetail.setBill(eqBatchUpdateBill);
+            eqBatchUpdateBillDetail.setStatus("0");
+            String memo = eqBatchUpdateBill.getApplyDep() + eqBatchUpdateBill.getApplyDate() + eqBatchUpdateBill.getApplicant() + "申请" + eqBatchUpdateBill.getBillContent();
+            eqBatchUpdateBillDetail.setMemo(memo);
+            eqBatchUpdateBillDetailList.add(eqBatchUpdateBillDetail);
+        }
+        return eqBatchUpdateBillDetailList;
+    }
 
 }

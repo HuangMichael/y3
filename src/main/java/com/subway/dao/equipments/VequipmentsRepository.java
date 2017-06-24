@@ -2,6 +2,7 @@ package com.subway.dao.equipments;
 
 
 import com.subway.domain.equipments.Vequipments;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by huangbin on 2016/3/15 0008.
  * 设备信息查询接口
  */
-public interface VequipmentsRepository extends CrudRepository<Vequipments, Long> {
+public interface VequipmentsRepository extends CrudRepository<Vequipments, Long>,JpaRepository<Vequipments, Long> {
 
 
     /**

@@ -30,9 +30,7 @@ public class EqBatchUpdateBillSearchService extends BaseService implements Sorte
      */
     public List<EqBatchUpdateBill> findByConditions(String searchPhrase, int paramsSize) {
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-
-      //  eqBatchUpdateBillRepository.findByEquipmentsClassification_CnameContainsAndLocation_LocNameContains(array[0], array[1]);
-        return  null;
+        return eqBatchUpdateBillRepository.findByEqClass_CnameContainsAndLocations_LocNameContains(array[0], array[1]);
     }
 
     /**
@@ -42,9 +40,7 @@ public class EqBatchUpdateBillSearchService extends BaseService implements Sorte
      */
     public Page<EqBatchUpdateBill> findByConditions(String searchPhrase, int paramsSize, Pageable pageable) {
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-
-//        eqBatchUpdateBillRepository.findByEquipmentsClassification_CnameContainsAndLocation_LocNameContains(array[0], array[1],pageable);
-        return null;
+        return  eqBatchUpdateBillRepository.findByEqClass_CnameContainsAndLocations_LocNameContains(array[0], array[1],pageable);
     }
 
 

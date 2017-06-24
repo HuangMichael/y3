@@ -114,14 +114,9 @@ public class EquipmentController extends BaseController implements LocationSepar
     public MyPage data(HttpSession session, HttpServletRequest request, @RequestParam(value = "current", defaultValue = "0") int current, @RequestParam(value = "rowCount", defaultValue = "10") Long rowCount, @RequestParam(value = "searchPhrase", required = false) String searchPhrase) {
         String location = SessionUtil.getCurrentUserLocationBySession(session);
         Map<String, String[]> parameterMap = request.getParameterMap();
-        if (searchPhrase.split(",").length < 4) {
-            searchPhrase += ",,,,";
-            if (separatable) {
-                searchPhrase += location + ",";
-            }
-        }
+        System.out.println("searchPhrase------------"+searchPhrase);
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
-        return new PageUtils().searchBySortService(equipmentSearchService, searchPhrase, 5, current, rowCount, pageable);
+        return new PageUtils().searchBySortService(equipmentSearchService, searchPhrase, 4, current, rowCount, pageable);
     }
 
 

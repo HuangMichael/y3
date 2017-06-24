@@ -1,10 +1,14 @@
 package com.subway.domain.equipments;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.subway.domain.line.Station;
 import com.subway.domain.locations.Locations;
 import com.subway.domain.locations.Vlocations;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 设备批量更新申请单
@@ -43,19 +47,28 @@ public class EqBatchUpdateBill {
     @Column(length = 10)
     private String dataType; //类型
 
-
     @Column(length = 100)
     private String billContent; //内容
 
-//    @ManyToOne
-//    @JoinColumn(name = "eq_class_id", referencedColumnName = "id")
-//    private VeqClass equipmentsClassification; //位置
 
-//    @ManyToOne
-//    @JoinColumn(name = "location_id", referencedColumnName = "id")
-//    private Vlocations location; //位置
+    @Column(length = 200)
+    private String eqIds; //设备id
 
-    @Column(length = 1,columnDefinition = "default 1")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    Vlocations locations; //位置
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "eq_class_id", referencedColumnName = "id")
+    VeqClass eqClass; //设备分类
+
+    //一个分类有多个子分类
+    @JsonBackReference("billDetailList")
+    @OneToMany(targetEntity = EqBatchUpdateBillDetail.class, cascade = CascadeType.ALL, mappedBy = "bill")
+    List<EqBatchUpdateBillDetail> billDetailList = new ArrayList<EqBatchUpdateBillDetail>();
+
+    @Column(length = 1, columnDefinition = "default 1")
     private String status; //类型
 
 }

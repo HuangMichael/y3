@@ -107,7 +107,6 @@ public class CommonDataService extends BaseService {
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    @Cacheable(value = "locations", key = "locations")
     public List<Locations> findMyLocation(String location) {
         return locationsRepository.findByLocationStartingWith(location);
     }
@@ -118,7 +117,6 @@ public class CommonDataService extends BaseService {
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    @Cacheable(value = "Vlocations", key = "vlocations")
     public List<Vlocations> findMyVLocation(String location) {
         return  vlocationsRepository.findByLocationStartingWith(location);
     }

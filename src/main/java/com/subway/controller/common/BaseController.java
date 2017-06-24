@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +75,17 @@ public class BaseController {
         }
         Sort sort = new Sort(direction, sortName);
         return sort;
+    }
+
+
+
+    /**
+     * @param request
+     * @return
+     */
+    public String getFilterStr(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return SessionUtil.getCurrentUserLocationBySession(session);
     }
 }
 

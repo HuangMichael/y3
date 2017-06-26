@@ -4,6 +4,9 @@
 
 
 var expiredTab = $('#myTab li:eq(1) a');
+
+
+var selectedId = null;
 $(document).ready(function () {
 
     docName = "维修单信息";
@@ -91,6 +94,20 @@ $(document).ready(function () {
         $(dataTableName1).bootgrid("setSearchPhrase", searchPhase).bootgrid("reload");
         //$("#expiredOrderSize").html(expiredCount);
     })
+
+
+    $("#applyUpdate").on("click", function () {
+        var orderId = $(dataTableName).bootgrid("getSelectedRows");
+        $("#saveFixDesc").trigger("click");
+        var workOrder = findByIdAndObjectName(orderId, "workOrderReportCart");
+        console.log("workOrder--------------" + JSON.stringify(workOrder));
+        //根据选择的获取对应的工单编号  根据工单编号获取设备信息
+
+        $("#eId").val(workOrder.locations.id);
+        $("#eqClassId").val(workOrder.equipmentsClassification.id);
+        $("#loc_modal").modal("show");
+
+    });
 });
 
 
@@ -190,6 +207,7 @@ function pause() {
     var operationDesc = "暂停";
     dealResult(orderId, operationType, operationDesc);
 }
+
 /**
  *
  * @param id 取消
@@ -235,10 +253,10 @@ function finishOrderBatch() {
     }
     var url = "/workOrderFix/finishBatch";
     var data =
-            {
-                orderIds: orderIds.join(",")
-            }
-        ;
+        {
+            orderIds: orderIds.join(",")
+        }
+    ;
     $.post(url, data, function (data) {
         if (data.result) {
             showMessageBox("info", data.resultDesc);
@@ -249,5 +267,112 @@ function finishOrderBatch() {
 
     });
 }
+
+
+/**
+ * 加入位置报修
+ */
+function fillReport(eid, locId, eqClassId) {
+
+    var applicant = $("#applicant").val();
+    var applyDep = $("#applyDep").val();
+    var applyDate = $("#applyDate").val();
+    var purpose = $("#purpose").val();
+    var approver = $("#approver").val();
+    var handler = $("#handler").val();
+    var receiver = $("#receiver").val();
+
+    if (!applicant) {
+        showMessageBox("danger", "申请人不能为空!");
+        $("#applicant").focus();
+        $("#applicant").css("border", "dashed 1px red");
+        return
+    }
+    if (!applyDep) {
+        showMessageBox("danger", "申请部门不能为空!");
+        $("#applyDep").focus();
+        $("#applyDep").css("border", "dashed 1px red");
+        return
+    }
+    if (!purpose) {
+        showMessageBox("danger", "申请用途不能为空!");
+        $("#purpose").focus();
+        $("#purpose").css("border", "dashed 1px red");
+        return
+    }
+    if (!applyDate) {
+        showMessageBox("danger", "申请日期不能为空!");
+        $("#applyDate").focus();
+        $("#applyDate").css("border", "dashed 1px red");
+        return
+    }
+    if (!approver) {
+        showMessageBox("danger", "批准人人不能为空!");
+        $("#approver").focus();
+        $("#approver").css("border", "dashed 1px red");
+        return
+    }
+    if (!handler) {
+        showMessageBox("danger", "经办人不能为空!");
+        $("#handler").focus();
+        $("#handler").css("border", "dashed 1px red");
+        return
+    }
+    if (!receiver) {
+        showMessageBox("danger", " 接收人不能为空!");
+        $("#receiver").focus();
+        $("#receiver").css("border", "dashed 1px red");
+        return
+    }
+
+
+    // $("#locReportForm #eqIds").val(eqIds);
+
+    // $("#locReportForm #billContent").val();
+
+    var obj = getFormJsonData("locReportForm");
+    var objJson = JSON.parse(obj);
+    var url = "eqBatchUpdate/save";
+    $.post(url, objJson, function (data) {
+        $("#loc_modal").modal("hide");
+        if (data.result) {
+            showMessageBox("info", "设备更新申请已提交!")
+        } else {
+            showMessageBox("danger", "设备更新申请提交失败!")
+        }
+    });
+
+}
+
+
+/**
+ * 批量完工更新
+ */
+function updateOrderBatch() {
+    var orderIds = $(dataTableName).bootgrid("getSelectedRows");
+    if (orderIds.length == 0) {
+        showMessageBox("danger", "请选择要完工的工单!");
+        return;
+    }
+    var url = "/workOrderFix/finishBatch";
+    var data =
+        {
+            orderIds: orderIds.join(",")
+        }
+    ;
+    $.post(url, data, function (data) {
+        if (data.result) {
+            showMessageBox("info", data.resultDesc);
+            complexSearch();
+        } else {
+            showMessageBox("danger", data.resultDesc);
+        }
+
+    });
+}
+
+
+
+
 
 

@@ -119,6 +119,20 @@ function findById(id) {
 
 
 /**
+ *
+ * @param id
+ * @param objName
+ * @returns {*}
+ */
+function findByIdAndObjectName(id,objName) {
+    var url = objName + "/findById/" + id;
+    $.getJSON(url, function (data) {
+        object = data;
+    });
+    return object;
+}
+
+/**
  *根据id查询返回对象
  * @param objName
  * @param id

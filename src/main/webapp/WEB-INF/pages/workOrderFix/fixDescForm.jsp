@@ -21,6 +21,9 @@
         </button>
         <button type="button" id="saveFixDesc" name="saveFixDesc" class="btn btn-primary btn-danger">确认
         </button>
+        <button type="button" id="applyUpdate" name="applyUpdate" class="btn btn-primary btn-warning" title="设备更新申请 "
+        >申请更新
+        </button>
     </div>
 </form>
 

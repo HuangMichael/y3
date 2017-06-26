@@ -54,10 +54,7 @@ public class WorkOrderReportCartController extends BaseController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(ModelMap modelMap, HttpSession httpSession) {
-
         super.list(httpSession, modelMap);
-
-
         User user = SessionUtil.getCurrentUserBySession(httpSession);
         String userLocation = user.getVlocations().getLocation();
         List<WorkOrderReportCart> workOrderReportCartList = workOrderReportCartService.findByLocationStartingWithAndNodeState(userLocation, "报修车");
@@ -307,4 +304,13 @@ public class WorkOrderReportCartController extends BaseController {
     }
 
 
+    /**
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public WorkOrderReportCart findById(@PathVariable  Long id) {
+        return workOrderReportCartService.findById(id);
+    }
 }

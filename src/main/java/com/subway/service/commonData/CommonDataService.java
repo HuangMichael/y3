@@ -103,78 +103,51 @@ public class CommonDataService extends BaseService {
 
 
     /**
-     * @param location 位置编号
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    public List<Locations> findMyLocation(String location) {
-        return locationsRepository.findByLocationStartingWith(location);
+    @Cacheable(value = "locations", keyGenerator = "wiselyKeyGenerator")
+    public List<Locations> findMyLocation() {
+        return locationsRepository.findByLocationStartingWith("BJ");
     }
 
 
     /**
-     * @param location    位置编号
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    public List<Vlocations> findMyVLocation(String location) {
-        return  vlocationsRepository.findByLocationStartingWith(location);
+    @Cacheable(value = "vLocations", keyGenerator = "wiselyKeyGenerator")
+    public List<Vlocations> findMyVLocation() {
+        return vlocationsRepository.findByLocationStartingWith("BJ");
     }
 
 
     /**
-     * @param location    位置编号
-     * @param httpSession 查询位置我的视图信息
      * @return 查询我的下属位置设备信息
      * 先从session中找  如果失败再做查询
      */
-    public List<Vequipments> findMyVeqs(String location, HttpSession httpSession) {
-        List<Vequipments> vequipmentsList = null;
-        Object object = httpSession.getAttribute("vequipmentsList");
-        if (object != null) {
-            vequipmentsList = (ArrayList<Vequipments>) object;
-        } else {
-            if (location != null && !location.equals("")) {
-                vequipmentsList = vequipmentsRepository.findByLocationStartingWith(location);
-            }
-        }
-        return vequipmentsList;
+
+    @Cacheable(value = "Vequipments", keyGenerator = "wiselyKeyGenerator")
+    public List<Vequipments> findMyVeqs() {
+        return vequipmentsRepository.findByLocationStartingWith("BJ");
     }
 
 
     /**
-     * @param httpSession
      * @return 查询设备种类信息
      */
-    public List<EquipmentsClassification> findEquipmentsClassification(HttpSession httpSession) {
-        List<EquipmentsClassification> equipmentsClassificationList = null;
-        Object object = httpSession.getAttribute("equipmentsClassificationList");
-        if (object != null) {
-            equipmentsClassificationList = (ArrayList<EquipmentsClassification>) object;
-        } else {
-            equipmentsClassificationList = equipmentsClassificationRepository.findAll();
-            httpSession.setAttribute("equipmentsClassificationList", equipmentsClassificationList);
-        }
-        return equipmentsClassificationList;
-
-
+    @Cacheable(value = "equipmentsClassifications", keyGenerator = "wiselyKeyGenerator")
+    public List<EquipmentsClassification> findEquipmentsClassification() {
+        return equipmentsClassificationRepository.findAll();
     }
 
 
     /**
-     * @param httpSession
      * @return 查询设备种类信息
      */
-    public List<VeqClass> findVeqClass(HttpSession httpSession) {
-        List<VeqClass> eqClassList;
-        Object object = httpSession.getAttribute("eqClassList");
-        if (object != null) {
-            eqClassList = (ArrayList<VeqClass>) object;
-        } else {
-            eqClassList = veqClassRepository.findAll();
-            httpSession.setAttribute("eqClassList", eqClassList);
-        }
-        return eqClassList;
+    @Cacheable(value = "veqClasses", keyGenerator = "wiselyKeyGenerator")
+    public List<VeqClass> findVeqClass() {
+        return veqClassRepository.findAll();
     }
 
     /**
@@ -187,61 +160,35 @@ public class CommonDataService extends BaseService {
     }
 
     /**
-     * @param httpSession
      * @return 查询设备种类信息
      */
-    public List<Resource> findMenus(HttpSession httpSession) {
-        List<Resource> menusList = null;
-        Object object = httpSession.getAttribute("menusList");
-        if (object != null) {
-            menusList = (ArrayList<Resource>) object;
-        } else {
-            menusList = resourceRepository.findByResourceLevel(1L);
-            httpSession.setAttribute("menusList", menusList);
-        }
-        return menusList;
-
-
+    @Cacheable(value = "modules", keyGenerator = "wiselyKeyGenerator")
+    public List<Resource> findMenus() {
+        return resourceRepository.findByResourceLevel(1L);
     }
 
 
     /**
-     * @param httpSession
      * @return (0:停用 1:投用 2报废)
      */
-    public List<ListObject> getEqStatus(HttpSession httpSession) {
+    @Cacheable(value = "eqStatus", keyGenerator = "wiselyKeyGenerator")
+    public List<ListObject> getEqStatus() {
         List<ListObject> eqStatusList = new ArrayList<ListObject>();
-        Object object = httpSession.getAttribute("eqStatusList");
-        if (object != null) {
-            eqStatusList = (ArrayList<ListObject>) httpSession.getAttribute("eqStatusList");
-        } else {
-            eqStatusList.add(new ListObject("0", "维修"));
-            eqStatusList.add(new ListObject("1", "投用"));
-            eqStatusList.add(new ListObject("2", "报废"));
-            httpSession.setAttribute("eqStatusList", eqStatusList);
-        }
+        eqStatusList.add(new ListObject("0", "维修"));
+        eqStatusList.add(new ListObject("1", "投用"));
+        eqStatusList.add(new ListObject("2", "报废"));
         return eqStatusList;
-
     }
 
 
     /**
-     * @param httpSession
      * @return 获取运行状态 (0:停止 1:运行)
      */
-    public List<ListObject> getRunningStatus(HttpSession httpSession) {
+    @Cacheable(value = "runningStatus", keyGenerator = "wiselyKeyGenerator")
+    public List<ListObject> getRunningStatus() {
         List<ListObject> eqRunStatusList = new ArrayList<ListObject>();
-        Object object = httpSession.getAttribute("eqRunStatusList");
-        if (object != null) {
-            eqRunStatusList = (ArrayList<ListObject>) httpSession.getAttribute("eqRunStatusList");
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询设备运行状态");
-        } else {
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询设备运行状态");
-            eqRunStatusList.add(new ListObject("0", "停止"));
-            eqRunStatusList.add(new ListObject("1", "运行"));
-            log.info(this.getClass().getCanonicalName() + "------------设备运行状态放入缓存");
-            httpSession.setAttribute("eqRunStatusList", eqRunStatusList);
-        }
+        eqRunStatusList.add(new ListObject("0", "停止"));
+        eqRunStatusList.add(new ListObject("1", "运行"));
         return eqRunStatusList;
 
     }
@@ -380,14 +327,13 @@ public class CommonDataService extends BaseService {
         List<Vlocations> locationsList = locationsService.findByLocationStartingWithAndStatus(currentUser.getVlocations().getLocation());
         List<Locations> locList = locationsService.findByLocationStartingWithAndStatus(currentUser.getVlocations().getLocation(), "1");
         List<VeqClass> veqClassList = veqClassRepository.findAll();
-        List<Resource> menusList = findMenus(session);
+        List<Resource> menusList = findMenus();
         session.setAttribute("locationsList", locationsList);
         session.setAttribute("locList", locList);
         session.setAttribute("veqClassList", veqClassList);
         session.setAttribute("lineList", lineList);
         session.setAttribute("stationList", stationList);
         session.setAttribute("menusList", menusList);
-
         return true;
     }
 

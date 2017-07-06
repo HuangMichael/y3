@@ -156,7 +156,8 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"
                         aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                        aria-hidden="true">&times;</span
+                        aria-hidden="true"></button>
                 <h4 class="modal-title" id="myModalLabel2">请输入设备更新申请信息</h4>
             </div>
             <div class="modal-body">

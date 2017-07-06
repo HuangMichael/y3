@@ -35,75 +35,52 @@ public class CommonDataController extends BaseController {
     CommonDataService commonDataService;
 
     /**
-     * @param httpSession 当前会话
      * @return
      */
     @RequestMapping(value = "/findMyLocation", method = RequestMethod.GET)
     @ResponseBody
-    public List<Locations> findMyLocation(HttpSession httpSession) {
-        String location = SessionUtil.getCurrentUserLocationBySession(httpSession);
-        List<Locations> locationList = null;
-        if (location != null && !location.equals("")) {
-            locationList = commonDataService.findMyLocation(location);
-        }
-        return locationList;
+    public List<Locations> findMyLocation() {
+        return commonDataService.findMyLocation();
     }
 
 
     /**
-     * @param httpSession 当前会话
      * @return
      */
     @RequestMapping(value = "/findMyLoc", method = RequestMethod.GET)
     @ResponseBody
-    public List<Vlocations> findMyLoc(HttpSession httpSession) {
-        String location = SessionUtil.getCurrentUserLocationBySession(httpSession);
-        return commonDataService.findMyVLocation(location);
+    public List<Vlocations> findMyLoc() {
+        return commonDataService.findMyVLocation();
     }
 
 
     /**
-     * @param httpSession 当前会话
      * @return
      */
     @RequestMapping(value = "/findMyEqs", method = RequestMethod.GET)
     @ResponseBody
-    public List<Vequipments> findMyEqs(HttpSession httpSession) {
-        String location = SessionUtil.getCurrentUserLocationBySession(httpSession);
-        List<Vequipments> vequipmentsList = null;
-        if (location != null && !location.equals("")) {
-            vequipmentsList = commonDataService.findMyVeqs(location, httpSession);
-        }
-        return vequipmentsList;
+    public List<Vequipments> findMyEqs() {
+//        String location = SessionUtil.getCurrentUserLocationBySession(httpSession);
+        return commonDataService.findMyVeqs();
     }
 
     /**
-     * @param httpSession 当前会话
      * @return 查询分类
      */
     @RequestMapping(value = "/findEqClass", method = RequestMethod.GET)
     @ResponseBody
-    public List<EquipmentsClassification> findEquipmentsClassifications(HttpSession httpSession) {
-        List<EquipmentsClassification> equipmentsClassificationList = null;
-        if (httpSession != null) {
-            equipmentsClassificationList = commonDataService.findEquipmentsClassification(httpSession);
-        }
-        return equipmentsClassificationList;
+    public List<EquipmentsClassification> findEquipmentsClassifications() {
+        return commonDataService.findEquipmentsClassification();
     }
 
 
     /**
-     * @param httpSession 当前会话
      * @return 查询分类视图信息
      */
     @RequestMapping(value = "/findVEqClass", method = RequestMethod.GET)
     @ResponseBody
-    public List<VeqClass> findVeqClass(HttpSession httpSession) {
-        List<VeqClass> veqClassList = null;
-        if (httpSession != null) {
-            veqClassList = commonDataService.findVeqClass(httpSession);
-        }
-        return veqClassList;
+    public List<VeqClass> findVeqClass() {
+        return commonDataService.findVeqClass();
     }
 
 
@@ -124,24 +101,21 @@ public class CommonDataController extends BaseController {
 
 
     /**
-     * @param httpSession 当前会话
      * @return 获得设备状态
      */
     @RequestMapping(value = "/getEqStatus", method = RequestMethod.GET)
     @ResponseBody
-    public List<ListObject> getEqStatus(HttpSession httpSession) {
-        return commonDataService.getEqStatus(httpSession);
+    public List<ListObject> getEqStatus() {
+        return commonDataService.getEqStatus();
     }
 
     /**
-     * @param httpSession 当前会话
      * @return 获得设备状态
      */
     @RequestMapping(value = "/getEqRunStatus", method = RequestMethod.GET)
     @ResponseBody
-    public List<ListObject> getEqRunStatus(HttpSession httpSession) {
-
-        return commonDataService.getRunningStatus(httpSession);
+    public List<ListObject> getEqRunStatus() {
+        return commonDataService.getRunningStatus();
     }
 
 

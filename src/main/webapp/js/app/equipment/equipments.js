@@ -129,45 +129,44 @@ $(function () {
 
 
     selectedIds = findAllRecordId();
-    // vdm = new Vue({
-    //     el: "#detailForm",
-    //     data: {
-    //         equipment: null,
-    //         locs: locs,
-    //         eqClasses: eqClasses,
-    //         eqStatuses: eqStatuses,
-    //         runStatus: runStatus
-    //     }
-    // });
-    //
-    //
-    // hm = new Vue({
-    //     el: "#historyInfo",
-    //     data: {
-    //         e: findById(selectedIds[pointer]),
-    //         histories: loadFixHistoryByEid(selectedIds[pointer])
-    //     }
-    // });
-    //
-    //
-    // rm = new Vue({
-    //     el: "#recordInfo",
-    //     data: {
-    //         e: findById(selectedIds[pointer])
-    //
-    //     }
-    // });
-    //
-    //
-    // rmListVue = new Vue({
-    //
-    //     el: "#updateRecords",
-    //     data: {
-    //
-    //         records: loadUpdateHistoryByEid(selectedIds[pointer])
-    //     }
-    //
-    // });
+    vdm = new Vue({
+        el: "#detailForm",
+        data: {
+            equipment: null,
+            locs: locs,
+            eqClasses: eqClasses,
+            eqStatuses: eqStatuses,
+            runStatus: runStatus
+        }
+    });
+
+
+    hm = new Vue({
+        el: "#historyInfo",
+        data: {
+            e: findById(selectedIds[pointer]),
+            histories: loadFixHistoryByEid(selectedIds[pointer])
+        }
+    });
+
+
+    rm = new Vue({
+        el: "#recordInfo",
+        data: {
+            e: findById(selectedIds[pointer])
+
+        }
+    });
+
+
+    rmListVue = new Vue({
+
+        el: "#updateRecords",
+        data: {
+            records: loadUpdateHistoryByEid(selectedIds[pointer])
+        }
+
+    });
 
 
     var config = {

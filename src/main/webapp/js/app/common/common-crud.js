@@ -124,7 +124,7 @@ function findById(id) {
  * @param objName
  * @returns {*}
  */
-function findByIdAndObjectName(id,objName) {
+function findByIdAndObjectName(id, objName) {
     var url = objName + "/findById/" + id;
     $.getJSON(url, function (data) {
         object = data;
@@ -166,6 +166,7 @@ function backwards() {
         showDetail(selectedIds[pointer]);
     }
 }
+
 /**
  *  下一条记录
  */
@@ -589,6 +590,10 @@ function complexSearch() {
 }
 
 
+/**
+ *
+ * @returns {string} 获取查询的字符串
+ */
 function getSearchConfig() {
     //组装模型
     var params = $("#searchBox :input");
@@ -599,13 +604,12 @@ function getSearchConfig() {
             var value = ($(p).val()) ? $(p).val().trim() : "";
             searchParams += value + ",";
         }
-        console.log("searchParams-------------" + searchParams);
-
     });
-
+    console.log("searchParams-------------" + searchParams);
     return searchParams;
 
 }
+
 function searchMore() {
     //组装模型
     var params = $("#searchBox :input");

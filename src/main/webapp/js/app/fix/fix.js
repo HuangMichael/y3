@@ -324,12 +324,6 @@ function fillReport(eid, locId, eqClassId) {
         $("#receiver").css("border", "dashed 1px red");
         return
     }
-
-
-    // $("#locReportForm #eqIds").val(eqIds);
-
-    // $("#locReportForm #billContent").val();
-
     var obj = getFormJsonData("locReportForm");
     var objJson = JSON.parse(obj);
     var url = "eqBatchUpdate/save";
@@ -349,26 +343,19 @@ function fillReport(eid, locId, eqClassId) {
  * 批量完工更新
  */
 function updateOrderBatch() {
-    var orderIds = $(dataTableName).bootgrid("getSelectedRows");
-    if (orderIds.length == 0) {
-        showMessageBox("danger", "请选择要完工的工单!");
+    var orderId = $(dataTableName).bootgrid("getSelectedRows");
+    // $("#saveFixDesc").trigger("click");
+    var workOrder = findByIdAndObjectName(orderId, "workOrderReportCart");
+    //根据选择的获取对应的工单编号  根据工单编号获取设备信息
+    if (!workOrder.equipments) {
+        showMessageBox("danger", "该维修单未关联设备信息,无法进行设备更新操作!");
         return;
     }
-    var url = "/workOrderFix/finishBatch";
-    var data =
-        {
-            orderIds: orderIds.join(",")
-        }
-    ;
-    $.post(url, data, function (data) {
-        if (data.result) {
-            showMessageBox("info", data.resultDesc);
-            complexSearch();
-        } else {
-            showMessageBox("danger", data.resultDesc);
-        }
+    $("#locId").val(workOrder.locations.id);
+    $("#eqIds").val(workOrder.equipments.id+",");
+    $("#eqClassId").val(workOrder.equipmentsClassification.id);
 
-    });
+    $("#loc_modal").modal("show");
 }
 
 

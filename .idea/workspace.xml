@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64242532-e7b8-469c-a416-526e544deac9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/subway/controller/app/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/subway/controller/app/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/subway/controller/common/CommonDataController.java" afterPath="$PROJECT_DIR$/src/main/java/com/subway/controller/common/CommonDataController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/subway/service/commonData/CommonDataService.java" afterPath="$PROJECT_DIR$/src/main/java/com/subway/service/commonData/CommonDataService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/equipment/list.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/equipment/list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/css/cloud-admin.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/cloud-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/app/common/common-crud.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/app/common/common-crud.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/app/equipment/equipments.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/app/equipment/equipments.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java" afterPath="$PROJECT_DIR$/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/applyReport.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/applyReport.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/app/fix/fix.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/app/fix/fix.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,18 +22,8 @@
       <file leaf-file-name="equipments.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/js/app/equipment/equipments.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="108" column="36" lean-forward="true" selection-start-line="108" selection-start-column="36" selection-end-line="108" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VeqClass.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/domain/equipments/VeqClass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="123">
+              <caret line="339" column="22" lean-forward="false" selection-start-line="339" selection-start-column="9" selection-end-line="339" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -76,11 +60,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EqBatchUpdateBillController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EqBatchUpdateBillController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
               <caret line="37" column="35" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/list.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="492">
+              <caret line="270" column="50" lean-forward="false" selection-start-line="270" selection-start-column="50" selection-end-line="270" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fix.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/app/fix/fix.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="354" column="46" lean-forward="false" selection-start-line="354" selection-start-column="46" selection-end-line="354" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="applyReport.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/applyReport.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="55" column="85" lean-forward="false" selection-start-line="55" selection-start-column="85" selection-end-line="55" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EqBatchUpdateBillService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="67" column="18" lean-forward="false" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -91,26 +115,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="276">
               <caret line="610" column="1" lean-forward="true" selection-start-line="610" selection-start-column="1" selection-end-line="610" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cloud-admin.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/css/cloud-admin.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="2776" column="0" lean-forward="true" selection-start-line="2776" selection-start-column="0" selection-end-line="2776" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fontcss.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/css/fontcss.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="110" column="29" lean-forward="true" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -131,16 +135,6 @@
                 <element signature="e#3398#3399#0" expanded="true" />
                 <element signature="e#3457#3458#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RedisConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/utils/RedisConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="42" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -186,6 +180,8 @@
       <find>commonData/findVEqClass</find>
       <find>findVEqClass</find>
       <find>getEqRunStatus</find>
+      <find>locReportForm</find>
+      <find>loc_modal</find>
     </findStrings>
     <replaceStrings>
       <replace>col-md-</replace>
@@ -242,9 +238,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/subway/domain/workOrder/VworkOrderFixBill.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/subway/controller/workOrder/WorkOrderReportCartController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/applyReport.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/js/app/fix/fix.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/app/equipment/equipments.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/equipment/list.jsp" />
@@ -254,6 +247,9 @@
         <option value="$PROJECT_DIR$/src/main/webapp/js/app/common/common-crud.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/subway/service/commonData/CommonDataService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/subway/controller/common/CommonDataController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/app/fix/fix.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/applyReport.jsp" />
       </list>
     </option>
   </component>
@@ -367,7 +363,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="eqbatch&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java&#10;comm&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/common/CommonDataController.java&#10;crud&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/common/common-crud.js&#10;login&#9;PSI&#9;JAVA://com.subway.controller.app.LoginController&#10;commonDataC&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/common/CommonDataController.java&#10;redis&#9;PSI&#9;JAVA://com.subway.utils.RedisConfig&#10;common&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/commonData/CommonDataService.java&#10;equipment/list&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/WEB-INF/pages/equipment/list.jsp&#10;eq&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/equipment/equipments.js&#10;equipment&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EquipmentController.java&#10;upd&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java&#10;equipmentCon&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EquipmentController.java&#10;veq&#9;PSI&#9;JAVA://com.subway.domain.equipments.Vequipments&#10;applica&#9;FILE&#9;file://E:/dev/y3/src/main/resources/application.properties&#10;EQ&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/domain/equipments/EqBatchUpdateBill.java&#10;workOrderRe&#9;PSI&#9;JAVA://com.subway.controller.workOrder.WorkOrderReportCartController&#10;workOrderF&#9;PSI&#9;JAVA://com.subway.domain.workOrder.VworkOrderFixBill&#10;eqBatchUpdateBillC&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java&#10;eqbillc&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java&#10;locations&#9;PSI&#9;JAVA://com.subway.domain.locations.Locations&#10;eqBatchUpdateC&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateController.java&#10;equi&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/equipment/equipments.js&#10;CommonDataService.&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/commonData/CommonDataService.java&#10;eqUpdate&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java&#10;e&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EquipmentController.java&#10;eqUpdateC&#9;PSI&#9;JAVA://com.subway.controller.equipment.EqBatchUpdateController&#10;equPD&#9;PSI&#9;JAVA://com.subway.dao.equipments.EqUpdateBillRepository&#10;equ&#9;FILE&#9;jar://C:/Users/Administrator/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/8.0.20/tomcat-embed-core-8.0.20.jar!/javax/servlet/ServletRequest.class&#10;person&#9;PSI&#9;JAVA://com.subway.controller.person.PersonController&#10;equipmentsea&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EquipmentSearchService.java&#10;Common&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/commonData/CommonDataService.java&#10;loc&#9;null&#9;null&#10;equipmentsear&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EquipmentSearchService.java&#10;eqBatch&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EqBatchUpdateBillSearchService.java&#10;EqBatchUpdateBillService.&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java&#10;eqUp&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateController.java&#10;CommonDa&#9;PSI&#9;JAVA://com.subway.service.commonData.CommonDataService&#10;appli&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/Application.java&#10;locationser&#9;PSI&#9;JAVA://com.subway.service.locations.LocationsService&#10;vue&#9;null&#9;null&#10;equipmentC&#9;PSI&#9;JAVA://com.subway.controller.equipment.EquipmentController&#10;EquipmentsRepository &#9;PSI&#9;JAVA://com.subway.dao.equipments.EquipmentsRepository&#10;equipmentRe&#9;PSI&#9;JAVA://com.subway.dao.equipments.EquipmentsRepository&#10;searc&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EqBatchUpdateBillSearchService.java&#10;update.js&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/eqBatchUpdate/eqBatchUpdate.js&#10;personRe&#9;PSI&#9;JAVA://com.subway.dao.person.PersonRepository&#10;personSer&#9;PSI&#9;JAVA://com.subway.service.person.PersonService&#10;CRUD&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/common/common-crud.js&#10;eqBatchUpdateController&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateController.java&#10;application.pro&#9;FILE&#9;file://E:/dev/y3/src/main/resources/application.properties" />
+    <property name="SearchEverywhereHistoryKey" value="eq&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/equipment/equipments.js&#10;EqBatchUpdateBillService.&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java&#10;workOrderFix/list&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/WEB-INF/pages/workOrderFix/list.jsp&#10;eqbatch&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java&#10;comm&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/common/CommonDataController.java&#10;crud&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/common/common-crud.js&#10;login&#9;PSI&#9;JAVA://com.subway.controller.app.LoginController&#10;commonDataC&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/common/CommonDataController.java&#10;redis&#9;PSI&#9;JAVA://com.subway.utils.RedisConfig&#10;common&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/commonData/CommonDataService.java&#10;equipment/list&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/WEB-INF/pages/equipment/list.jsp&#10;equipment&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EquipmentController.java&#10;upd&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java&#10;equipmentCon&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EquipmentController.java&#10;veq&#9;PSI&#9;JAVA://com.subway.domain.equipments.Vequipments&#10;applica&#9;FILE&#9;file://E:/dev/y3/src/main/resources/application.properties&#10;EQ&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/domain/equipments/EqBatchUpdateBill.java&#10;workOrderRe&#9;PSI&#9;JAVA://com.subway.controller.workOrder.WorkOrderReportCartController&#10;workOrderF&#9;PSI&#9;JAVA://com.subway.domain.workOrder.VworkOrderFixBill&#10;eqBatchUpdateBillC&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java&#10;eqbillc&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateBillController.java&#10;locations&#9;PSI&#9;JAVA://com.subway.domain.locations.Locations&#10;eqBatchUpdateC&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateController.java&#10;equi&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/equipment/equipments.js&#10;CommonDataService.&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/commonData/CommonDataService.java&#10;eqUpdate&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java&#10;e&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EquipmentController.java&#10;eqUpdateC&#9;PSI&#9;JAVA://com.subway.controller.equipment.EqBatchUpdateController&#10;equPD&#9;PSI&#9;JAVA://com.subway.dao.equipments.EqUpdateBillRepository&#10;equ&#9;FILE&#9;jar://C:/Users/Administrator/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/8.0.20/tomcat-embed-core-8.0.20.jar!/javax/servlet/ServletRequest.class&#10;person&#9;PSI&#9;JAVA://com.subway.controller.person.PersonController&#10;equipmentsea&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EquipmentSearchService.java&#10;Common&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/commonData/CommonDataService.java&#10;loc&#9;null&#9;null&#10;equipmentsear&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EquipmentSearchService.java&#10;eqBatch&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EqBatchUpdateBillSearchService.java&#10;eqUp&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateController.java&#10;CommonDa&#9;PSI&#9;JAVA://com.subway.service.commonData.CommonDataService&#10;appli&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/Application.java&#10;locationser&#9;PSI&#9;JAVA://com.subway.service.locations.LocationsService&#10;vue&#9;null&#9;null&#10;equipmentC&#9;PSI&#9;JAVA://com.subway.controller.equipment.EquipmentController&#10;EquipmentsRepository &#9;PSI&#9;JAVA://com.subway.dao.equipments.EquipmentsRepository&#10;equipmentRe&#9;PSI&#9;JAVA://com.subway.dao.equipments.EquipmentsRepository&#10;searc&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/service/equipments/EqBatchUpdateBillSearchService.java&#10;update.js&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/eqBatchUpdate/eqBatchUpdate.js&#10;personRe&#9;PSI&#9;JAVA://com.subway.dao.person.PersonRepository&#10;personSer&#9;PSI&#9;JAVA://com.subway.service.person.PersonService&#10;CRUD&#9;FILE&#9;file://E:/dev/y3/src/main/webapp/js/app/common/common-crud.js&#10;eqBatchUpdateController&#9;FILE&#9;file://E:/dev/y3/src/main/java/com/subway/controller/equipment/EqBatchUpdateController.java" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.idea/workspace.xml" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -707,46 +703,46 @@
       <workItem from="1499218144230" duration="609000" />
       <workItem from="1499303483549" duration="1746000" />
       <workItem from="1499306083893" duration="1949000" />
-      <workItem from="1499320514021" duration="4648000" />
+      <workItem from="1499320514021" duration="8382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142255000" />
+    <option name="totallyTimeSpent" value="145989000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5095613" sideWeight="0.5042965" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.015730336" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63932586" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33707866" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6348315" sideWeight="0.49570355" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3480129" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.747191" sideWeight="0.49570355" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19172932" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28988764" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -976,13 +972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6210">
-          <caret line="270" column="50" lean-forward="false" selection-start-line="270" selection-start-column="50" selection-end-line="270" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/domain/workOrder/VworkOrderFixBill.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
@@ -1001,27 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1265">
           <caret line="63" column="20" lean-forward="false" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/applyReport.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="57" column="97" lean-forward="false" selection-start-line="57" selection-start-column="97" selection-end-line="57" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/app/fix/fix.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7613">
-          <caret line="331" column="0" lean-forward="false" selection-start-line="331" selection-start-column="0" selection-end-line="331" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="67" column="56" lean-forward="true" selection-start-line="67" selection-start-column="56" selection-end-line="67" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -1131,14 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/app/equipment/equipments.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="108" column="36" lean-forward="true" selection-start-line="108" selection-start-column="36" selection-end-line="108" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/domain/equipments/VeqClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -1152,25 +1112,6 @@
         <state relative-caret-position="276">
           <caret line="610" column="1" lean-forward="true" selection-start-line="610" selection-start-column="1" selection-end-line="610" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/service/commonData/CommonDataService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="109" column="42" lean-forward="false" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
-          <folding>
-            <element signature="e#3296#3297#0" expanded="true" />
-            <element signature="e#3371#3372#0" expanded="true" />
-            <element signature="e#3566#3567#0" expanded="true" />
-            <element signature="e#3642#3643#0" expanded="true" />
-            <element signature="e#3837#3838#0" expanded="true" />
-            <element signature="e#3914#3915#0" expanded="true" />
-            <element signature="e#4346#4347#0" expanded="true" />
-            <element signature="e#4397#4398#0" expanded="true" />
-            <element signature="e#4799#4800#0" expanded="true" />
-            <element signature="e#4864#4865#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1203,6 +1144,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="37" column="35" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/app/equipment/equipments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="339" column="22" lean-forward="false" selection-start-line="339" selection-start-column="9" selection-end-line="339" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/service/commonData/CommonDataService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="109" column="42" lean-forward="false" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
+          <folding>
+            <element signature="e#3296#3297#0" expanded="true" />
+            <element signature="e#3371#3372#0" expanded="true" />
+            <element signature="e#3566#3567#0" expanded="true" />
+            <element signature="e#3642#3643#0" expanded="true" />
+            <element signature="e#3837#3838#0" expanded="true" />
+            <element signature="e#3914#3915#0" expanded="true" />
+            <element signature="e#4346#4347#0" expanded="true" />
+            <element signature="e#4397#4398#0" expanded="true" />
+            <element signature="e#4799#4800#0" expanded="true" />
+            <element signature="e#4864#4865#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="270" column="50" lean-forward="false" selection-start-line="270" selection-start-column="50" selection-end-line="270" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/subway/service/equipments/EqBatchUpdateBillService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="67" column="18" lean-forward="false" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/app/fix/fix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="354" column="46" lean-forward="false" selection-start-line="354" selection-start-column="46" selection-end-line="354" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workOrderFix/applyReport.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="55" column="85" lean-forward="false" selection-start-line="55" selection-start-column="85" selection-end-line="55" selection-end-column="85" />
           <folding />
         </state>
       </provider>

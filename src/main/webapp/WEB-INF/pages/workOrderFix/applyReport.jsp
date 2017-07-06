@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<form class="form-horizontal" role="form" id="locReportForm">
+<form class="form-horizontal"  id="locReportForm">
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
@@ -53,7 +53,7 @@
                 <label for="receiver" class="col-md-2 control-label ">接收人</label>
                 <div class="col-md-10 ">
                     <input class="form-control " id="receiver" name="receiver" required/>
-                    <input class="form-control " type="hidden" id="eqId" name="eqId"/>
+                    <input class="form-control " type="hidden" id="eqIds" name="eqIds"/>
                     <input class="form-control " type="hidden" id="locId" name="locations.id"/>
                     <input class="form-control " type="hidden" id="eqClassId" name="eqClass.id"/>
                 </div>

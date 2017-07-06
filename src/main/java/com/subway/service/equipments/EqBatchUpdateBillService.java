@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class EqBatchUpdateBillService extends BaseService {
      * @param eqBatchUpdateBill
      * @return
      */
+    @Transactional
     public List<EqBatchUpdateBillDetail> addEqList(EqBatchUpdateBill eqBatchUpdateBill) {
         EqBatchUpdateBillDetail eqBatchUpdateBillDetail;
         List<EqBatchUpdateBillDetail> eqBatchUpdateBillDetailList = new ArrayList<EqBatchUpdateBillDetail>();

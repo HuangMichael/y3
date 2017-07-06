@@ -16,7 +16,6 @@
         <th data-column-id="handler" data-width="5%">经办人</th>
         <th data-column-id="receiver" data-width="5%">接收人</th>
         <th data-column-id="dataType" data-width="5%">更新状态</th>
-        <th data-column-id="updateEq" data-formatter="updateEq" data-sortable="false" data-width="5%">设备更新</th>
     </tr>
     </thead>
 </table>

@@ -21,21 +21,23 @@ $(function () {
             rowSelect: true,
             keepSelection: true,
             navigation: 0,
-            rowCount: [8],
-            formatters: {
-                "updateEq": function (column, row) {
-                    return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> "
-                }
-            }
-        }
-
-    ;
+            rowCount: [8]
+        };
     $(dataTableName).bootgrid(tableConfig);
     initSelect.call();
-    // //初始化查询所有的
-    // ids = findAllRecordId();
-    // console.log("ids------" + JSON.stringify(ids));
-    // selectedIds = ids;
 });
+
+
+/**
+ *  申请通过
+ */
+function approve() {
+
+    alert(123);
+
+}
+
+
+
 
 

@@ -32,9 +32,20 @@ $(function () {
  *  申请通过
  */
 function approve() {
-
-    alert(123);
-
+    var ids = $(dataTableName).bootgrid("getSelectedRows") + ",";
+    console.log("-------------------" + ids);
+    var url = "/eqBatchUpdateBill/approve";
+    var data = {
+        ids: ids
+    };
+    $.post(url, data, function (data) {
+        if (data.result) {
+            showMessageBox("info", data.resultDesc);
+            $(dataTableName).bootgrid("reload");
+        } else {
+            showMessageBox("danger", data.resultDesc);
+        }
+    })
 }
 
 

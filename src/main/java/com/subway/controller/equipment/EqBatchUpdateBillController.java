@@ -5,6 +5,7 @@ import com.subway.controller.common.BaseController;
 import com.subway.dao.equipments.EqBatchUpdateBillRepository;
 import com.subway.domain.app.MyPage;
 import com.subway.domain.equipments.EqBatchUpdateBill;
+import com.subway.domain.equipments.EqUpdateBill;
 import com.subway.domain.equipments.EquipmentsClassification;
 import com.subway.domain.person.Person;
 import com.subway.object.ReturnObject;
@@ -19,10 +20,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -70,5 +68,23 @@ public class EqBatchUpdateBillController extends BaseController {
         Map<String, String[]> parameterMap = request.getParameterMap();
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
         return new PageUtils().searchBySortService(eqBatchUpdateBillSearchService, searchPhrase, 2, current, rowCount, pageable);
+    }
+
+
+    /**
+     * @param ids
+     * @return 审核通过
+     */
+    @RequestMapping(value = "/approve", method = RequestMethod.POST)
+    @ResponseBody
+    public ReturnObject approve(@RequestParam("ids") String ids) {
+        String idsArray[] = ids.split(",");
+        for (String idStr : idsArray) {
+            Long id = Long.parseLong(idStr);
+            EqBatchUpdateBill eqBatchUpdateBill = eqBatchUpdateBillService.findById(id);
+            eqBatchUpdateBill.setStatus("1");
+            eqBatchUpdateBill = eqBatchUpdateBillService.save(eqBatchUpdateBill);
+        }
+        return commonDataService.getReturnType(true, "设备更新审核通过", "设备更新审核");
     }
 }

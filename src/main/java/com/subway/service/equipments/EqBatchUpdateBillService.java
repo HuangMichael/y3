@@ -77,9 +77,18 @@ public class EqBatchUpdateBillService extends BaseService {
             eqBatchUpdateBillDetail.setStatus("0");
             String memo = eqBatchUpdateBill.getApplyDep() + eqBatchUpdateBill.getApplyDate() + eqBatchUpdateBill.getApplicant() + "申请" + eqBatchUpdateBill.getBillContent();
             eqBatchUpdateBillDetail.setMemo(memo);
-            eqBatchUpdateBillDetailList.add(eqBatchUpdateBillDetail); 
+            eqBatchUpdateBillDetailList.add(eqBatchUpdateBillDetail);
         }
         return eqBatchUpdateBillDetailList;
+    }
+
+
+    /**
+     * @param id 根据ID查询
+     * @return
+     */
+    public EqBatchUpdateBill findById(Long id) {
+        return eqBatchUpdateBillRepository.findOne(id);
     }
 
 }

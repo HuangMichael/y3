@@ -42,16 +42,16 @@
                                         <div class="form-group" style="margin-bottom:10px;position:inherit"
                                              id="searchBox">
                                             <div class="col-md-2">
-                                                <input class="form-control" id="eqCode" type="text" name="eqCode"
+                                                <input class="form-control" id="eqCode" name="eqCode"
                                                        placeholder="设备编号"/>
                                             </div>
                                             <div class="col-md-2">
-                                                <input class="form-control" id="eqName" type="text" name="eqName"
+                                                <input class="form-control" id="eqName" name="eqName"
                                                        placeholder="设备描述"/>
                                             </div>
 
                                             <div class="col-md-2">
-                                                <input class="form-control" id="locName" type="text" name="locName"
+                                                <input class="form-control" id="locName" name="locName"
                                                        placeholder="设备位置"/>
                                             </div>
 
@@ -156,8 +156,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"
                         aria-label="Close"><span
-                        aria-hidden="true">&times;</span
-                        aria-hidden="true"></button>
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel2">请输入设备更新申请信息</h4>
             </div>
             <div class="modal-body">

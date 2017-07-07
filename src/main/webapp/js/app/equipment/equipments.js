@@ -184,15 +184,14 @@ $(function () {
         formatters: {
             "report": function (column, row) {
                 return '<a class="btn btn-default btn-xs"  onclick="report(' + row.id + ')" title="报修" ><i class="glyphicon glyphicon-wrench"></i></a>'
-                    + '<a class="btn btn-default btn-xs"  onclick="eqUpdate(' + row.id + ')" title="更新" ><i class="glyphicon glyphicon-retweet"></i></a>'
             }
         }
     };
     //初始化加载列表
-    // initBootGridMenu(dataTableName, config);
+    initBootGridMenu(dataTableName, config);
 
 
-    loadEqList(dataTableName, config);
+    // loadEqList(dataTableName, config);
 
 
     //验证保存信息

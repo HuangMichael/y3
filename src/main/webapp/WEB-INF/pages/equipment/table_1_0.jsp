@@ -9,7 +9,7 @@
         <th data-column-id="eqName"  data-width="25%">设备名称</th>
         <th data-column-id="locName" data-width="10%">设备位置</th>
         <th data-column-id="eqClass" data-width="5%">设备分类</th>
-        <th data-column-id="report" data-formatter="report" data-sortable="false" data-width="5%" >报修|更新</th>
+        <th data-column-id="report" data-formatter="report" data-sortable="false" data-width="5%" >报修</th>
     </tr>
     </thead>
 </table>

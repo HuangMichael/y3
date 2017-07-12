@@ -63,8 +63,6 @@ public class Equipments {
     @Column(scale = 2)
     private Double netValue; //净值
 
-
-
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "locations_id", referencedColumnName = "id")
     private Locations locations;  //所属位置

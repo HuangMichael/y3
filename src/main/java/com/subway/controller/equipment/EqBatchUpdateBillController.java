@@ -6,14 +6,17 @@ import com.subway.dao.equipments.EqBatchUpdateBillRepository;
 import com.subway.domain.app.MyPage;
 import com.subway.domain.equipments.EqBatchUpdateBill;
 import com.subway.domain.equipments.EqUpdateBill;
+import com.subway.domain.equipments.Equipments;
 import com.subway.domain.equipments.EquipmentsClassification;
 import com.subway.domain.person.Person;
 import com.subway.object.ReturnObject;
 import com.subway.service.commonData.CommonDataService;
 import com.subway.service.equipments.EqBatchUpdateBillSearchService;
 import com.subway.service.equipments.EqBatchUpdateBillService;
+import com.subway.service.equipments.EquipmentAccountService;
 import com.subway.service.equipmentsClassification.EquipmentsClassificationService;
 import com.subway.service.locations.LocationsService;
+import com.subway.utils.CommonStatusType;
 import com.subway.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -51,6 +54,9 @@ public class EqBatchUpdateBillController extends BaseController {
     @Autowired
     EquipmentsClassificationService equipmentsClassificationService;
 
+    @Autowired
+    EquipmentAccountService equipmentAccountService;
+
     /**
      * 分页查询
      *
@@ -78,6 +84,7 @@ public class EqBatchUpdateBillController extends BaseController {
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
     @ResponseBody
     public ReturnObject approve(@RequestParam("ids") String ids) {
+        System.out.println("ids-----------------------" + ids);
         String idsArray[] = ids.split(",");
         for (String idStr : idsArray) {
             Long id = Long.parseLong(idStr);
@@ -87,4 +94,37 @@ public class EqBatchUpdateBillController extends BaseController {
         }
         return commonDataService.getReturnType(true, "设备更新审核通过", "设备更新审核");
     }
+
+
+    /**
+     * @param eqUpdateBillid
+     * @return 审核通过
+     */
+    @RequestMapping(value = "/replaceEq", method = RequestMethod.POST)
+    @ResponseBody
+    public ReturnObject replaceEq(@RequestParam("id") Long eqUpdateBillid) {
+        EqBatchUpdateBill eqBatchUpdateBill = eqBatchUpdateBillService.findById(eqUpdateBillid);
+        String[] eIds = eqBatchUpdateBill.getEqIds().split(",");
+        for (String eIdStr : eIds) {
+            Long eId = Long.parseLong(eIdStr);
+            Equipments equipments = equipmentAccountService.findById(eId);
+            equipments.setStatus(CommonStatusType.EQ_SCRAPPED);
+            equipmentAccountService.save(equipments);
+            Equipments newEq = new Equipments();
+            newEq.setEqCode(equipments.getEqCode() + "-1");
+            newEq.setDescription(equipments.getDescription());
+            newEq.setLocation(equipments.getLocation());
+            newEq.setLocations(equipments.getLocations());
+            newEq.setEquipmentsClassification(equipments.getEquipmentsClassification());
+            newEq.setStatus(CommonStatusType.EQ_NORMAL);
+            newEq.setVlocations(equipments.getVlocations());
+            equipmentAccountService.save(newEq);
+            // 根据设备的设备位置、设备分类、生成设备编号,新增设备 将就设备报废  生成报废历史
+        }
+        eqBatchUpdateBill.setDataType("已更新");
+        eqBatchUpdateBillService.save(eqBatchUpdateBill);
+        return commonDataService.getReturnType(eqBatchUpdateBill.getDataType().equals("已更新"), "设备更新成功", "设备更新失败");
+    }
+
+
 }

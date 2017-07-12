@@ -91,4 +91,17 @@ public class EqBatchUpdateBillService extends BaseService {
         return eqBatchUpdateBillRepository.findOne(id);
     }
 
+
+    /**
+     * @param eqUpdateBillId
+     * @return 替换设备
+     */
+    public ReturnObject replaceEquipment(Long eqUpdateBillId) {
+        EqBatchUpdateBill eqBatchUpdateBill = eqBatchUpdateBillRepository.findById(eqUpdateBillId);
+        String[] eqIdArray = eqBatchUpdateBill.getEqIds().split(",");
+        for (String idStr : eqIdArray) {
+            System.out.println("idStr------------------" + idStr);
+        }
+        return commonDataService.getReturnType(true, "替换设备成功!", "替换设备失败!");
+    }
 }

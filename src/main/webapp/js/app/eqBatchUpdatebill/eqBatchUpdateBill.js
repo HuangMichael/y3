@@ -32,11 +32,46 @@ $(function () {
  *  申请通过
  */
 function approve() {
-    var ids = $(dataTableName).bootgrid("getSelectedRows") + ",";
-    console.log("-------------------" + ids);
+    var ids = $(dataTableName).bootgrid("getSelectedRows").toString();
+    if (!ids) {
+        showMessageBox("danger", "请选择记录，再进行操作!")
+        return;
+    }
+
+
+    console.log("ids------------------" + ids);
     var url = "/eqBatchUpdateBill/approve";
     var data = {
         ids: ids
+    };
+    $.post(url, data, function (data) {
+        if (data.result) {
+            showMessageBox("info", data.resultDesc);
+            $(dataTableName).bootgrid("reload");
+        } else {
+            showMessageBox("danger", data.resultDesc);
+        }
+    })
+}
+
+
+/**
+ *  替换设备
+ */
+function replaceEq() {
+    var ids = $(dataTableName).bootgrid("getSelectedRows").toString();
+    var array = ids.split(",");
+
+
+    console.log();
+    if (array.length != 1) {
+        showMessageBox("danger", "请选择一条记录，再进行操作!")
+        return;
+    }
+    console.log("ids------------------" + ids);
+    var url = "/eqBatchUpdateBill/replaceEq";
+    var data = {
+        id: array[0]
     };
     $.post(url, data, function (data) {
         if (data.result) {

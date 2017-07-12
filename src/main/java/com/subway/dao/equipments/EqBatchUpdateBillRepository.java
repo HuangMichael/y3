@@ -34,4 +34,12 @@ public interface EqBatchUpdateBillRepository extends JpaRepository<EqBatchUpdate
      */
     EqBatchUpdateBill save(EqBatchUpdateBill eqBatchUpdateBill);
 
+
+
+    /**
+     * @param id
+     * @return
+     */
+    EqBatchUpdateBill findById(Long id);
+
 }

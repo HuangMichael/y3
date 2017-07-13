@@ -41,6 +41,21 @@
                                          style="color: #111;background-color: #fff;border-color: #d26911 #e5e5e5 ">
                                         <div class="form-group" style="margin-bottom:10px;position:inherit"
                                              id="searchBox">
+
+                                            <div class="col-md-2">
+                                                <input type="hidden" id="location" name="location" value="BJ"/>
+                                                <select class="form-control" id="eqClass" name="eqClass"
+                                                        style="width:100%"
+                                                        required>
+                                                    <option></option>
+                                                    <template v-for="option in eqClasses">
+                                                        <option :value="option.cname">
+                                                            {{option.cname }}
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+
                                             <div class="col-md-2">
                                                 <input class="form-control" id="eqCode" name="eqCode"
                                                        placeholder="设备编号"/>
@@ -54,21 +69,6 @@
                                                 <input class="form-control" id="locName" name="locName"
                                                        placeholder="设备位置"/>
                                             </div>
-
-                                            <div class="col-md-2">
-                                                <select class="form-control" id="eqClass" name="eqClass"
-                                                        style="width:100%"
-                                                        required>
-                                                    <option></option>
-                                                    <template v-for="option in eqClasses">
-                                                        <option :value="option.cname">
-                                                            {{option.cname }}
-                                                        </option>
-                                                    </template>
-                                                </select>
-                                            </div>
-
-
                                             <div class="col-md-2">
                                                 <button id="searchBtn" class="btn btn-default"
                                                         onclick="complexSearch()">查询

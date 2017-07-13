@@ -8,6 +8,7 @@ import com.subway.domain.equipments.*;
 import com.subway.object.ReturnObject;
 import com.subway.service.app.BaseService;
 import com.subway.service.commonData.CommonDataService;
+import com.subway.utils.CommonStatusType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -97,11 +98,26 @@ public class EqBatchUpdateBillService extends BaseService {
      * @return 替换设备
      */
     public ReturnObject replaceEquipment(Long eqUpdateBillId) {
-        EqBatchUpdateBill eqBatchUpdateBill = eqBatchUpdateBillRepository.findById(eqUpdateBillId);
-        String[] eqIdArray = eqBatchUpdateBill.getEqIds().split(",");
-        for (String idStr : eqIdArray) {
-            System.out.println("idStr------------------" + idStr);
+        EqBatchUpdateBill eqBatchUpdateBill = this.findById(eqUpdateBillId);
+        String[] eIds = eqBatchUpdateBill.getEqIds().split(",");
+        for (String eIdStr : eIds) {
+            Long eId = Long.parseLong(eIdStr);
+            Equipments equipments = equipmentAccountService.findById(eId);
+            equipments.setStatus(CommonStatusType.EQ_SCRAPPED);
+            equipmentAccountService.save(equipments);
+            Equipments newEq = new Equipments();
+            newEq.setEqCode(equipments.getEqCode() + "-1");
+            newEq.setDescription(equipments.getDescription());
+            newEq.setLocation(equipments.getLocation());
+            newEq.setLocations(equipments.getLocations());
+            newEq.setEquipmentsClassification(equipments.getEquipmentsClassification());
+            newEq.setStatus(CommonStatusType.EQ_NORMAL);
+            newEq.setVlocations(equipments.getVlocations());
+            equipmentAccountService.save(newEq);
+            // 根据设备的设备位置、设备分类、生成设备编号,新增设备 将就设备报废  生成报废历史
         }
-        return commonDataService.getReturnType(true, "替换设备成功!", "替换设备失败!");
+        eqBatchUpdateBill.setDataType("已更新");
+        eqBatchUpdateBill = this.save(eqBatchUpdateBill);
+        return commonDataService.getReturnType(eqBatchUpdateBill.getDataType().equals("已更新"), "替换设备成功!", "替换设备失败!");
     }
 }

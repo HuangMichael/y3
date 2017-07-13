@@ -51,4 +51,25 @@ public interface VEqRepository extends PagingAndSortingRepository<Vequipments, L
      */
     List<Vequipments> findByEqCodeContainsAndEqNameContainsAndLocNameContainsAndEqClassContainsAndLocationContains(String eqCode, String eqName, String locName, String eqClass, String location);
 
+
+    /**
+     * @param eqCode  设备编号
+     * @param eqName  设备名称
+     * @param locName 设备位置
+     * @param eqClass 设备分类
+     * @return
+     */
+    List<Vequipments> findByLocationContainsAndEqClassContainsAndEqCodeContainsAndEqNameContainsAndLocNameContains(String location, String eqClass, String eqCode, String eqName, String locName);
+
+
+    /**
+     * @param eqCode  设备编号
+     * @param eqName  设备名称
+     * @param locName 设备位置
+     * @param eqClass 设备分类
+     * @return
+     */
+    Page<Vequipments> findByLocationContainsAndEqClassContainsAndEqCodeContainsAndEqNameContainsAndLocNameContains(String location, String eqClass, String eqCode, String eqName, String locName, Pageable pageable);
+
+
 }

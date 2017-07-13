@@ -103,28 +103,6 @@ public class EqBatchUpdateBillController extends BaseController {
     @RequestMapping(value = "/replaceEq", method = RequestMethod.POST)
     @ResponseBody
     public ReturnObject replaceEq(@RequestParam("id") Long eqUpdateBillid) {
-        EqBatchUpdateBill eqBatchUpdateBill = eqBatchUpdateBillService.findById(eqUpdateBillid);
-        String[] eIds = eqBatchUpdateBill.getEqIds().split(",");
-        for (String eIdStr : eIds) {
-            Long eId = Long.parseLong(eIdStr);
-            Equipments equipments = equipmentAccountService.findById(eId);
-            equipments.setStatus(CommonStatusType.EQ_SCRAPPED);
-            equipmentAccountService.save(equipments);
-            Equipments newEq = new Equipments();
-            newEq.setEqCode(equipments.getEqCode() + "-1");
-            newEq.setDescription(equipments.getDescription());
-            newEq.setLocation(equipments.getLocation());
-            newEq.setLocations(equipments.getLocations());
-            newEq.setEquipmentsClassification(equipments.getEquipmentsClassification());
-            newEq.setStatus(CommonStatusType.EQ_NORMAL);
-            newEq.setVlocations(equipments.getVlocations());
-            equipmentAccountService.save(newEq);
-            // 根据设备的设备位置、设备分类、生成设备编号,新增设备 将就设备报废  生成报废历史
-        }
-        eqBatchUpdateBill.setDataType("已更新");
-        eqBatchUpdateBillService.save(eqBatchUpdateBill);
-        return commonDataService.getReturnType(eqBatchUpdateBill.getDataType().equals("已更新"), "设备更新成功", "设备更新失败");
+        return eqBatchUpdateBillService.replaceEquipment(eqUpdateBillid);
     }
-
-
 }

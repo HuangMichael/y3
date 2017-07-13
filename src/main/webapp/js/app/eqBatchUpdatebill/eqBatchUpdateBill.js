@@ -61,14 +61,10 @@ function approve() {
 function replaceEq() {
     var ids = $(dataTableName).bootgrid("getSelectedRows").toString();
     var array = ids.split(",");
-
-
-    console.log();
     if (array.length != 1) {
         showMessageBox("danger", "请选择一条记录，再进行操作!")
         return;
     }
-    console.log("ids------------------" + ids);
     var url = "/eqBatchUpdateBill/replaceEq";
     var data = {
         id: array[0]

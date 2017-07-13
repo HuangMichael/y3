@@ -26,7 +26,7 @@ public class EquipmentSearchService extends BaseService implements SortedSearcha
 
     public Page<Vequipments> findByConditions(String searchPhrase, int paramsSize, Pageable pageable) {
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize, true, addConditionToService());
-        return vEqRepository.findByEqCodeContainsAndEqNameContainsAndLocNameContainsAndEqClassContainsAndLocationContains(array[0], array[1], array[2], array[3], array[4], pageable);
+        return vEqRepository.findByLocationContainsAndEqClassContainsAndEqCodeContainsAndEqNameContainsAndLocNameContains(array[0], array[1], array[2], array[3], array[4], pageable);
     }
 
 
@@ -36,7 +36,7 @@ public class EquipmentSearchService extends BaseService implements SortedSearcha
      */
     public List<Vequipments> findByConditions(String searchPhrase, int paramsSize) {
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-        return vEqRepository.findByEqCodeContainsAndEqNameContainsAndLocNameContainsAndEqClassContainsAndLocationContains(array[0], array[1], array[2], array[3], array[4]);
+        return vEqRepository.findByLocationContainsAndEqClassContainsAndEqCodeContainsAndEqNameContainsAndLocNameContains(array[0], array[1], array[2], array[3], array[4]);
     }
 
 

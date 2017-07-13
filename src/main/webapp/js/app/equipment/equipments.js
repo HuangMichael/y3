@@ -121,10 +121,11 @@ $(function () {
     });
 
     searchModel = [
+        {"param": "location", "paramDesc": "位置编号"},
+        {"param": "eqClass", "paramDesc": "设备分类"},
         {"param": "eqCode", "paramDesc": "设备编号"},
         {"param": "eqName", "paramDesc": "设备名称"},
-        {"param": "locName", "paramDesc": "设备位置"},
-        {"param": "eqClass", "paramDesc": "设备分类"}
+        {"param": "locName", "paramDesc": "设备位置"}
     ];
 
 
@@ -197,8 +198,8 @@ $(function () {
     //验证保存信息
     validateForm(validateOptions);
     initSelect();
-    search();
-    showDetail();
+    // search();
+    // showDetail();
 
 
     historyTab.on('click', function () {
@@ -284,10 +285,13 @@ function report(id) {
     if (status == "0") {
         $("#eqList").load(curl, function (data) {
             $("#show_eq_modal").modal("show");
-            //eqId = id;
             reportId = id;
         })
-    } else {
+    } else if (status == "3") {
+        showMessageBox("danger", "设备已经报废，无法报修！");
+        return;
+    }
+    else {
         equipReport(id);
     }
 }

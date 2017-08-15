@@ -37,9 +37,6 @@ function approve() {
         showMessageBox("danger", "请选择记录，再进行操作!")
         return;
     }
-
-
-    console.log("ids------------------" + ids);
     var url = "/eqBatchUpdateBill/approve";
     var data = {
         ids: ids

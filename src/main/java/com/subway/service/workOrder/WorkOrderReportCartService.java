@@ -76,8 +76,8 @@ public class WorkOrderReportCartService extends BaseService {
         //生成跟踪号
         String workOrderNo = commonDataService.genWorkOrderLineNo();
         workOrderReportCart.setOrderLineNo(workOrderNo);
-        workOrderReportCart.setLocations(equipments.getLocations());
-        workOrderReportCart.setLocation(equipments.getLocations().getLocation());
+        workOrderReportCart.setVlocations(equipments.getVlocations());
+        workOrderReportCart.setLocation(equipments.getVlocations().getLocation());
         workOrderReportCart.setEquipmentsClassification(equipments.getEquipmentsClassification());
         workOrderReportCart.setOrderDesc(equipments.getEquipmentsClassification().getDescription() + "报修");
         workOrderReportCart.setReporter(userName);
@@ -89,7 +89,7 @@ public class WorkOrderReportCartService extends BaseService {
         workOrderReportCart.setStatus(CommonStatusType.CART_CREATED);
         workOrderReportCart = workOrderReportCartRepository.save(workOrderReportCart);
         //加入关联位置信息
-        workOrderReportCart.setVlocations(vlocationsRepository.findById(equipments.getLocations().getId()));
+//        workOrderReportCart.setVlocations(vlocationsRepository.findById(equipments.getLocations().getId()));
         equipments.setStatus(CommonStatusType.EQ_ABNORMAL); //将设备状态修改为不正常
         equipmentAccountService.save(equipments);
         WorkOrderHistory workOrderHistory = new WorkOrderHistory();

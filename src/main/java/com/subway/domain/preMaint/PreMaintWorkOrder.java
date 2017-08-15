@@ -25,9 +25,9 @@ public class PreMaintWorkOrder {
     @Column(length = 20, unique = true, nullable = false)
     private String orderLineNo; //工单编号行号
     private String orderDesc;  //故障描述
-    @OneToOne
-    @JoinColumn(name = "locations_id")
-    private Locations locations;
+//    @OneToOne
+//    @JoinColumn(name = "locations_id")
+//    private Locations locations;
     @OneToOne
     @JoinColumn(name = "equipments_id")
     private Equipments equipments;

@@ -123,7 +123,7 @@ public class PreMaintService extends BaseService implements LocationSeparatable 
                 preMaintWorkOrder.setOrderDesc(preMaint.getDescription() + "-" + today);
                 preMaintWorkOrder.setCreator(preMaint.getCreateBy());
                 preMaintWorkOrder.setEquipments(preMaint.getEquipment());
-                preMaintWorkOrder.setLocation(preMaint.getEquipment().getLocations().getLocation());
+//                preMaintWorkOrder.setLocation(preMaint.getEquipment().getLocations().getLocation());
                 preMaintWorkOrder.setEquipmentsClassification(preMaint.getEquipment().getEquipmentsClassification());
                 preMaintWorkOrder.setReportType("p");
                 preMaintWorkOrder.setUnit(preMaint.getOutUnit());

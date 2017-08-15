@@ -109,7 +109,7 @@ public class EqBatchUpdateBillService extends BaseService {
             newEq.setEqCode(equipments.getEqCode() + "-1");
             newEq.setDescription(equipments.getDescription());
             newEq.setLocation(equipments.getLocation());
-            newEq.setLocations(equipments.getLocations());
+            newEq.setVlocations(equipments.getVlocations());
             newEq.setEquipmentsClassification(equipments.getEquipmentsClassification());
             newEq.setStatus(CommonStatusType.EQ_NORMAL);
             newEq.setVlocations(equipments.getVlocations());

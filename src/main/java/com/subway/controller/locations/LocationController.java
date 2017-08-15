@@ -209,7 +209,7 @@ public class LocationController extends BaseController {
 
         Locations locations = locationsService.findById(locationId);
         for (Equipments equipments : equipmentsList) {
-            equipments.setLocations(locations);
+//            equipments.setLocations(locations);
             equipments.setLocation(locations.getLocation());
             equipments.setVlocations(vlocationsRepository.findById(locationId));
             equipments.setStatus("1");

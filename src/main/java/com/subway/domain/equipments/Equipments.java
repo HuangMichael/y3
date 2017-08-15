@@ -52,10 +52,6 @@ public class Equipments {
     private String productFactory; //生产厂家
 
 
-    @Column(length = 50)
-    private String imgUrl; //设备图片
-
-
     @Column(scale = 2)
     private Double originalValue; //原值
 
@@ -63,9 +59,9 @@ public class Equipments {
     @Column(scale = 2)
     private Double netValue; //净值
 
-    @ManyToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name = "locations_id", referencedColumnName = "id")
-    private Locations locations;  //所属位置
+//    @ManyToOne( fetch = FetchType.LAZY)
+//    @JoinColumn(name = "locations_id", referencedColumnName = "id")
+//    private Locations locations;  //所属位置
 
 
     @ManyToOne( fetch = FetchType.LAZY)

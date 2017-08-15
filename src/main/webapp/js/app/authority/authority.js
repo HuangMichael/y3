@@ -32,7 +32,7 @@ $(function () {
             if (data) {
                 obj = data[x];
                 pid = (!obj["parent"]) ? 0 : obj["parent"].id;
-                zNodes[x] = {id: obj.id, pId: pid, name: obj.description, open: 1, isParent: 1};
+                zNodes[x] = {id: obj.id, pId: pid, name: obj.description, open: true, isParent: 1};
             } else {
                 alert("信息加载出错");
             }
@@ -45,6 +45,7 @@ $(function () {
         zTree.selectNode(zTree.getNodeByParam("id", 1));
 
     });
+
     function loadReady() {
         var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
             htmlH = demoIframe.contents().find("html").get(0).scrollHeight,
@@ -108,24 +109,11 @@ function grant() {
  * 根据角色加载权限视图
  */
 function loadAuthView() {
-    var roleId = $("#role_id").val();
-    var url = "/authority/loadByRole/" + roleId;
-
-    console.log("roleId----------------" + roleId);
-    console.log("url----------------" + url);
-    /*
-     $("#authListTable").data("url", url);
-     $("#authListTable").bootgrid("reload");*/
-
     $("#authListTable").bootgrid();
-    /* $("#authViewDiv").load(url, function (data) {
-
-     });*/
-
-
 }
 
 var checkedNodeIds = null;
+
 /**
  *
  * @param e

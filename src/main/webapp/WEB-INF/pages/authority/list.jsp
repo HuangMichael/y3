@@ -46,4 +46,4 @@
     </div>
     <!-- /CONTENT-->
 </div>
-<script src="js/app/authority/authority.js"></script>
+<script src="/js/app/authority/authority.js"></script>

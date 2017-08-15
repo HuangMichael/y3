@@ -4,11 +4,11 @@
     <thead>
     <tr>
         <th><input type="checkbox" value="" name="unit"></th>
-        <th width="10%" data-column-id="index">序号</th>
-        <th width="20%">单位名称</th>
-        <th width="20%">联系人</th>
-        <th width="20%">电话</th>
-        <th width="10%">状态</th>
+        <th data-width="10%" data-column-id="index">序号</th>
+        <th data-width="20%">单位名称</th>
+        <th data-width="20%">联系人</th>
+        <th data-width="20%">电话</th>
+        <th data-width="10%">状态</th>
     </tr>
     </thead>
     <tbody>

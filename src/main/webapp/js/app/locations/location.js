@@ -9,15 +9,10 @@ var setting = {
     callback: {
         onClick: function (event, treeId, treeNode) {
             var locName = findLocNameById(treeNode.id);
-
-
-            console.log("locName---------------" + locName);
             vdm.$set("locName", locName);
-
             $("#locName").val(locName);
             var node = findObjById("location", treeNode.id);
             vdm.$set("location", node);
-
             setFormReadStatus("#detailForm", true);
             loadEqList(treeNode.id);
             return true;
@@ -73,7 +68,7 @@ $(document).ready(function () {
                 name: data[x][2],
                 superior: data[x][3],
                 pId: (data[x][4]) ? (data[x][4]) : 0,
-                open: false,
+                open: data[x][1].length < 4,
                 isParent: pid
             };
         }
@@ -91,8 +86,11 @@ $(document).ready(function () {
 
 
     });
+
     function loadReady() {
-        var bodyH = demoIframe.contents().find("body").get(0).scrollHeight, htmlH = demoIframe.contents().find("html").get(0).scrollHeight, maxH = Math.max(bodyH, htmlH), minH = Math.min(bodyH, htmlH), h = demoIframe.height() >= maxH ? minH : maxH;
+        var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
+            htmlH = demoIframe.contents().find("html").get(0).scrollHeight, maxH = Math.max(bodyH, htmlH),
+            minH = Math.min(bodyH, htmlH), h = demoIframe.height() >= maxH ? minH : maxH;
         if (h < 530) {
             h = 530
         }
@@ -115,16 +113,7 @@ $(document).ready(function () {
 
         }
     });
-
-
     initSelect();
-
-
-    $("#saveBtn").on("click", function () {
-
-
-        console.log("save---------------------");
-    })
 });
 var flag = false;
 
@@ -141,6 +130,7 @@ function add() {
 
 
 var reportId;
+
 function report(id) {
     var status = "0";
     var path = "/equipment/findById/" + id;
@@ -261,6 +251,7 @@ function reportByLocation() {
 
     }
 }
+
 /**
  *  已经报修提示重复报修 选择继续
  */
@@ -314,11 +305,13 @@ function add2LocCart() {
     });
 
 }
+
 /**
  *
  * @param data
  * 首次加载函数 在form中显示第一条记录内容
  */
+
 /*
  function firstLoad(data) {
  if (data.length > 0) {

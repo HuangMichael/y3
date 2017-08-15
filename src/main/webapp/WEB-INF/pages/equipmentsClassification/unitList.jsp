@@ -4,11 +4,11 @@
 <table id="unitTable" class=" table table-striped table-bordered table-hover">
     <thead>
     <tr>
-        <th data-column-id="index">序号</th>
-        <th data-column-id="id" data-visible="false" data-identifier="true">序号</th>
-        <th data-column-id="description">单位名称</th>
-        <th data-column-id="linkman">联系人</th>
-        <th data-column-id="telephone">联系电话</th>
+        <th data-column-id="index" data-width="5%">序号</th>
+        <th data-column-id="id" data-visible="false" data-identifier="true" data-width="10%">序号</th>
+        <th data-column-id="description" data-width="25%">单位名称</th>
+        <th data-column-id="linkman" data-width="20%">联系人</th>
+        <th data-column-id="telephone" data-width="25%">联系电话</th>
     </tr>
     </thead>
     <tbody>
@@ -37,12 +37,12 @@
 
     var selectedUnitIds = [];
     $("#unitTable").bootgrid(
-            {
-                selection: true,
-                multiSelect: true,
-                rowSelect: true,
-                keepSelection: true
-            }
+        {
+            selection: true,
+            multiSelect: true,
+            rowSelect: true,
+            keepSelection: true
+        }
     );
 </script>
 

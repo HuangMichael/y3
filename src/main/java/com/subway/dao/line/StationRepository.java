@@ -5,6 +5,7 @@ import com.subway.domain.line.Line;
 import com.subway.domain.line.Station;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by huangbin on 2016/3/15 0008.
  * 车站信息查询接口
  */
-public interface StationRepository extends CrudRepository<Station, Long> {
+public interface StationRepository extends CrudRepository<Station, Long> ,JpaRepository<Station,Long>{
     /**
      * 查询所有车站
      */
@@ -42,20 +43,6 @@ public interface StationRepository extends CrudRepository<Station, Long> {
      */
     Station findByIdAndStatus(Long id, String status);
 
-    /**
-     * @param description 站名
-     * @param pageable    可分页
-     * @return 根据站名模糊查询
-     */
-    Page<Station> findByDescriptionContains(String description, Pageable pageable);
-
-
-    /**
-     * @param description 站名
-     * @return 根据站名模糊查询
-     */
-    List<Station> findByDescriptionContains(String description);
-
 
     /**
      * @param stationNo   编号
@@ -63,7 +50,7 @@ public interface StationRepository extends CrudRepository<Station, Long> {
      * @param pageable    可分页
      * @return 根据站名模糊查询
      */
-    Page<Station> findByLineAndStationNoContainsAndDescriptionContains(Line line, String stationNo, String description, Pageable pageable);
+    Page<Station> findByLineContainsAndStationNoContainsAndDescriptionContains(Line line, String stationNo, String description, Pageable pageable);
 
 
     /**
@@ -71,7 +58,7 @@ public interface StationRepository extends CrudRepository<Station, Long> {
      * @param description 站名
      * @return 根据站名模糊查询
      */
-    List<Station> findByLineAndStationNoContainsAndDescriptionContains(Line line, String stationNo, String description);
+    List<Station> findByLineContainsAndStationNoContainsAndDescriptionContains(Line line, String stationNo, String description);
 
 
     /**

@@ -35,7 +35,7 @@ public class StationSearchService extends BaseService implements SortedSearchabl
         if (!array[0].isEmpty()) {
             line = lineService.findById(Long.parseLong(array[0]));
         }
-        return stationRepository.findByLineContainsAndStationNoContainsAndDescriptionContains(line, array[1], array[2]);
+        return stationRepository.findByLineAndStationNoContainsAndDescriptionContains(line, array[1], array[2]);
     }
 
 
@@ -49,7 +49,7 @@ public class StationSearchService extends BaseService implements SortedSearchabl
         if (!array[0].isEmpty()) {
             line = lineService.findById(Long.parseLong(array[0]));
         }
-        return stationRepository.findByLineContainsAndStationNoContainsAndDescriptionContains(line, array[1], array[2], pageable);
+        return stationRepository.findByLineAndStationNoContainsAndDescriptionContains(line, array[1], array[2], pageable);
     }
 
 }

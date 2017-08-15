@@ -50,7 +50,7 @@ public interface StationRepository extends CrudRepository<Station, Long> ,JpaRep
      * @param pageable    可分页
      * @return 根据站名模糊查询
      */
-    Page<Station> findByLineContainsAndStationNoContainsAndDescriptionContains(Line line, String stationNo, String description, Pageable pageable);
+    Page<Station> findByLineAndStationNoContainsAndDescriptionContains(Line line, String stationNo, String description, Pageable pageable);
 
 
     /**
@@ -58,7 +58,7 @@ public interface StationRepository extends CrudRepository<Station, Long> ,JpaRep
      * @param description 站名
      * @return 根据站名模糊查询
      */
-    List<Station> findByLineContainsAndStationNoContainsAndDescriptionContains(Line line, String stationNo, String description);
+    List<Station> findByLineAndStationNoContainsAndDescriptionContains(Line line, String stationNo, String description);
 
 
     /**

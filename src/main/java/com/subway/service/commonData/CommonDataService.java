@@ -106,7 +106,7 @@ public class CommonDataService extends BaseService {
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    @Cacheable(value = "locations", keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "locations", key="'locations'")
     public List<Locations> findMyLocation() {
         return locationsRepository.findByLocationStartingWith("BJ");
     }
@@ -116,7 +116,7 @@ public class CommonDataService extends BaseService {
      * @return 查询我的下属位置信息
      * 先从session中找  如果失败再做查询
      */
-    @Cacheable(value = "vLocations", keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "vLocations",key="'vlocations'")
     public List<Vlocations> findMyVLocation() {
         return vlocationsRepository.findByLocationStartingWith("BJ");
     }
@@ -127,7 +127,7 @@ public class CommonDataService extends BaseService {
      * 先从session中找  如果失败再做查询
      */
 
-    @Cacheable(value = "Vequipments", keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "Vequipments",key="'Vequipments'")
     public List<Vequipments> findMyVeqs() {
         return vequipmentsRepository.findByLocationStartingWith("BJ");
     }
@@ -136,7 +136,7 @@ public class CommonDataService extends BaseService {
     /**
      * @return 查询设备种类信息
      */
-    @Cacheable(value = "equipmentsClassifications", keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "equipmentsClassifications", key = "'equipmentsClassifications'")
     public List<EquipmentsClassification> findEquipmentsClassification() {
         return equipmentsClassificationRepository.findAll();
     }
@@ -145,7 +145,7 @@ public class CommonDataService extends BaseService {
     /**
      * @return 查询设备种类信息
      */
-    @Cacheable(value = "veqClasses", keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "veqClasses", key = "'veqClasses'")
     public List<VeqClass> findVeqClass() {
         return veqClassRepository.findAll();
     }
@@ -162,7 +162,7 @@ public class CommonDataService extends BaseService {
     /**
      * @return 查询设备种类信息
      */
-    @Cacheable(value = "modules", keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "modules", keyGenerator = "'modules'")
     public List<Resource> findMenus() {
         return resourceRepository.findByResourceLevel(1L);
     }
@@ -171,7 +171,7 @@ public class CommonDataService extends BaseService {
     /**
      * @return (0:停用 1:投用 2报废)
      */
-    @Cacheable(value = "eqStatus", keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "eqStatus", key = "'eqStatus'")
     public List<ListObject> getEqStatus() {
         List<ListObject> eqStatusList = new ArrayList<ListObject>();
         eqStatusList.add(new ListObject("0", "维修"));
@@ -184,7 +184,7 @@ public class CommonDataService extends BaseService {
     /**
      * @return 获取运行状态 (0:停止 1:运行)
      */
-    @Cacheable(value = "runningStatus", keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "runningStatus", key = "'runningStatus'")
     public List<ListObject> getRunningStatus() {
         List<ListObject> eqRunStatusList = new ArrayList<ListObject>();
         eqRunStatusList.add(new ListObject("0", "停止"));

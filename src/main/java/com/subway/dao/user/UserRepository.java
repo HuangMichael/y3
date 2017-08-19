@@ -54,6 +54,13 @@ public interface UserRepository extends CrudRepository<User, Long>, PagingAndSor
 
 
     /**
+     * 查询不在当前位置中的用户信息
+     */
+    @Query(nativeQuery = true, value = "SELECT  u.id,u.user_name FROM t_user u WHERE u.vlocations_id != :locationId AND u.status = 1")
+    List<Object> findUsersNotInLocation(@Param("locationId") Long locationId);
+
+
+    /**
      * @param roleId
      * @return
      */

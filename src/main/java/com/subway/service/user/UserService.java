@@ -219,4 +219,12 @@ public class UserService extends BaseService {
     }
 
 
+    /**
+     * @param locationId
+     * @return 查询不在当前位置的用户信息
+     */
+    public List<Object> findUsersNotInLocation(Long locationId) {
+        return userRepository.findUsersNotInLocation(locationId);
+    }
+
 }

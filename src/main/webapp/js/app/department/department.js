@@ -114,14 +114,14 @@ function getSelectedNodeId() {
     var id = selectedNode.id;
     return id;
 }
-/**
- * 返回当前选中节点
- * */
-function getSelectedNode() {
-    var zTree = $.fn.zTree.getZTreeObj("tree");
-    var selectedNode = zTree.getSelectedNodes()[0];
-    return selectedNode;
-}
+// /**
+//  * 返回当前选中节点
+//  * */
+// function getSelectedNode() {
+//     var zTree = $.fn.zTree.getZTreeObj("tree");
+//     var selectedNode = zTree.getSelectedNodes()[0];
+//     return selectedNode;
+// }
 
 
 

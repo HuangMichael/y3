@@ -177,7 +177,7 @@ function addUsers() {
 
 function confirmAddUsers() {
     var roleId = vdm.role.id;
-    ;
+
     $("#userListModal").modal("hide");
     var usersIdStr = $("#usersNotInRole").bootgrid("getSelectedRows").join(",");
     // ajax将选中的用户进行与角色关联

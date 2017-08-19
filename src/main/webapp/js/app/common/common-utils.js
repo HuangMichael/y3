@@ -30,6 +30,7 @@ function transformDateHMS(timestamp) {
     }
     return dateStr;
 }
+
 /**
  *
  * @param interval 间隔可为正负整数 不传默认为0
@@ -107,9 +108,11 @@ function fillForm(data, formId) {
         }
     }
 }
+
 function showMessageBox(type, message) {
     $.bootstrapGrowl(message, {type: type, align: "right", stackup_spacing: 30})
 }
+
 function loadTableData(t, c, d) {
     var thead = $("#thead");
     var tbody = $("#tbody");
@@ -134,6 +137,7 @@ function loadTableData(t, c, d) {
     }
     tbody.html(html1)
 }
+
 function addNodeAfterOperation(tree, childNode) {
     var zTree = (tree == null) ? getTreeRoot() : tree;
     var parentZNode = zTree.getNodeByParam("id", getSelectedNodeId(), null);
@@ -166,17 +170,27 @@ function getTreeRoot() {
     var zTree = $.fn.zTree.getZTreeObj("tree");
     return zTree;
 }
+
 function getSelectedNodeId() {
     var zTree = $.fn.zTree.getZTreeObj("tree");
     var selectedNode = zTree.getSelectedNodes()[0];
     var id = selectedNode.id;
     return id
 }
+
 function getSelectedNode() {
     var zTree = $.fn.zTree.getZTreeObj("tree");
     var selectedNode = zTree.getSelectedNodes()[0];
     return selectedNode
 }
+
+
+function getCheckedNode() {
+    var zTree = $.fn.zTree.getZTreeObj("tree");
+    var selectedNode = zTree.getCheckedNodes();
+    return selectedNode
+}
+
 /**
  *
  * @param type  info  danger
@@ -185,6 +199,7 @@ function getSelectedNode() {
 function showMessageBox(type, message) {
     $.bootstrapGrowl(message, {type: type, align: "right", stackup_spacing: 30})
 }
+
 /**
  *
  * @param type info  danger

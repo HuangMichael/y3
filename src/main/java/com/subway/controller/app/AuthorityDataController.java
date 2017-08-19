@@ -175,4 +175,31 @@ public class AuthorityDataController extends BaseController {
     public void revoke(@RequestParam("roleId") Long roleId, @RequestParam("resourceId") Long resourceId) {
         resourceService.deleteRoleAuth(roleId, resourceId);
     }
+
+
+    /**
+     * 载入明细信息
+     *
+     * @param roleId
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/popUsers/{locationId}", method = RequestMethod.GET)
+    public String popUsers(@PathVariable("locationId") Long roleId, ModelMap modelMap) {
+        List<Object> usersNotInLocation = userService.findUsersNotInLocation(roleId);
+        modelMap.put("usersNotInLocation", usersNotInLocation);
+        return "/authorityData/popUsers";
+    }
+
+
+    /**
+     * @param locationId 位置id
+     * @param userIds    用户id字符串
+     * @return 将locationId的数据权限授予users
+     */
+    @RequestMapping(value = "/grantDataAuth", method = RequestMethod.POST)
+    @ResponseBody
+    public ReturnObject grantDataAuth(@RequestParam("locationId") Long locationId, @RequestParam("userIds") String userIds) {
+        return userService.grantDataAuth(locationId, userIds);
+    }
 }

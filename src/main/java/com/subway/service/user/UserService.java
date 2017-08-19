@@ -6,12 +6,16 @@ import com.subway.dao.user.UserRepository;
 import com.subway.domain.locations.Vlocations;
 import com.subway.domain.person.Person;
 import com.subway.domain.user.User;
+import com.subway.object.ReturnObject;
 import com.subway.service.app.BaseService;
+import com.subway.service.commonData.CommonDataService;
 import com.subway.utils.CommonStatusType;
 import com.subway.utils.MD5Util;
+import com.subway.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +33,9 @@ public class UserService extends BaseService {
 
     @Autowired
     VlocationsRepository vlocationsRepository;
+
+    @Autowired
+    CommonDataService commonDataService;
 
     /**
      * 根据状态查询用户
@@ -94,7 +101,7 @@ public class UserService extends BaseService {
         Vlocations vlocations = vlocationsRepository.findById(locationId);
         user.setPerson(person);
         user.setVlocations(vlocations);
-       // user.setLocation(vlocations.getLocation());
+        // user.setLocation(vlocations.getLocation());
         user.setStatus(status);
         return userRepository.save(user);
     }
@@ -146,47 +153,70 @@ public class UserService extends BaseService {
         return userRepository.findAllId();
     }
 
-/*
-    *//**
-     * @param searchPhrase
-     * @return 根据多条件关键字进行查询
-     *//*
-    public List<User> findByConditions(String searchPhrase, int paramSize) {
-        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1]);
+
+//    /**
+//     * @param searchPhrase
+//     * @return 根据多条件关键字进行查询
+//     *//*
+//    public List<User> findByConditions(String searchPhrase, int paramSize) {
+//        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
+//        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1]);
+//    }
+//
+//
+//    *//**
+//     * @param searchPhrase
+//     * @return 根据多条件关键字进行查询
+//     *//*
+//    public Page<User> findByConditions(String searchPhrase, int paramSize, Pageable pageable) {
+//        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
+//        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], pageable);
+//    }
+//
+//
+//    */
+//
+//    /**
+//     * @param searchPhrase
+//     * @return 根据多条件关键字进行查询 可排序
+//     *//*
+//    public List<User> findByConditions(String searchPhrase, String[] sortStr, int paramSize) {
+//        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
+//        Sort sort = super.assembleSort(sortStr);
+//        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], sort);
+//    }
+//
+//
+//
+//    public Page<User> findByConditions(String searchPhrase, int paramSize, String[] sortStr, Pageable pageable) {
+//        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
+//        Sort sort = super.assembleSort(sortStr);
+//        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], sort, pageable);
+//    }*/
+//
+
+
+    /**
+     * @param locationId 对位置locationId对人员进行授权
+     * @param userIds
+     * @return
+     */
+    public ReturnObject grantDataAuth(Long locationId, String userIds) {
+        Vlocations vlocations = vlocationsRepository.findById(locationId);
+        String userIdArray[] = userIds.split(",");
+        Long userId = null;
+        User user = null;
+        List<User> users = new ArrayList<User>();
+        for (String str : userIdArray) {
+            userId = Long.parseLong(str);
+            user = userRepository.findById(userId);
+            user.setVlocations(vlocations);
+            userRepository.save(user);
+            users.add(user);
+        }
+        String msg = vlocations.getLocName() + users.size() + "个用户";
+        return commonDataService.getReturnType(!users.isEmpty(), msg + "数据授权成功", "数据授权失败，请重试");
     }
-
-
-    *//**
-     * @param searchPhrase
-     * @return 根据多条件关键字进行查询
-     *//*
-    public Page<User> findByConditions(String searchPhrase, int paramSize, Pageable pageable) {
-        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], pageable);
-    }
-
-
-    *//**
-     * @param searchPhrase
-     * @return 根据多条件关键字进行查询 可排序
-     *//*
-    public List<User> findByConditions(String searchPhrase, String[] sortStr, int paramSize) {
-        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-        Sort sort = super.assembleSort(sortStr);
-        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], sort);
-    }
-
-
-    *//**
-     * @param searchPhrase
-     * @return 根据多条件关键字进行查询 可排序
-     *//*
-    public Page<User> findByConditions(String searchPhrase, int paramSize, String[] sortStr, Pageable pageable) {
-        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-        Sort sort = super.assembleSort(sortStr);
-        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], sort, pageable);
-    }*/
 
 
 }

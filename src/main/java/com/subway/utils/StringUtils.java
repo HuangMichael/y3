@@ -106,4 +106,17 @@ public class StringUtils {
         return strList;
     }
 
+    /**
+     * @param array
+     * @param split
+     * @return 数组分割用自定义标点连接
+     */
+    public static String array2Join(String array[], String split) {
+        String str = "";
+        for (String s : array) {
+            str += s + split;
+        }
+        return str;
+    }
+
 }

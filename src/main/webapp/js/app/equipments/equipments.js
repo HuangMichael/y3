@@ -90,10 +90,10 @@ $(function () {
     //查询模型
 
 
-    /*    var url_location = "/commonData/findMyLoc";
-        $.getJSON(url_location, function (data) {
-            locs = data;
-        });*/
+    // var url_location = "/commonData/findMyLoc";
+    // $.getJSON(url_location, function (data) {
+    //     locs = data;
+    // });
 
     var url = "/commonData/getEqStatus";
     $.getJSON(url, function (data) {
@@ -129,45 +129,45 @@ $(function () {
     ];
 
 
-    selectedIds = findAllRecordId();
-    vdm = new Vue({
-        el: "#detailForm",
-        data: {
-            equipment: null,
-            locs: locs,
-            eqClasses: eqClasses,
-            eqStatuses: eqStatuses,
-            runStatus: runStatus
-        }
-    });
-
-
-    hm = new Vue({
-        el: "#historyInfo",
-        data: {
-            e: findById(selectedIds[pointer]),
-            histories: loadFixHistoryByEid(selectedIds[pointer])
-        }
-    });
-
-
-    rm = new Vue({
-        el: "#recordInfo",
-        data: {
-            e: findById(selectedIds[pointer])
-
-        }
-    });
-
-
-    rmListVue = new Vue({
-
-        el: "#updateRecords",
-        data: {
-            records: loadUpdateHistoryByEid(selectedIds[pointer])
-        }
-
-    });
+    // selectedIds = findAllRecordId();
+    // vdm = new Vue({
+    //     el: "#detailForm",
+    //     data: {
+    //         equipment: null,
+    //         locs: locs,
+    //         eqClasses: eqClasses,
+    //         eqStatuses: eqStatuses,
+    //         runStatus: runStatus
+    //     }
+    // });
+    //
+    //
+    // hm = new Vue({
+    //     el: "#historyInfo",
+    //     data: {
+    //         e: findById(selectedIds[pointer]),
+    //         histories: loadFixHistoryByEid(selectedIds[pointer])
+    //     }
+    // });
+    //
+    //
+    // rm = new Vue({
+    //     el: "#recordInfo",
+    //     data: {
+    //         e: findById(selectedIds[pointer])
+    //
+    //     }
+    // });
+    //
+    //
+    // rmListVue = new Vue({
+    //
+    //     el: "#updateRecords",
+    //     data: {
+    //         records: loadUpdateHistoryByEid(selectedIds[pointer])
+    //     }
+    //
+    // });
 
 
     var config = {
@@ -181,7 +181,7 @@ $(function () {
                 id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
             };
         },
-        url: "/equipment/data",
+        url: "/equipments/data",
         formatters: {
             "report": function (column, row) {
                 return '<a class="btn btn-default btn-xs"  onclick="report(' + row.id + ')" title="报修" ><i class="glyphicon glyphicon-wrench"></i></a>'
@@ -202,13 +202,13 @@ $(function () {
     // showDetail();
 
 
-    historyTab.on('click', function () {
-        showFixHistory.call();
-    });
-
-    recordsTab.on('click', function () {
-        showUpdateRecords.call();
-    });
+    // historyTab.on('click', function () {
+    //     showFixHistory.call();
+    // });
+    //
+    // recordsTab.on('click', function () {
+    //     showUpdateRecords.call();
+    // });
 });
 
 

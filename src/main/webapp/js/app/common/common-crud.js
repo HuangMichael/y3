@@ -488,10 +488,10 @@ function initBootGridMenu(dataTableName, config) {
  * 查询我的位置
  */
 function getMyLocs() {
-    var url = "/commonData/findMyLoc";
-    $.getJSON(url, function (data) {
-        locs = data;
-    });
+    // var url = "/commonData/findMyLoc";
+    // $.getJSON(url, function (data) {
+    //     locs = data;
+    // });
     return locs;
 }
 
@@ -577,8 +577,6 @@ function search() {
             var value = ($(p).val()) ? $(p).val().trim() : "";
             searchParams += value + ",";
         }
-        console.log("searchParams-------------" + searchParams);
-
     });
     $(dataTableName).bootgrid("setSearchPhrase", searchParams).bootgrid("reload");
 }
@@ -641,8 +639,8 @@ $(function () {
     //初始化加载设备分类  设备位置
 
 
-    locs = findMyLoc();
-    eqClasses = findEqClass();
+    // locs = findMyLoc();
+    // eqClasses = findEqClass();
 
 
     //取消异步加载

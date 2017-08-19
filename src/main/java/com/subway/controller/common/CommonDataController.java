@@ -59,9 +59,9 @@ public class CommonDataController extends BaseController {
      */
     @RequestMapping(value = "/findMyEqs", method = RequestMethod.GET)
     @ResponseBody
-    public List<Vequipments> findMyEqs() {
-//        String location = SessionUtil.getCurrentUserLocationBySession(httpSession);
-        return commonDataService.findMyVeqs();
+    public List<Vequipments> findMyEqs(HttpSession httpSession) {
+        String location = SessionUtil.getCurrentUserLocationBySession(httpSession);
+        return commonDataService.findMyVeqs(location);
     }
 
     /**

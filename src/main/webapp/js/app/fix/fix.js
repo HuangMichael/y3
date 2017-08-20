@@ -41,6 +41,7 @@ $(document).ready(function () {
     });
 
     searchModel = [
+        {"param": "location", "paramDesc": "位置编码"},
         {"param": "nodeState", "paramDesc": "工单状态"},
         {"param": "orderLineNo", "paramDesc": "跟踪号"},
         {"param": "orderDesc", "paramDesc": "故障描述"},
@@ -59,7 +60,11 @@ $(document).ready(function () {
     }, 1000);
 
 
-    search();
+    $("#searchBtn").trigger("click", function () {
+
+
+        console.log("-------search-------------------");
+    });
 
 
     $(":checkbox").on("click", function () {
@@ -352,7 +357,7 @@ function updateOrderBatch() {
         return;
     }
     $("#locId").val(workOrder.locations.id);
-    $("#eqIds").val(workOrder.equipments.id+",");
+    $("#eqIds").val(workOrder.equipments.id + ",");
     $("#eqClassId").val(workOrder.equipmentsClassification.id);
 
     $("#loc_modal").modal("show");

@@ -172,7 +172,7 @@ public class WorkOrderReportService extends BaseService implements SortedSearcha
      */
     public Page<VworkOrderReportBill> findByConditions(String searchPhrase, int paramsSize, Pageable pageable) {
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-        return vworkOrderReportBillRepository.findByOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContains(array[0], array[1], array[2], array[3], pageable);
+        return vworkOrderReportBillRepository.findByLocationContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsOrderByNodeTimeDesc(array[0], array[1], array[2], array[3], array[4], pageable);
     }
 
 
@@ -183,7 +183,7 @@ public class WorkOrderReportService extends BaseService implements SortedSearcha
     public List<VworkOrderReportBill> findByConditions(String searchPhrase, int paramsSize) {
 
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-        return vworkOrderReportBillRepository.findByOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContains(array[0], array[1], array[2], array[3]);
+        return vworkOrderReportBillRepository.findByLocationContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsOrderByNodeTimeDesc(array[0], array[1], array[2], array[3], array[4]);
 
     }
 

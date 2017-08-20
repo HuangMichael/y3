@@ -52,7 +52,7 @@ public interface VworkOrderFixBillRepository extends PagingAndSortingRepository<
      * @param pageable
      * @return 模糊查询
      */
-    Page<VworkOrderFixBill> findByNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContains(String nodeStatus, String orderLineNo, String orderDesc, String location, String eqClass, String expired, Pageable pageable);
+    Page<VworkOrderFixBill> findByLocationContainsAndNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContains(String location, String nodeStatus, String orderLineNo, String orderDesc, String locName, String eqClass, String expired, Pageable pageable);
 
 
     /**
@@ -62,7 +62,7 @@ public interface VworkOrderFixBillRepository extends PagingAndSortingRepository<
      * @param eqClass
      * @return 模糊查询
      */
-    List<VworkOrderFixBill> findByNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContains(String nodeStatus, String orderLineNo, String orderDesc, String location, String eqClass, String expired);
+    List<VworkOrderFixBill> findByLocationContainsAndNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContains(String location, String nodeStatus, String orderLineNo, String orderDesc, String locName, String eqClass, String expired);
 
 
     /**
@@ -75,7 +75,7 @@ public interface VworkOrderFixBillRepository extends PagingAndSortingRepository<
      * @param idList
      * @return 勾选
      */
-    List<VworkOrderFixBill> findByNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContainsAndIdInOrderByIdDesc(String nodeStatus, String orderLineNo, String orderDesc, String location, String eqClass, String expired, List<Long> idList);
+    List<VworkOrderFixBill> findByLocationContainsAndNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContainsAndIdInOrderByIdDesc(String location, String nodeStatus, String orderLineNo, String orderDesc, String locName, String eqClass, String expired, List<Long> idList);
 
 
     /**

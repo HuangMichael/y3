@@ -79,8 +79,7 @@
                                                         <select class="form-control" id="expired" name="expired"
                                                                 onchange="searchMore()"
                                                                 required>
-                                                            <option selected value="">全部</option>
-                                                            <option>未超期</option>
+                                                            <option selected>未超期</option>
                                                             <option>已超期</option>
                                                         </select>
                                                     </div>
@@ -97,22 +96,22 @@
                                                        data-url="/workOrderFix/data">
                                                     <thead>
                                                     <tr>
-                                                        <th data-column-id="orderLineNo" data-width="8%">跟踪号</th>
+                                                        <th data-column-id="orderLineNo" data-width="5%">跟踪号</th>
                                                         <th data-column-id="id" data-type="numeric"
                                                             data-identifier="true" data-visible="false">ID
                                                         </th>
-                                                        <th data-column-id="eqName" data-width="10%">设备名称</th>
-                                                        <th data-column-id="locName" data-width="8%">设备位置</th>
+                                                        <th data-column-id="eqName" data-width="6%">设备名称</th>
+                                                        <th data-column-id="locName" data-width="12%">设备位置</th>
                                                         <th data-column-id="orderDesc" data-width="15%">故障描述</th>
-                                                        <th data-column-id="eqClass" data-width="5%">设备分类</th>
+                                                        <th data-column-id="eqClass" data-width="8%">设备分类</th>
                                                         <th data-column-id="unitName" data-width="10%"
                                                             data-visible="false">维修单位
                                                         </th>
                                                         <th data-column-id="nodeState" data-width="5%">维修状态</th>
-                                                        <th data-column-id="nodeTime" data-width="8%" data-order="desc">
+                                                        <th data-column-id="nodeTime" data-width="10%" data-order="desc">
                                                             处理时间
                                                         </th>
-                                                        <th data-column-id="deadLine" data-width="8%">截止日期</th>
+                                                        <th data-column-id="deadLine" data-width="10%">截止日期</th>
                                                         <th data-column-id="expired" data-width="5%"
                                                             data-sortable="false" align="center">是否超期
                                                         </th>

@@ -26,7 +26,7 @@ public class WorkOrderFixSearchService extends BaseService implements SortedSear
      */
     public Page<VworkOrderFixBill> findByConditions(String searchPhrase, int paramsSize, Pageable pageable) {
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-        return vworkOrderFixBillRepository.findByNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContains(array[0], array[1], array[2], array[3], array[4], array[5], pageable);
+        return vworkOrderFixBillRepository.findByLocationContainsAndNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContains(array[0], array[1], array[2], array[3], array[4], array[5], array[6], pageable);
     }
 
     /**
@@ -35,7 +35,7 @@ public class WorkOrderFixSearchService extends BaseService implements SortedSear
      */
     public List<VworkOrderFixBill> findByConditions(String searchPhrase, int paramsSize) {
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-        return vworkOrderFixBillRepository.findByNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContains(array[0], array[1], array[2], array[3], array[4], array[5]);
+        return vworkOrderFixBillRepository.findByLocationContainsAndNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContains(array[0], array[1], array[2], array[3], array[4], array[5], array[6]);
 
     }
 
@@ -45,7 +45,7 @@ public class WorkOrderFixSearchService extends BaseService implements SortedSear
      */
     public List<VworkOrderFixBill> findByConditionsAndIdIn(String searchPhrase, List<Long> idList, int paramsSize) {
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize);
-        return vworkOrderFixBillRepository.findByNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContainsAndIdInOrderByIdDesc(array[0], array[1], array[2], array[3], array[4], array[5], idList);
+        return vworkOrderFixBillRepository.findByLocationContainsAndNodeStateContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsAndExpiredContainsAndIdInOrderByIdDesc(array[0], array[1], array[2], array[3], array[4], array[5], array[6], idList);
 
     }
 }

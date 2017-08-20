@@ -74,24 +74,26 @@ public interface VworkOrderReportBillRepository extends PagingAndSortingReposito
 
 
     /**
+     * @param location
      * @param orderLineNo
      * @param orderDesc 报修描述
-     * @param location
      * @param eqClass
+     * @param locName
      * @param pageable
      * @return 模糊查询
      */
-    Page<VworkOrderReportBill> findByOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContains(String orderLineNo, String orderDesc, String location, String eqClass, Pageable pageable);
+    Page<VworkOrderReportBill> findByLocationContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsOrderByNodeTimeDesc(String location,String orderLineNo, String orderDesc, String eqClass, String locName, Pageable pageable);
 
 
     /**
+     * @param location
      * @param orderLineNo
      * @param orderDesc 报修描述
-     * @param location
+     * @param locName
      * @param eqClass
      * @return 模糊查询
      */
-    List<VworkOrderReportBill> findByOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContains(String orderLineNo, String orderDesc, String location, String eqClass);
+    List<VworkOrderReportBill> findByLocationContainsAndOrderLineNoContainsAndOrderDescContainsAndLocNameContainsAndEqClassContainsOrderByNodeTimeDesc(String location,String orderLineNo, String orderDesc, String locName, String eqClass);
 
 
 }

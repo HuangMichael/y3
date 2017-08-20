@@ -34,7 +34,8 @@
                                                            placeholder="跟踪号"/>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <input class="form-control" id="orderDesc" type="text" name="orderDesc"
+                                                    <input class="form-control" id="orderDesc" type="text"
+                                                           name="orderDesc"
                                                            placeholder="故障描述"/>
                                                 </div>
                                                 <div class="col-md-2">
@@ -68,17 +69,16 @@
                                                        data-url="/workOrderReport/data">
                                                     <thead>
                                                     <tr>
-                                                        <th data-column-id="id" data-width="10%">序号</th>
-                                                        <th data-column-id="orderLineNo" data-width="10%">跟踪号</th>
+                                                        <th data-column-id="id" data-width="5%">序号</th>
+                                                        <th data-column-id="orderLineNo" data-width="8%">跟踪号</th>
                                                         <th data-column-id="eqName" data-width="10%">设备名称</th>
                                                         <th data-column-id="orderDesc" data-width="20%">故障描述</th>
                                                         <th data-column-id="locName" data-width="10%">设备位置</th>
-                                                        <th data-column-id="eqClass" data-width="8%">设备分类</th>
+                                                        <th data-column-id="eqClass" data-width="12%">设备分类</th>
                                                         <th data-column-id="nodeTime" data-width="10%">生成时间</th>
                                                         <th data-column-id="nodeState" data-width="5%">报修状态</th>
                                                     </tr>
                                                     </thead>
-
                                                 </table>
                                             </div>
 

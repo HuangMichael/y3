@@ -7,10 +7,9 @@ var setting = {
     data: {simpleData: {enable: true, idKey: "id", pIdKey: "pId", rootPId: ""}},
     callback: {
         onClick: function (event, treeId, treeNode) {
-
-
-            console.log("radio----------------------------" + treeNode.name)
-
+            var node = findObjById("location", treeNode.id);
+            console.log("node----------------" + JSON.stringify(node));
+            setLocForm(node);
             return true;
         }
     }
@@ -53,6 +52,14 @@ $(document).ready(function () {
         }
         demoIframe.height(h)
     }
+
+
+    vdm = new Vue({
+        el: "#detailForm",
+        data: location
+
+
+    });
 });
 
 
@@ -68,7 +75,6 @@ function grant() {
         showMessageBox("danger", "请选择位置，再进行数据授权!");
         return;
     }
-
     var locationId = selectNode["id"];
     //弹出选择用户框
     var url = "role/popUsers/" + locationId;
@@ -105,5 +111,28 @@ function grantDataAuth() {
 }
 
 
+/**
+ * 设置显示位置信息
+ * @param data
+ */
+function setLocForm(data) {
+    $("#description").val(data.description);
+    $("#location").val(data.location);
+    setFormReadStatus("#detailForm", true);
+    loadUserList(data.id);
+}
+
+
+/**
+ *
+ * @param locationId
+ */
+function loadUserList(locationId) {
+    //载入页面并刷新
+    var url = "authorityData/loadUsers/" + locationId;
+    $("#tab_1_1").load(url, function (data) {
+
+    });
+}
 
 

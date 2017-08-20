@@ -180,17 +180,31 @@ public class AuthorityDataController extends BaseController {
     /**
      * 载入明细信息
      *
-     * @param roleId
+     * @param locationId
      * @param modelMap
      * @return
      */
     @RequestMapping(value = "/popUsers/{locationId}", method = RequestMethod.GET)
-    public String popUsers(@PathVariable("locationId") Long roleId, ModelMap modelMap) {
-        List<Object> usersNotInLocation = userService.findUsersNotInLocation(roleId);
+    public String popUsers(@PathVariable("locationId") Long locationId, ModelMap modelMap) {
+        List<Object> usersNotInLocation = userService.findUsersNotInLocation(locationId);
         modelMap.put("usersNotInLocation", usersNotInLocation);
         return "/authorityData/popUsers";
     }
 
+
+    /**
+     * 载入该位置下数据授权的用户
+     *
+     * @param locationId
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/loadUsers/{locationId}", method = RequestMethod.GET)
+    public String loadUsers(@PathVariable("locationId") Long locationId, ModelMap modelMap) {
+        List<Object> usersInLocation = userService.findUsersInLocation(locationId);
+        modelMap.put("usersInLocation", usersInLocation);
+        return "/authorityData/locUsers";
+    }
 
     /**
      * @param locationId 位置id

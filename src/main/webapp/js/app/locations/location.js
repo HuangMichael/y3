@@ -354,8 +354,6 @@ function loadEqList(locationId) {
             }
         }
     });
-
-
 }
 
 

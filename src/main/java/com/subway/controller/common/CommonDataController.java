@@ -120,24 +120,22 @@ public class CommonDataController extends BaseController {
 
 
     /**
-     * @param httpSession 当前会话
      * @return 获得设备状态
      */
     @RequestMapping(value = "/findActivePerson", method = RequestMethod.GET)
     @ResponseBody
-    public List<Person> findActivePerson(HttpSession httpSession) {
-        return commonDataService.findActivePerson(httpSession);
+    public List<Person> findActivePerson( ) {
+        return commonDataService.findActivePerson();
     }
 
 
     /**
-     * @param httpSession 当前会话
      * @return 查询外委单位信息
      */
     @RequestMapping(value = "/findUnits", method = RequestMethod.GET)
     @ResponseBody
-    public List<Units> findUnits(HttpSession httpSession) {
-        return commonDataService.findUnits(httpSession);
+    public List<Units> findUnits( ) {
+        return commonDataService.findUnits();
     }
 
     /**

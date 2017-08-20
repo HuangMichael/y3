@@ -67,11 +67,11 @@ public class WorkOrderReportController extends BaseController {
         if (searchPhrase != null && !searchPhrase.equals("")) {
             searchPhrase = location + "," + searchPhrase;
         } else {
-            searchPhrase = location + ",,,,";
+            searchPhrase = location + ",,,,,";
         }
         Map<String, String[]> parameterMap = request.getParameterMap();
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
-        return new PageUtils().searchBySortService(workOrderReportService, searchPhrase, 4, current, rowCount, pageable);
+        return new PageUtils().searchBySortService(workOrderReportService, searchPhrase, 5, current, rowCount, pageable);
     }
 
 

@@ -33,7 +33,7 @@ $(function () {
         {"param": "location", "paramDesc": "位置编码"},
         {"param": "orderLineNo", "paramDesc": "跟踪号"},
         {"param": "orderDesc", "paramDesc": "故障描述"},
-        {"param": "location", "paramDesc": "设备位置"},
+        {"param": "locName", "paramDesc": "设备位置"},
         {"param": "eqClass", "paramDesc": "设备分类"}
     ];
 

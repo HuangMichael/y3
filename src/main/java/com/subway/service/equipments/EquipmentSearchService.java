@@ -25,6 +25,7 @@ public class EquipmentSearchService extends BaseService implements SortedSearcha
     VEqRepository vEqRepository;
 
     public Page<Vequipments> findByConditions(String searchPhrase, int paramsSize, Pageable pageable) {
+
         String array[] = super.assembleSearchArray(searchPhrase, paramsSize, true, addConditionToService());
         return vEqRepository.findByLocationContainsAndEqClassContainsAndEqCodeContainsAndEqNameContainsAndLocNameContains(array[0], array[1], array[2], array[3], array[4], pageable);
     }

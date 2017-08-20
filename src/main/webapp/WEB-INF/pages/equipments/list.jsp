@@ -30,7 +30,7 @@
                                              id="searchBox">
 
                                             <div class="col-md-2">
-                                                <input type="hidden" id="location" name="location" value="BJ"/>
+                                                <%--<input type="hidden" id="location" name="location" value="BJ"/>--%>
                                                 <select class="form-control" id="eqClass" name="eqClass"
                                                         style="width:100%"
                                                         required>

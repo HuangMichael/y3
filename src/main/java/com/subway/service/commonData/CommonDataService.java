@@ -195,82 +195,20 @@ public class CommonDataService extends BaseService {
 
 
     /**
-     * @param httpSession
-     * @return 查询设备种类信息
+     * @return 查询系统信息人员信息
      */
-    public List<Person> findActivePerson(HttpSession httpSession) {
-        List<Person> activePerson = null;
-        Object object = httpSession.getAttribute("activePerson");
-        if (object != null) {
-            activePerson = (ArrayList<Person>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询人员");
-        } else {
-            activePerson = personRepository.findByStatus(CommonStatusType.STATUS_YES);
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询人员");
-            httpSession.setAttribute("activePerson", activePerson);
-            log.info(this.getClass().getCanonicalName() + "------------将人员放入缓存");
-        }
-        return activePerson;
+    @Cacheable(value = "personList", key = "'personList'")
+    public List<Person> findActivePerson() {
+        return personRepository.findByStatus(CommonStatusType.STATUS_YES);
     }
 
 
     /**
-     * @param httpSession
-     * @return 查询设备种类信息
+     * @return 查询外委单位信息
      */
-    public List<Station> findStations(HttpSession httpSession) {
-        List<Station> stationList = null;
-        Object object = httpSession.getAttribute("stationList");
-        if (object != null) {
-            stationList = (ArrayList<Station>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询车站");
-        } else {
-            stationList = stationRepository.findByStatus(CommonStatusType.STATUS_YES);
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询车站");
-            httpSession.setAttribute("stationList", stationList);
-            log.info(this.getClass().getCanonicalName() + "------------将车站放入缓存");
-        }
-        return stationList;
-    }
-
-
-    /**
-     * @param httpSession
-     * @return 查询设备种类信息
-     */
-    public List<Units> findUnits(HttpSession httpSession) {
-        List<Units> unitsList = null;
-        Object object = httpSession.getAttribute("unitsList");
-        if (object != null) {
-            unitsList = (ArrayList<Units>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询外委单位");
-        } else {
-            unitsList = unitRepository.findByStatus(CommonStatusType.STATUS_YES);
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询外委单位");
-            httpSession.setAttribute("unitsList", unitsList);
-            log.info(this.getClass().getCanonicalName() + "------------将外委单位放入缓存");
-        }
-        return unitsList;
-    }
-
-
-    /**
-     * @param httpSession
-     * @return 查询设备种类信息
-     */
-    public List<Line> findLines(HttpSession httpSession) {
-        List<Line> lineList = null;
-        Object object = httpSession.getAttribute("lineList");
-        if (object != null) {
-            lineList = (ArrayList<Line>) object;
-            log.info(this.getClass().getCanonicalName() + "------------从缓存中查询线路");
-        } else {
-            lineList = lineRepository.findByStatus(CommonStatusType.STATUS_YES);
-            log.info(this.getClass().getCanonicalName() + "------------从数据库中查询线路");
-            httpSession.setAttribute("lineList", lineList);
-            log.info(this.getClass().getCanonicalName() + "------------将线路放入缓存");
-        }
-        return lineList;
+    @Cacheable(value = "unitList", key = "'unitList'")
+    public List<Units> findUnits() {
+        return unitRepository.findByStatus(CommonStatusType.STATUS_YES);
     }
 
     /**

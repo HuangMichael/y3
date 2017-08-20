@@ -5,10 +5,8 @@
     <thead>
     <tr>
         <th>序号</th>
-        <th>位置</th>
-        <th>故障描述</th>
-        <th>报修时间</th>
-        <th>维修状态</th>
+        <th>用户名</th>
+        <th>人员名称</th>
     </tr>
     </thead>
     <tbody>
@@ -23,9 +21,6 @@
             </td>
             <td>
                     ${c.reportTime}
-            </td>
-            <td>
-                    ${c.nodeState}
             </td>
         </tr>
     </c:forEach>

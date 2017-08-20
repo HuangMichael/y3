@@ -1,5 +1,5 @@
-<%@ page import="org.apache.catalina.connector.Response" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -97,7 +97,6 @@
         App.setPage("login_bg");  //Set current page
         App.init(); //Initialise plugins and elements
 
-
         var validateOptions = {
             message: '该值无效 ',
             fields: {
@@ -132,11 +131,12 @@
 
 
         $('#loginForm')
-                .bootstrapValidator(validateOptions).on('success.form.bv', function (e) {
+            .bootstrapValidator(validateOptions).on('success.form.bv', function (e) {
             e.preventDefault();
             checkLogin();
         });
     });
+
     /**
      * 检查用户登录
      */
@@ -147,7 +147,7 @@
             userName: user.userName,
             password: user.password
         }
-        var url = "/checkLogin";
+        var url = "/login";
         $.post(url, userData, function (data) {
             if (data.result) {
                 showMessageBoxCenter("info", "center", "用户登录成功!")
@@ -158,6 +158,7 @@
             }
         });
     }
+
     function swapScreen(id) {
         $('.visible').removeClass('visible animated fadeInUp');
         $('#' + id).addClass('visible animated fadeInUp');

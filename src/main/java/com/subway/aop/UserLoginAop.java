@@ -33,6 +33,7 @@ public class UserLoginAop {
     @AfterReturning(value = "execution(* com.subway.controller.app.LoginController.login(..))", returning = "loginResult")
     public void doAfterReturningAdvice(JoinPoint joinPoint, Object loginResult) {
         String userName = (String) joinPoint.getArgs()[1];
+        log.info("userName------------" + userName);
         ReturnObject returnObject = (ReturnObject) loginResult;
         boolean result = returnObject.getResult();
         Object[] args = joinPoint.getArgs();

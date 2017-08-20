@@ -183,8 +183,8 @@ public class UserController extends BaseController {
     public ReturnObject checkPwd(@RequestParam("userName") String userName, @RequestParam("oldPwd") String oldPwd) {
         ReturnObject returnObject = new ReturnObject();
         oldPwd = MD5Util.md5(oldPwd);
-        List<User> userList = userService.findByUserNameAndPasswordAndStatus(userName, oldPwd, CommonStatusType.STATUS_YES);
-        if (!userList.isEmpty()) {
+        User user = userService.findByUserNameAndPasswordAndStatus(userName, oldPwd, CommonStatusType.STATUS_YES);
+        if (user != null) {
             returnObject.setResult(true);
             returnObject.setResultDesc("用户密码验证通过!");
         } else {

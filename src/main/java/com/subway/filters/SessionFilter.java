@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -52,9 +53,9 @@ public class SessionFilter implements javax.servlet.Filter {
         String url = request.getRequestURI();
         HttpSession httpSession = request.getSession(false);
         //将公共资源加入表中
-        if (url.equals("/checkLogin") || url.equals("/") || url.endsWith("index.jsp")||url.contains("download")) {
+        if (url.equals("/login") || url.equals("/") || url.endsWith("index.jsp") || url.contains("download")) {
             filterChain.doFilter(request, response);
-        } else if (url.endsWith(".js") || url.endsWith(".css") || url.endsWith(".gif") || url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".ico")|| url.endsWith(".woff")) {
+        } else if (url.endsWith(".js") || url.endsWith(".css") || url.endsWith(".gif") || url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".ico") || url.endsWith(".woff")) {
             filterChain.doFilter(request, response);
         } else {
             if (httpSession != null) {

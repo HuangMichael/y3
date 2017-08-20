@@ -25,6 +25,13 @@ public interface UserRepository extends CrudRepository<User, Long>, PagingAndSor
      */
     List<User> findByStatus(String status);
 
+
+    /**
+     * @param userName 根据用户名查询
+     * @return
+     */
+    User findByUserName(String userName);
+
     /**
      * 根据id查询
      */
@@ -33,7 +40,7 @@ public interface UserRepository extends CrudRepository<User, Long>, PagingAndSor
     /**
      * 根据用户名和密码查询用户
      */
-    List<User> findByUserNameAndPasswordAndStatus(String userName, String password, String status);
+    User findByUserNameAndPasswordAndStatus(String userName, String password, String status);
 
 
     User save(User user);

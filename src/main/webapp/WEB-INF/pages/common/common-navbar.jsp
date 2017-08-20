@@ -6,8 +6,9 @@
         <div class="navbar-brand">
             <!-- COMPANY LOGO -->
             <a>
-                <img src="${org.logoUrl}" alt="${org.sysName}" class="img-responsive" height="30" width="120">
+                <img src="/img/logo/logo.png" alt="设备综合维修系统" class="img-responsive" height="30" width="120">
             </a>
+
 
             <div class="visible-xs">
                 <a onclick="javascript:void(0)" class="team-status-toggle switcher btn dropdown-toggle">

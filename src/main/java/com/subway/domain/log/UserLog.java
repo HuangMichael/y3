@@ -27,7 +27,10 @@ public class UserLog implements Serializable {
     @Column(length = 20)
     private String operation; //操作描述
 
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date operationTime; //最近登陆时间
 
     @Column(length = 20)

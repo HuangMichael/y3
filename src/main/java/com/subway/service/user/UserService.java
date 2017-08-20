@@ -15,6 +15,8 @@ import com.subway.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,12 +108,48 @@ public class UserService extends BaseService {
         return userRepository.save(user);
     }
 
+
     /**
-     * 查询加密后的用户
+     * @param userName 用户名
+     * @param password 密码密文
+     * @param status   用户状态
+     * @return
      */
+    public ReturnObject findByUserNameAndPasswordAndStatus(HttpServletRequest request, String userName, String password, String status) {
+        User userFound = userRepository.findByUserName(userName);
+        String failMessage = "";
+        Boolean result = false;
+        User user = null;
+        if (userFound == null) {
+            failMessage = "用户名不存在，请联系管理员!";
+        } else {
+            user = userFound;
+            if (user.getPassword() == null || user.getStatus() == null) {
+                failMessage = "用户密码或状态为空,请重新输入";
+            } else if (user.getPassword() != null && !user.getPassword().equals(password)) {
+                failMessage = "用户密码有误,请重新输入";
+            } else if (user.getStatus() != null && !user.getStatus().equals(status)) {
+                failMessage = "用户信息为锁定状态,请联系管理员!";
+            } else {
+                result = true;
+                //将用户人员信息放入session.
+                HttpSession session = request.getSession();
+                Person person = user.getPerson();
+                session.setAttribute("currentUser", user);
+                session.setAttribute("person", person);
+            }
+        }
+        return commonDataService.getReturnType(result, "用户登录成功", failMessage);
+    }
 
-    public List<User> findByUserNameAndPasswordAndStatus(String userName, String password, String status) {
 
+    /**
+     * @param userName
+     * @param password
+     * @param status
+     * @return
+     */
+    public User findByUserNameAndPasswordAndStatus(String userName, String password, String status) {
         return userRepository.findByUserNameAndPasswordAndStatus(userName, password, status);
     }
 
@@ -152,49 +190,6 @@ public class UserService extends BaseService {
 
         return userRepository.findAllId();
     }
-
-
-//    /**
-//     * @param searchPhrase
-//     * @return 根据多条件关键字进行查询
-//     *//*
-//    public List<User> findByConditions(String searchPhrase, int paramSize) {
-//        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-//        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1]);
-//    }
-//
-//
-//    *//**
-//     * @param searchPhrase
-//     * @return 根据多条件关键字进行查询
-//     *//*
-//    public Page<User> findByConditions(String searchPhrase, int paramSize, Pageable pageable) {
-//        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-//        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], pageable);
-//    }
-//
-//
-//    */
-//
-//    /**
-//     * @param searchPhrase
-//     * @return 根据多条件关键字进行查询 可排序
-//     *//*
-//    public List<User> findByConditions(String searchPhrase, String[] sortStr, int paramSize) {
-//        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-//        Sort sort = super.assembleSort(sortStr);
-//        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], sort);
-//    }
-//
-//
-//
-//    public Page<User> findByConditions(String searchPhrase, int paramSize, String[] sortStr, Pageable pageable) {
-//        String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-//        Sort sort = super.assembleSort(sortStr);
-//        return userRepository.findByUserNameContainsAndLocationStartingWith(array[0], array[1], sort, pageable);
-//    }*/
-//
-
 
     /**
      * @param locationId 对位置locationId对人员进行授权

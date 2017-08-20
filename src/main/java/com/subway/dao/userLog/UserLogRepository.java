@@ -19,14 +19,14 @@ public interface UserLogRepository extends JpaRepository<UserLog, Long>, CrudRep
      * @param userName
      * @return 根据用户名称查询用户日志
      */
-    List<UserLog> findByUserNameContainsOrderByOperationTime(String userName);
+    List<UserLog> findByUserNameContains(String userName);
 
 
     /**
      * @param userName
      * @return 根据用户名称查询用户日志
      */
-    Page<UserLog> findByUserNameContainsOrderByOperationTime(String userName, Pageable pageable);
+    Page<UserLog> findByUserNameContains(String userName, Pageable pageable);
 
 
 }

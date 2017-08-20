@@ -29,7 +29,7 @@ public class UserLogSearchService extends BaseService implements SortedSearchabl
      */
     public List<UserLog> findByConditions(String searchPhrase, int paramSize) {
         String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-        return userLogRepository.findByUserNameContainsOrderByOperationTime(array[0]);
+        return userLogRepository.findByUserNameContains(array[0]);
     }
 
 
@@ -39,7 +39,7 @@ public class UserLogSearchService extends BaseService implements SortedSearchabl
      */
     public Page<UserLog> findByConditions(String searchPhrase, int paramSize, Pageable pageable) {
         String array[] = super.assembleSearchArray(searchPhrase, paramSize);
-        return userLogRepository.findByUserNameContainsOrderByOperationTime(array[0], pageable);
+        return userLogRepository.findByUserNameContains(array[0], pageable);
     }
 
 

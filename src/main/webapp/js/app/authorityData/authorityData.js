@@ -136,3 +136,21 @@ function loadUserList(locationId) {
 }
 
 
+/**
+ *
+ * @param locationId 位置id
+ */
+function removeLocUser(userId) {
+    var url = "user/removeLoc";
+    var params = {userId: userId};
+    $.post(url, params, function (data) {
+        if (data) {
+            showMessageBox("info", data["resultDesc"]);
+            $("#usersInLocation").bootgrid("reload");
+        } else {
+            showMessageBox("danger", data["resultDesc"]);
+        }
+
+    });
+
+}

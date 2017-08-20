@@ -17,10 +17,6 @@ import java.util.List;
 @Entity
 @Table(name = "T_USER")
 @Data
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,8 +39,8 @@ public class User {
     @JoinColumn(name = "vlocations_id")
     private Vlocations vlocations;
 
-/*    @Column(length = 20)
-    private String location;*/
+    /*    @Column(length = 20)
+        private String location;*/
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_user", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<Role> roleList;

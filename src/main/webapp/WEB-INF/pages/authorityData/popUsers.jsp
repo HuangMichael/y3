@@ -4,8 +4,10 @@
     <thead>
     <tr>
         <th data-column-id="id">序号</th>
-        <th data-column-id="id" data-type="numeric" data-identifier="true" data-visible="false">ID</th>
-        <th data-column-id="userName">用户名</th>
+        <th data-column-id="id" data-type="numeric" data-identifier="true" data-visible="false" data-width="15%">ID</th>
+        <th data-column-id="userName" data-width="75%">用户名</th>
+
+        <th data-column-id="command" data-formatter-id="remove" data-width="10%">用户名</th>
     </tr>
     </thead>
     <tbody>

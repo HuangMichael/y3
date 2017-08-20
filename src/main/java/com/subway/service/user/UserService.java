@@ -228,13 +228,28 @@ public class UserService extends BaseService {
     }
 
 
-
     /**
      * @param locationId
      * @return 查询在当前位置的用户信息
      */
     public List<Object> findUsersInLocation(Long locationId) {
         return userRepository.findUsersInLocation(locationId);
+    }
+
+
+    /**
+     * @param userId 用户id
+     * @return 移除用户数据授权
+     */
+    public Boolean removeLoc(Long userId) {
+        boolean result = false;
+        User user = userRepository.findById(userId);
+        if (user != null) {
+            user.setVlocations(null);
+            user = userRepository.save(user);
+            result = user.getVlocations() == null;
+        }
+        return result;
     }
 
 }

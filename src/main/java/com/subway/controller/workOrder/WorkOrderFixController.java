@@ -102,7 +102,6 @@ public class WorkOrderFixController extends BaseController {
         } else {
             searchPhrase = location + ",,,,,,,";
         }
-        System.out.println("searchPhrase--------WorkOrderFixController-------" + searchPhrase);
         Map<String, String[]> parameterMap = request.getParameterMap();
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
         return new PageUtils().searchBySortService(workOrderFixSearchService, searchPhrase, 6, current, rowCount, pageable);
@@ -120,10 +119,16 @@ public class WorkOrderFixController extends BaseController {
 
     @RequestMapping(value = "/expiredCount", method = RequestMethod.POST)
     @ResponseBody
-    public MyPage expiredCount(HttpServletRequest request,
+    public MyPage expiredCount(HttpSession session, HttpServletRequest request,
                                @RequestParam(value = "current", defaultValue = "0") int current,
                                @RequestParam(value = "rowCount", defaultValue = "10") Long rowCount,
                                @RequestParam(value = "searchPhrase", required = false) String searchPhrase) {
+        String location = SessionUtil.getCurrentUserLocationBySession(session);
+        if (searchPhrase != null && !searchPhrase.equals("")) {
+            searchPhrase = location + "," + searchPhrase;
+        } else {
+            searchPhrase = location + ",,,,,,,";
+        }
         Map<String, String[]> parameterMap = request.getParameterMap();
         Pageable pageable = new PageRequest(current - 1, rowCount.intValue(), super.getSort(parameterMap));
         return new PageUtils().searchBySortService(workOrderFixSearchService, searchPhrase, 6, current, rowCount, pageable);

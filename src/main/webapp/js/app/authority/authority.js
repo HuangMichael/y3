@@ -46,6 +46,7 @@ $(function () {
 
         // getAuthorityByRoleId();
         $("#role_id").on("change", function () {
+            console.log("load auth---------------------------------");
             getAuthorityByRoleId();
         });
     });
@@ -154,17 +155,10 @@ function removeAuth(id) {
 
 
 /**
- *
- * @param nodeId
- * 设置用户的已有权限选中
+ *  根据当前选中的角色显示已经授权的选项
  */
-function setNodeChecked(nodes) {
-
-
-}
-
-
 function getAuthorityByRoleId() {
+    $.ajaxSettings.async = false;
     var zTree = $.fn.zTree.getZTreeObj("tree");
     var roleId = $("#role_id").val();
     var url = "authority/loadAuth/" + roleId;

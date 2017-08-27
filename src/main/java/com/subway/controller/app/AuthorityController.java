@@ -28,7 +28,7 @@ import java.util.List;
 @Controller
 @EnableAutoConfiguration
 @RequestMapping("/authority")
-public class AuthorityController  {
+public class AuthorityController {
     @Autowired
     ResourceService resourceService;
 
@@ -78,11 +78,11 @@ public class AuthorityController  {
             Role role = roleService.findById(roleId);
             List<Resource> resourceList = role.getResourceList();
             List<Resource> resourceListInIdStr = resourceService.findResourceListInIdStr(resourceIds);
-            for (Resource resource : resourceListInIdStr) {
-                if (!resourceList.contains(resource))
-                    resourceList.add(resource);
-            }
-            role.setResourceList(resourceList);
+//            for (Resource resource : resourceListInIdStr) {
+//                if (!resourceList.contains(resource))
+//                    resourceList.add(resource);
+//            }
+            role.setResourceList(resourceListInIdStr);
             roleService.save(role);
             returnObject.setResult(true);
             returnObject.setResultDesc("应用授权成功!");

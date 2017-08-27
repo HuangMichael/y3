@@ -41,9 +41,13 @@ $(function () {
         t = $.fn.zTree.init(t, setting, zNodes);
         demoIframe = $("#testIframe");
         demoIframe.bind("load", loadReady);
-        var zTree = $.fn.zTree.getZTreeObj("tree");
-        zTree.selectNode(zTree.getNodeByParam("id", 1));
 
+        // zTree.selectNode(zTree.getNodeByParam("id", 1));
+
+        // getAuthorityByRoleId();
+        $("#role_id").on("change", function () {
+            getAuthorityByRoleId();
+        });
     });
 
     function loadReady() {
@@ -145,5 +149,30 @@ function removeAuth(id) {
     }
     $.post(url, params, function (data) {
         showMessageBox("info", "授权取消成功!");
+    });
+}
+
+
+/**
+ *
+ * @param nodeId
+ * 设置用户的已有权限选中
+ */
+function setNodeChecked(nodes) {
+
+
+}
+
+
+function getAuthorityByRoleId() {
+    var zTree = $.fn.zTree.getZTreeObj("tree");
+    var roleId = $("#role_id").val();
+    var url = "authority/loadAuth/" + roleId;
+    var node = null;
+    $.get(url, function (data) {
+        for (var i = 0; i < data.length; i++) {
+            node = zTree.getNodeByParam("id", data[i]["id"]);
+            zTree.checkNode(node, true, true);
+        }
     });
 }

@@ -30,7 +30,7 @@ $(function () {
     docName = "用户信息";
     mainObject = "user";
     //初始化从数据库获取列表数据
-    searchModel = [{"param": "userName", "paramDesc": "用户名称"}, {"param": "location", "paramDesc": "位置"}];
+    searchModel = [{"param": "userName", "paramDesc": "用户名称"}, {"param": "locName", "paramDesc": "位置"}];
     locs = findMyLoc();
 
     var person_location = "/commonData/findActivePerson";
@@ -38,24 +38,18 @@ $(function () {
         persons = data;
     });
 
-    var searchVue = new Vue({
-        el: "#searchBox",
-        data: {
-            locs: locs
-        }
-    });
+
     initBootGridMenu(dataTableName, null);
-    initSelect.call();
+    // initSelect.call();
     //初始化查询所有的
     ids = findAllRecordId();
     selectedIds = ids;
     validateForm.call(validationConfig);
-
     vdm = new Vue({
         el: formName,
         data: {
             user: findById(selectedIds[pointer]),
-            locs: locs,
+            // locs: locs,
             persons: persons
         }
     });

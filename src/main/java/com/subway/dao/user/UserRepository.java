@@ -90,19 +90,19 @@ public interface UserRepository extends CrudRepository<User, Long>, PagingAndSor
 
     /**
      * @param userName
-     * @param location
+     * @param locName
      * @return
      */
-    List<User> findByUserNameContainsAndVlocations_LocationStartingWith(String userName, String location);
+    List<User> findByUserNameContainsAndVlocations_LocNameContains(String userName, String locName);
 
 
     /**
      * @param userName
-     * @param location
+     * @param locName
      * @param pageable
      * @return
      */
-    Page<User> findByUserNameContainsAndVlocations_LocationStartingWith(String userName, String location, Pageable pageable);
+    Page<User> findByUserNameContainsAndVlocations_LocNameContains(String userName, String locName, Pageable pageable);
 
 
 }

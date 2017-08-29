@@ -46,7 +46,6 @@ $(function () {
 
         // getAuthorityByRoleId();
         $("#role_id").on("change", function () {
-            console.log("load auth---------------------------------");
             getAuthorityByRoleId();
         });
     });

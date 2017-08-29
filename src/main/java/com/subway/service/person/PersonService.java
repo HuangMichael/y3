@@ -5,6 +5,11 @@ import com.subway.domain.person.Person;
 import com.subway.service.app.BaseService;
 import com.subway.utils.CommonStatusType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.connection.jredis.JredisUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +18,8 @@ import java.util.List;
  * 人员业务类
  */
 @Service
-public class PersonService extends BaseService  {
-
+@CacheConfig
+public class PersonService extends BaseService {
 
     @Autowired
     PersonRepository personRepository;
@@ -47,6 +52,7 @@ public class PersonService extends BaseService  {
      * @param person
      * @return 保存人员信息
      */
+    @CachePut(value = "person", key = "'person'")
     public Person save(Person person) {
         return personRepository.save(person);
     }
@@ -56,6 +62,7 @@ public class PersonService extends BaseService  {
      * @param person
      * @return 更新人员信息
      */
+    @CacheEvict(value = "person", key = "'person'")
     public Person update(Person person) {
         return personRepository.save(person);
     }
@@ -65,12 +72,11 @@ public class PersonService extends BaseService  {
      * @param id
      * @return 删除人员信息
      */
+    @CacheEvict(value = "person", key = "'person'")
     public boolean delete(Long id) {
         personRepository.delete(id);
         return (personRepository.findById(id) == null);
     }
-
-
 
 
     /**
@@ -78,13 +84,8 @@ public class PersonService extends BaseService  {
      */
 
     public List<Long> selectAllId() {
-
-
         return personRepository.selectAllId();
     }
-
-
-
 
 
 }

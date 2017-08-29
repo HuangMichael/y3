@@ -29,6 +29,7 @@ import com.subway.service.app.BaseService;
 import com.subway.service.line.LineService;
 import com.subway.service.line.StationService;
 import com.subway.service.locations.LocationsService;
+import com.subway.service.person.PersonService;
 import com.subway.service.workOrder.WorkOrderReportCartService;
 import com.subway.utils.CommonStatusType;
 import com.subway.utils.DateUtils;
@@ -93,6 +94,9 @@ public class CommonDataService extends BaseService {
 
     @Autowired
     LineService lineService;
+
+    @Autowired
+    PersonService personService;
 
     @Autowired
     OutsourcingUnitRepository unitRepository;
@@ -197,9 +201,9 @@ public class CommonDataService extends BaseService {
     /**
      * @return 查询系统信息人员信息
      */
-    @Cacheable(value = "personList", key = "'personList'")
+
     public List<Person> findActivePerson() {
-        return personRepository.findByStatus(CommonStatusType.STATUS_YES);
+        return personService.findActivePerson();
     }
 
 

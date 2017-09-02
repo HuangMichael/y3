@@ -46,7 +46,7 @@ public class EtlController extends BaseController {
     String objectName = "元数据表属性信息";
 
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "/list")
     public String list(HttpSession session, ModelMap modelMap) {
         //加载查询菜单
         return super.list(session, modelMap);

@@ -6,10 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.persistence.OrderBy;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/8/16.
+ * Created by huangbin on 2017/8/16.
  */
 public interface EtlRepository extends JpaRepository<EtlTableConfig, Long> {
     /**
@@ -35,5 +36,6 @@ public interface EtlRepository extends JpaRepository<EtlTableConfig, Long> {
      * @param etlTableId
      * @return 根据etlTableId查询该表的所有属性信息EtlTableConfig
      */
-    List<EtlTableConfig> findByTableIdAndStatusOrderBySortNo(Long etlTableId, String status);
+    @OrderBy("sortNo")
+    List<EtlTableConfig> findByTableIdAndStatus(Long etlTableId, String status);
 }

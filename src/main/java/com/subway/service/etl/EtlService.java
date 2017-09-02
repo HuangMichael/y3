@@ -87,7 +87,7 @@ public class EtlService extends BaseService {
      * @return 根据etlTableId查询该表的所有属性信息EtlTableConfig
      */
     public List<EtlTableConfig> findByEtlTableId(Long etlTableId) {
-        return etlRepository.findByTableIdAndStatusOrderBySortNo(etlTableId, "1");
+        return etlRepository.findByTableIdAndStatus(etlTableId, "1");
     }
 
 
@@ -95,26 +95,13 @@ public class EtlService extends BaseService {
      * @param tableName 判断表在数据库中是否存在
      * @return
      */
-    public boolean isTableExist(String tableName) {
+    public boolean isTableExist(String tableName) throws Exception {
         DataSource dataSource = jdbcTemplate.getDataSource();
         Connection connection;
         ResultSet rs;
-        try {
-            connection = dataSource.getConnection();
-            rs = connection.getMetaData().getTables(null, null, tableName, null);
-
-//            connection.getMetaData().getTable
-
-
-            if (rs.next()) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+        connection = dataSource.getConnection();
+        rs = connection.getMetaData().getTables(null, null, tableName, null);
+        return rs.next();
     }
 
     /**

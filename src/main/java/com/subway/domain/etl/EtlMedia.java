@@ -14,8 +14,7 @@ import java.io.Serializable;
 public class EtlMedia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name = "ETL_MEDIA_GENERATOR", sequenceName = "SEQ_ETL_MEDIA", allocationSize = 100, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ETL_MEDIA_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", length = 11, nullable = false)
     private Long id; //序号
 

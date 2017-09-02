@@ -39,7 +39,7 @@ public class EtlTableController extends BaseController {
     String objectName = "元数据表信息";
 
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "/list")
     public String list(HttpSession httpSession, ModelMap modelMap) {
         //加载查询菜单
         return super.list(httpSession, modelMap);

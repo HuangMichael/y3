@@ -1,18 +1,11 @@
 package com.subway.domain.equipments;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.subway.domain.locations.Locations;
 import com.subway.domain.locations.Vlocations;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by huangbin on 2016/03/14 0023.
@@ -21,8 +14,6 @@ import java.util.List;
 @Entity
 @Table(name = "T_EQUIPMENTS")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Equipments {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -64,11 +55,11 @@ public class Equipments {
 //    private Locations locations;  //所属位置
 
 
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vlocations_id", referencedColumnName = "id")
     private Vlocations vlocations;  //所属位置
 
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipments_Classification_id", referencedColumnName = "id")
     private EquipmentsClassification equipmentsClassification; //设备分类
 

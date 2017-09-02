@@ -11,9 +11,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/8/16.
+ * Created by huangbin on 2017/8/16.
  */
-public interface EtlTableRepository extends JpaRepository<EtlTable, Long>,CrudRepository<EtlTable, Long> {
+public interface EtlTableRepository extends JpaRepository<EtlTable, Long>, CrudRepository<EtlTable, Long> {
     /**
      * @return 查询所有的id
      */

@@ -129,8 +129,8 @@ public class EtlTableController extends BaseController {
      * @return 选择所有的id列表
      */
     @ResponseBody
-    @RequestMapping(value = "/selectAllIds", method = RequestMethod.GET)
-    public List<Long> selectAllIds() {
+    @RequestMapping(value = "/findAllIds", method = RequestMethod.GET)
+    public List<Long> findAllIds() {
         return etlTableService.selectAllIds();
     }
 

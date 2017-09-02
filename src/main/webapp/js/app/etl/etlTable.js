@@ -3,6 +3,7 @@ var formTab = $('#myTab li:eq(1) a');
 var object = null;
 formName = "#detailForm";
 $.ajaxSettings.async = false;
+pointer = 0;
 var validationConfig = {
     message: '该值无效 ',
     fields: {
@@ -31,8 +32,14 @@ $(function () {
     initBootGridMenu(dataTableName, null);
     //初始化查询所有的
     ids = findAllRecordId();
+
+
+    console.log("ids---------------" + JSON.stringify(ids));
     selectedIds = ids;
     validateForm.call(validationConfig);
+
+
+    console.log("findById(selectedIds[pointer])---------------" + findById(selectedIds[pointer]));
     vdm = new Vue({
         el: formName,
         data: {

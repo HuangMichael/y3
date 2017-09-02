@@ -111,4 +111,12 @@ public class BaseService {
     }
 
 
+    /**
+     * @param object
+     */
+    public Object save(Object object) {
+        log.info("------------------------------------调用父类的保存方法");
+        return object;
+    }
+
 }

@@ -2,10 +2,14 @@ package com.subway.controller.common;
 
 
 import com.subway.domain.app.resoure.VRoleAuthView;
+import com.subway.object.ReturnObject;
 import com.subway.service.app.ResourceService;
+import com.subway.service.commonData.CommonDataService;
 import com.subway.utils.SessionUtil;
 import com.subway.utils.StringUtils;
 import lombok.Data;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Sort;
@@ -25,9 +29,12 @@ import java.util.Map;
 @Data
 @EnableAutoConfiguration
 public class BaseController {
-
+    protected Log log = LogFactory.getLog(this.getClass());
     @Autowired
     ResourceService resourceService;
+
+    @Autowired
+    CommonDataService commonDataService;
     String userLocation;
 
 
@@ -41,7 +48,6 @@ public class BaseController {
         return url;
     }
 
-
     /**
      * @param httpSession session回话
      * @return 获取当前用户所在位置
@@ -49,6 +55,15 @@ public class BaseController {
     public String getUserLocation(HttpSession httpSession) {
         userLocation = SessionUtil.getCurrentUserLocationBySession(httpSession);
         return userLocation;
+    }
+
+
+    /**
+     * @param object 保存对象类型
+     * @return 返回操作值对象
+     */
+    protected ReturnObject save(String objectName, Object object) {
+        return commonDataService.getReturnType(object != null, objectName + "保存成功", objectName + "保存失败");
     }
 
     /**

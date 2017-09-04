@@ -1,10 +1,12 @@
 package com.subway.dao.etl;
 
+import com.subway.domain.etl.EtlDbColumns;
 import com.subway.domain.etl.EtlTableConfig;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.OrderBy;
 import java.util.List;
@@ -38,4 +40,12 @@ public interface EtlRepository extends JpaRepository<EtlTableConfig, Long> {
      */
     @OrderBy("sortNo")
     List<EtlTableConfig> findByTableIdAndStatus(Long etlTableId, String status);
+
+
+    /**
+     * @param tableName
+     * @return
+     */
+    @Query(nativeQuery = true, value = "select table_name, column_name, column_type, column_key,COLUMN_COMMENT,IS_NULLABLE from v_db_column_config where table_name= :tableName")
+    List<EtlDbColumns> getDbColumnsConfig(@Param("tableName") String tableName);
 }

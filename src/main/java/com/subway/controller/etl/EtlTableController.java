@@ -145,4 +145,12 @@ public class EtlTableController extends BaseController {
     public List<EtlTableTree> findEtlTableTree() {
         return etlTableService.findEtlTableTree();
     }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/extractConfig", method = RequestMethod.POST)
+    public ReturnObject extractConfig(@RequestParam("tableId") Long tableId) {
+        Boolean result = etlTableService.extractConfig(tableId);
+        return getCommonDataService().getReturnType(result, "提取配置项成功!", "提取配置项失败!");
+    }
 }

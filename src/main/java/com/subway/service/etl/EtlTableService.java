@@ -6,12 +6,10 @@ package com.subway.service.etl;
  */
 
 import com.subway.dao.etl.EtlMediaRepository;
+import com.subway.dao.etl.EtlRepository;
 import com.subway.dao.etl.EtlTableRepository;
 import com.subway.dao.etl.EtlTableTreeRepository;
-import com.subway.domain.etl.EtlMedia;
-import com.subway.domain.etl.EtlTable;
-import com.subway.domain.etl.EtlTableConfig;
-import com.subway.domain.etl.EtlTableTree;
+import com.subway.domain.etl.*;
 import com.subway.object.ReturnObject;
 import com.subway.service.app.BaseService;
 import com.subway.service.commonData.CommonDataService;
@@ -23,6 +21,7 @@ import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddressList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,6 +57,9 @@ public class EtlTableService extends BaseService {
     ImportExcelService importService;
     @Autowired
     JdbcTemplate jdbcTemplate;
+    @Autowired
+    EtlRepository etlRepository;
+
 
     /**
      * @param etlTable
@@ -406,5 +408,37 @@ public class EtlTableService extends BaseService {
         List<String> stringList = jdbcTemplate.queryForList(sql, String.class);
         int size = stringList.size();
         return stringList.toArray(new String[size]);//使用了第二种接口，返回值和参数均为结果;
+    }
+
+
+    /**
+     * @param tableId 业务表id
+     * @return
+     */
+    public Boolean extractConfig(Long tableId) {
+        //根据表id获取元数据信息
+        EtlTable etlTable = findById(tableId);
+        String tableName;
+        List<EtlDbColumns> etlDbColumnsList = new ArrayList<>();
+        if (null != etlTable) {
+            tableName = etlTable.getServiceTableName();
+            etlDbColumnsList = getTableConfig("", tableName);
+        }
+        //根据表名查询出 数据库配置项信息  并将配置项保存到  配置项信息
+        return !etlDbColumnsList.isEmpty();
+    }
+
+
+    /**
+     * @param schema    数据库名称
+     * @param tableName 数据库业务表名称
+     * @return
+     */
+    public List<EtlDbColumns> getTableConfig(String schema, String tableName) {
+        List<EtlDbColumns> list = etlRepository.getDbColumnsConfig(tableName);
+        for (EtlDbColumns o : list) {
+            log.info("o--------------------" + o.toString());
+        }
+        return list;
     }
 }

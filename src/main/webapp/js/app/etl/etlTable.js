@@ -49,6 +49,29 @@ $(function () {
 });
 
 
+/**
+ * 提取配置项
+ */
+function extractConfig() {
+    var tableId = $(dataTableName).bootgrid("getSelectedRows");
+    console.log("tableId------------------" + tableId);
+    if (!tableId || tableId.length > 1) {
+        showMessageBox("info", "请选择一条记录");
+        return;
+    }
+    $.ajaxSettings.async = false;
+    var url = "etlTable/extractConfig";
+    var params = {tableId: tableId[0]};
+    $.post(url, params, function (data) {
+        if (data.result) {
+            showMessageBox("info", data['resultDesc']);
+        } else {
+            showMessageBox("danger", data['resultDesc']);
+        }
+    })
+}
+
+
 
 
 

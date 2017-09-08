@@ -66,7 +66,7 @@ public class PortalController {
     /**
      * @param reportMonth 月份
      * @param name        工单状态
-     * @return
+     * @return 按照线别查询报修的数据
      */
     @RequestMapping(value = "/getLineReportNum/{reportMonth}/{name}", method = RequestMethod.GET)
     @ResponseBody

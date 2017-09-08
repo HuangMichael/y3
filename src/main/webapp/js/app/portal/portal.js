@@ -36,6 +36,8 @@ $(document).ready(function () {
 /**
  *
  * @param reportMonth
+ * 报修月份
+ *
  */
 function loadChartData(reportMonth) {
     loadEqClassChart(reportMonth);
@@ -44,7 +46,7 @@ function loadChartData(reportMonth) {
 }
 
 /**
- *加载设备分类统计
+ *按照设备分类统计
  * @param reportMonth
  */
 function loadEqClassChart(reportMonth) {
@@ -147,9 +149,6 @@ function loadReportFinishChart(reportMonth) {
         title.push(getMonthAdd(date.getMonth(), 0) + "月");
         title.push(getMonthAdd(date.getMonth(), 1) + "月");
 
-
-
-        console.log("title month--------------"+title);
         return title;
     }
 
@@ -168,7 +167,7 @@ function loadReportFinishChart(reportMonth) {
             }
         });
 
-        console.log("reportNums-----------------------"+reportNums);
+        console.log("reportNums-----------------------" + reportNums);
         return reportNums;
     }
 
@@ -229,32 +228,26 @@ function loadReportFinishChart(reportMonth) {
  * @param reportMonth
  */
 function loadLineChart(reportMonth) {
+
+    var lines = [];
+
     function loadByStatus(status) {
         var url = "/portal/getLineReportNum/" + reportMonth + "/" + status;
         var dataList = [];
         $.ajaxSettings.async = false;
         $.getJSON(url, function (data) {
             for (var x in data) {
-                if (data[x]['num']) {
-                    dataList[x] = data[x]['num'];
-                }
+                dataList[x] = data[x]['num'];
             }
         });
+
+
+        console.log("loadLineChart-----------" + JSON.stringify(dataList));
         return dataList;
     }
 
 
     var orderStatus = ["待分配", "维修中", "完工", "暂停", "取消"];
-    var url = "/line/findAllLines";
-    var lines = [];
-    $.ajaxSettings.async = false;
-    $.getJSON(url, function (data) {
-        for (var x in data) {
-            if (data[x]['description']) {
-                lines[x] = data[x]['description'];
-            }
-        }
-    });
     $('#highCharts2').highcharts({
         chart: {
             type: 'column'

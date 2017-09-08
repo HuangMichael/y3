@@ -49,6 +49,9 @@ public class PortalService extends BaseService {
      */
     public List<VlineMonth> getLineReportNumReportMonth(String reportMonth, String name) {
 
+
+        log.info("getLineReportNumReportMonth----------------" + reportMonth + "---name" + name);
+
         return vlineMonthRepository.findByReportMonthAndName(reportMonth, name);
     }
 

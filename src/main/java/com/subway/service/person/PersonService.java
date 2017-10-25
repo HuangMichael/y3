@@ -19,7 +19,6 @@ import java.util.List;
  * 人员业务类
  */
 @Service
-@CacheConfig
 public class PersonService extends BaseService {
 
     @Autowired
@@ -53,7 +52,6 @@ public class PersonService extends BaseService {
      * @param person
      * @return 保存人员信息
      */
-    @CachePut(value = "person", key = "'person'")
     public Person save(Person person) {
         Object str = RedisUtils.get("personList");
         person = personRepository.save(person);
@@ -68,7 +66,6 @@ public class PersonService extends BaseService {
      * @param person
      * @return 更新人员信息
      */
-    @CacheEvict(value = "person", key = "'person'")
     public Person update(Person person) {
         return personRepository.save(person);
     }
@@ -78,7 +75,6 @@ public class PersonService extends BaseService {
      * @param id
      * @return 删除人员信息
      */
-    @CacheEvict(value = "person", key = "'person'")
     public boolean delete(Long id) {
         personRepository.delete(id);
         return (personRepository.findById(id) == null);

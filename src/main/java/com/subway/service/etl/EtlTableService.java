@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,10 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EtlTableService extends BaseService {
@@ -419,7 +417,7 @@ public class EtlTableService extends BaseService {
         //根据表id获取元数据信息
         EtlTable etlTable = findById(tableId);
         String tableName;
-        List<EtlDbColumns> etlDbColumnsList = new ArrayList<>();
+        List<Object> etlDbColumnsList = new ArrayList<>();
         if (null != etlTable) {
             tableName = etlTable.getServiceTableName();
             etlDbColumnsList = getTableConfig("", tableName);
@@ -429,16 +427,44 @@ public class EtlTableService extends BaseService {
     }
 
 
+//    /**
+//     * @param schema    数据库名称
+//     * @param tableName 数据库业务表名称
+//     * @return
+//     */
+//    public List<Object> getTableConfig(String schema, String tableName) {
+//        List<Object> list = etlRepository.getDbColumnsConfig(tableName);
+//        for (int i = 0; i < list.size(); i++) {
+//            String array[] = (String[]) list.get(i);
+//            for (int j = 0; j < 6; j++) {
+//                log.info("o:--------------" + array[j]);
+//            }
+//        }
+//        return null;
+//    }
+
+
     /**
      * @param schema    数据库名称
      * @param tableName 数据库业务表名称
      * @return
      */
-    public List<EtlDbColumns> getTableConfig(String schema, String tableName) {
-        List<EtlDbColumns> list = etlRepository.getDbColumnsConfig(tableName);
-        for (EtlDbColumns o : list) {
-            log.info("o--------------------" + o.toString());
+    public List<Object> getTableConfig(String schema, String tableName) {
+        String sql = "select table_name, column_name, column_type, column_key,COLUMN_COMMENT,IS_NULLABLE  from v_db_column_config where table_name= '" + tableName + "'";
+        log.info("sql:--------------" + sql);
+        List<Map<String, Object>> queryForList = jdbcTemplate.queryForList(sql);
+        EtlDbColumns etlDbColumns;
+        for (Map map : queryForList) {
+
+
+//            for(Iterator<String> it = map.entrySet().iterator(); o_iterator.hasNext();){
+//
+//                Map.Entry<String, String> entry = it.next();
+//                System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+//            }
+
         }
-        return list;
+
+        return null;
     }
 }

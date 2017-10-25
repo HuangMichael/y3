@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.persistence.OrderBy;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by huangbin on 2017/8/16.
@@ -46,6 +47,6 @@ public interface EtlRepository extends JpaRepository<EtlTableConfig, Long> {
      * @param tableName
      * @return
      */
-    @Query(nativeQuery = true, value = "select table_name, column_name, column_type, column_key,COLUMN_COMMENT,IS_NULLABLE from v_db_column_config where table_name= :tableName")
-    List<EtlDbColumns> getDbColumnsConfig(@Param("tableName") String tableName);
+    @Query(nativeQuery = true, value = "select table_name, column_name, column_type, column_key,COLUMN_COMMENT,IS_NULLABLE  from v_db_column_config where table_name= :tableName")
+    List<Object> getDbColumnsConfig(@Param("tableName") String tableName);
 }

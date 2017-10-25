@@ -5,6 +5,7 @@ import com.subway.domain.person.Person;
 import com.subway.service.app.BaseService;
 import com.subway.utils.CommonStatusType;
 import com.subway.utils.RedisUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -19,6 +20,7 @@ import java.util.List;
  * 人员业务类
  */
 @Service
+@Slf4j
 public class PersonService extends BaseService {
 
     @Autowired
@@ -56,6 +58,7 @@ public class PersonService extends BaseService {
         Object str = RedisUtils.get("personList");
         person = personRepository.save(person);
         if (str != null) {
+            log.info("personList" + str.toString());
             RedisUtils.del("personList");
         }
         return personRepository.save(person);

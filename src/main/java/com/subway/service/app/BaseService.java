@@ -4,6 +4,7 @@ import com.subway.utils.export.docType.ExcelDoc;
 import com.subway.utils.export.exporter.DataExport;
 import com.subway.utils.export.exporter.ExcelDataExporter;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.data.domain.Sort;
@@ -21,9 +22,8 @@ import java.util.List;
  */
 @Service
 @Data
+
 public class BaseService {
-
-
     protected Log log = LogFactory.getLog(this.getClass());
 
     protected List dataList;

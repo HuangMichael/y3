@@ -28,7 +28,7 @@ public class User {
     private String password;
     @Column(scale = 1000)
     private long sortNo;
-    @Column(nullable = false, length = 1)
+    @Column(nullable = false, length = 1, columnDefinition = "varchar(1) default '1'")
     private String status;
 
     @OneToOne

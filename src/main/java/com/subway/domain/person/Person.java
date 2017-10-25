@@ -29,7 +29,7 @@ public class Person {
     private String email;
     @Column(length = 20)
     private String telephone;
-    @Column(length = 1)
+    @Column(length = 1, columnDefinition = "varchar(1) default '1'", nullable = false)
     private String status;
     private Long sortNo;
 }

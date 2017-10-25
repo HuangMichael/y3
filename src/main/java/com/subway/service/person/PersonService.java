@@ -56,6 +56,7 @@ public class PersonService extends BaseService {
      */
     public Person save(Person person) {
         Object str = RedisUtils.get("personList");
+        person.setStatus("1");
         person = personRepository.save(person);
         if (str != null) {
             log.info("personList" + str.toString());

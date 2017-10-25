@@ -11,8 +11,11 @@ import com.subway.service.app.BaseService;
 import com.subway.service.commonData.CommonDataService;
 import com.subway.utils.CommonStatusType;
 import com.subway.utils.MD5Util;
+import com.subway.utils.RedisUtils;
 import com.subway.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +28,7 @@ import java.util.List;
  */
 
 @Service
+@CacheConfig
 public class UserService extends BaseService {
 
     @Autowired
@@ -42,6 +46,7 @@ public class UserService extends BaseService {
     /**
      * 根据状态查询用户
      */
+    @Cacheable(key = "'userList'", value = "userList")
     public List<User> findByStatus(String status) {
         return userRepository.findByStatus(status);
     }
@@ -77,7 +82,14 @@ public class UserService extends BaseService {
             user.setSortNo(1l);
         }
         user.setStatus("1");
-        return userRepository.save(user);
+
+        user = userRepository.save(user);
+        Object str = RedisUtils.get("userList");
+        if (str != null) {
+            log.info("userList" + str.toString());
+            RedisUtils.del("userList");
+        }
+        return user;
     }
 
     /**

@@ -4,6 +4,7 @@ import com.subway.dao.person.PersonRepository;
 import com.subway.domain.person.Person;
 import com.subway.service.app.BaseService;
 import com.subway.utils.CommonStatusType;
+import com.subway.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -54,6 +55,11 @@ public class PersonService extends BaseService {
      */
     @CachePut(value = "person", key = "'person'")
     public Person save(Person person) {
+        Object str = RedisUtils.get("personList");
+        person = personRepository.save(person);
+        if (str != null) {
+            RedisUtils.del("personList");
+        }
         return personRepository.save(person);
     }
 

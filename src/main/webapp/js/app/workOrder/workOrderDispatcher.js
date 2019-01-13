@@ -1,60 +1,9 @@
 $(function () {
     DisPatchFormWizard.init();
-
     $('select').select2({theme: "bootstrap"});
-
-
-    /*
-     $('#addUnitForm')
-     .bootstrapValidator({
-     message: '该值无效 ',
-     fields: {
-     unitNo: {
-     message: '单位编号无效',
-     validators: {
-     notEmpty: {
-     message: '单位编号不能为空!'
-     },
-     stringLength: {
-     min: 3,
-     max: 20,
-     message: '单位编号长度为3到20个字符'
-     }
-     }
-     },
-     description: {
-     message: '单位名称无效',
-     validators: {
-     notEmpty: {
-     message: '单位名称不能为空!'
-     },
-     stringLength: {
-     min: 2,
-     max: 20,
-     message: '单位名称长度为2到20个字符'
-     }
-     }
-     },
-     "status": {
-     message: '单位状态无效',
-     validators: {
-     notEmpty: {
-     message: '单位状态不能为空!'
-     }
-     }
-     }
-     }
-     })
-     .on('success.form.bv', function (e) {
-     // Prevent form submission
-     e.preventDefault();
-     createUnit();
-     });
-     */
-
-
 });
 var selectedId = [];
+
 function generateReport() {
     var ids = selectedId.join(",");
     if (!ids) {
@@ -64,6 +13,7 @@ function generateReport() {
     $("#modal_div").load("/workOrderReportCart/loadDetailList");
     $("#cart_modal").modal("show")
 }
+
 function confirmGenerate() {
     $("#cart_modal").modal("hide");
     var ids = selectedId.join(",");
@@ -72,6 +22,7 @@ function confirmGenerate() {
         showMessageBox("info", "报修单已生成")
     })
 }
+
 function save() {
     var orderReportList = [];
     $("input[id^='orderDesc']").each(function () {
@@ -102,6 +53,7 @@ function save() {
         showMessageBox("info", "")
     }
 }
+
 function delCart(id) {
     var confirm = window.confirm("确认将该报修信息移出报修车么？");
     if (confirm) {
@@ -112,9 +64,11 @@ function delCart(id) {
         })
     }
 }
+
 function checkAll(obj) {
     $("#account input[type='checkbox']").prop("checked", $(obj).prop("checked"))
 }
+
 $("input[name^='selUnit']").on("click", function () {
 
     alert($(this).attr("name"));
@@ -153,13 +107,11 @@ function loadUnit(select) {
  * @param unitId 维修单位ID
  */
 function updateDetailUnit(detailId, unitId) {
-
     var url = "/workOrderDispatch/updateDetailUnit";
-
     if (detailId && unitId) {
         $.post(url, {detailId: detailId, unitId: unitId}, function (data) {
             showMessageBox("info", "维修单位设置成功");
-        })
+        });
     } else {
 
 
@@ -177,11 +129,11 @@ function updateDetailUnit(detailId, unitId) {
 
 var currentCid = null;
 var workOrderId = null;
+
 function linkUnit(wid, cid) {
     //弹出模态框  选中一个单位 点击确定
     currentCid = cid;
     var url = "equipmentsClassification/popUnits/" + cid;
-    //var url = "/equipmentsClassification/loadSelectUnitPage/" + cid;
     $("#unitBody").load(url);
     $("#link_unit_modal").modal("show");
     workOrderId = wid;
@@ -197,6 +149,7 @@ function linkUnit(wid, cid) {
  */
 
 var eqClassId = null;
+
 function addLinkUnit(wid, cid) {
     //弹出模态框  新增一个单位 点击确定
     eqClassId = cid;
@@ -222,9 +175,6 @@ function confirmLinkUnit() {
         //加入
         $("#link_unit_modal").modal("hide");
         var url = "/equipmentsClassification/addU2c";
-        console.log("currentCid-----------"+currentCid);
-        console.log("ids-----------"+ids);
-        console.log("workOrderId-----------"+workOrderId);
         // 提示操作成功或失败
         $.post(url, {cid: currentCid, ids: ids, workOrderId: workOrderId}, function (data) {
             if (data) {
@@ -296,7 +246,6 @@ function showEqDetailByEqId(eid) {
         $("#eqInfoModal").modal("show");
     });
 }
-
 
 
 /**

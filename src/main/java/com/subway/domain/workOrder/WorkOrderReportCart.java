@@ -16,10 +16,6 @@ import java.util.List;
 @Entity
 @Table(name = "T_WORK_ORDER_REPORT_CART")
 @Data
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 /**
  * 报修车信息
  * */

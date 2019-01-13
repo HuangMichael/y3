@@ -148,6 +148,7 @@ function loadReportFinishChart(reportMonth) {
         title.push(getMonthAdd(date.getMonth(), -1) + "月");
         title.push(getMonthAdd(date.getMonth(), 0) + "月");
         title.push(getMonthAdd(date.getMonth(), 1) + "月");
+        console.log("title--------" + JSON.stringify(title));
 
         return title;
     }
@@ -166,8 +167,6 @@ function loadReportFinishChart(reportMonth) {
                 }
             }
         });
-
-        console.log("reportNums-----------------------" + reportNums);
         return reportNums;
     }
 
@@ -229,7 +228,7 @@ function loadReportFinishChart(reportMonth) {
  */
 function loadLineChart(reportMonth) {
 
-    var lines = [];
+    var lines = ["2","8","10","13"];
 
     function loadByStatus(status) {
         var url = "/portal/getLineReportNum/" + reportMonth + "/" + status;
@@ -237,11 +236,9 @@ function loadLineChart(reportMonth) {
         $.ajaxSettings.async = false;
         $.getJSON(url, function (data) {
             for (var x in data) {
-                dataList[x] = data[x]['num'];
+                dataList[x] = (data[x]['num']) ? data[x]['num'] : 0;
             }
         });
-
-
         console.log("loadLineChart-----------" + JSON.stringify(dataList));
         return dataList;
     }
@@ -278,7 +275,7 @@ function loadLineChart(reportMonth) {
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
@@ -326,6 +323,10 @@ function loadLineChart(reportMonth) {
  * @returns {number} 返回月份显示值
  */
 function getMonthAdd(value, step) {
-    return (value + step) % 12;
-
+    console.log("value----------" + value);
+    console.log("step----------" + step);
+    var result = (value + step) % 12;
+    console.log("value + step=" + (value + step));
+    result = (result) ? result : (12 + result);
+    return result;
 }

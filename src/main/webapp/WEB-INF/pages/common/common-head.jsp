@@ -33,6 +33,4 @@
     <link rel="stylesheet" type="text/css" href="/js/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
     <link rel="stylesheet" type="text/css" href="/css/formStyle.css"/>
     <link rel="stylesheet" type="text/css" href="/js/dropzone/dropzone.min.css"/>
-
-
 </head>

@@ -2620,7 +2620,7 @@ fieldset[disabled] .btn-success.active {
 
 .btn-info {
     color: #ffffff;
-    background-color: #70afc4;
+    background-color: #f0f0f0;
     border-color: #5ea5bd;
 }
 
@@ -2655,7 +2655,7 @@ fieldset[disabled] .btn-info:active,
 .btn-info.disabled.active,
 .btn-info[disabled].active,
 fieldset[disabled] .btn-info.active {
-    background-color: #70afc4;
+    background-color: #0f0f0f;
     border-color: #5ea5bd;
 }
 

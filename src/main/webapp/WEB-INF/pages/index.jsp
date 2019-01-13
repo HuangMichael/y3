@@ -1,9 +1,6 @@
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,23 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="/js/app/common/html5shiv.min.js"></script>
-    <script src="/js/app/common/respond.min.js"></script>
-    <![endif]-->
-
     <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
-    <!-- DATE RANGE PICKER -->
-    <!-- UNIFORM -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="js/uniform/css/uniform.default.min.css"/>
-    <!-- ANIMATE -->
     <link rel="stylesheet" type="text/css" href="css/animatecss/animate.min.css"/>
-    <!-- FONTS -->
-    <%-- <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>--%>
 </head>
 <body class="login">
 <!-- PAGE -->
@@ -41,7 +25,6 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div id="logo">
-                        <%-- <a><img src="img/logo/bj_logo.jpg"  height="80"  alt="logo name"/></a>--%>
                     </div>
                 </div>
             </div>
@@ -96,7 +79,6 @@
     $(document).ready(function () {
         App.setPage("login_bg");  //Set current page
         App.init(); //Initialise plugins and elements
-
         var validateOptions = {
             message: '该值无效 ',
             fields: {
@@ -163,8 +145,6 @@
         $('.visible').removeClass('visible animated fadeInUp');
         $('#' + id).addClass('visible animated fadeInUp');
     }
-
-
 </script>
 <!-- /JAVASCRIPTS -->
 </body>

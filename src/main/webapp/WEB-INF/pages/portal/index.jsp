@@ -28,7 +28,7 @@
                                                    onclick="loadChartData(addMonth(-1))">上月</a>
 												 <a class="js_update btn btn-default"><input class="Wdate form-control"
                                                                                              type="text"
-                                                                                             onClick="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM', isShowToday: false, isShowClear: false})"
+                                                                                             onClick="changeMonth()"
                                                                                              id="setupDate"
                                                                                              style="width:80%"
                                                                                              name="setupDate"

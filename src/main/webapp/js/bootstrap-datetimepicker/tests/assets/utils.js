@@ -19,3 +19,12 @@ function format_date(date){
 function datesEqual(actual, expected, message){
     QUnit.push(QUnit.equiv(actual, expected), format_date(actual), format_date(expected), message);
 }
+
+
+Date.prototype.addMonths = function (value) {
+    var n = this.getDate();
+    this.setDate(1);
+    this.setMonth(this.getMonth() + value);
+    this.setDate(Math.min(n, this.getDaysInMonth()));
+    return this;
+};

@@ -123,4 +123,20 @@ public class DateUtils {
         System.out.println("date------" + calendar.getTime());
         return calendar.getTime();
     }
+
+
+    /**
+     * @return 返回日期list
+     */
+    public static String getLatestNMonths(int n) {
+
+        String str = "";
+        Calendar calendar = Calendar.getInstance();
+        for (int i = 0; i < n; i++) {
+            str += (calendar.get(Calendar.MONTH) + 1) + ",";
+            calendar.add(Calendar.MONTH, -1);
+        }
+        System.out.println("str------" + str);
+        return str;
+    }
 }

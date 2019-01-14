@@ -144,12 +144,12 @@ function loadReportFinishChart(reportMonth) {
      */
     function get3MonthTitle() {
         var title = [];
-        var date = new Date();
-        title.push(getMonthAdd(date.getMonth(), -1) + "月");
-        title.push(getMonthAdd(date.getMonth(), 0) + "月");
-        title.push(getMonthAdd(date.getMonth(), 1) + "月");
-        console.log("title--------" + JSON.stringify(title));
-
+        //从后台获取最近三个月
+        var url = "/portal/getLatestMonths";
+        $.ajaxSettings.async = false;
+        $.post(url, function (data) {
+            title = data.split(",");
+        });
         return title;
     }
 
@@ -228,7 +228,7 @@ function loadReportFinishChart(reportMonth) {
  */
 function loadLineChart(reportMonth) {
 
-    var lines = ["2","8","10","13"];
+    var lines = ["2", "8", "10", "13"];
 
     function loadByStatus(status) {
         var url = "/portal/getLineReportNum/" + reportMonth + "/" + status;
@@ -322,11 +322,20 @@ function loadLineChart(reportMonth) {
  * @param step 前后偏移
  * @returns {number} 返回月份显示值
  */
-function getMonthAdd(value, step) {
-    console.log("value----------" + value);
-    console.log("step----------" + step);
-    var result = (value + step) % 12;
-    console.log("value + step=" + (value + step));
-    result = (result) ? result : (12 + result);
-    return result;
+function getMonthAdd(date, monthNum) {
+
+    var m = date.addMonths(monthNum).getMonth();
+    console.log()
 }
+
+
+/**
+ * 修改月份
+ */
+function changeMonth() {
+
+    WdatePicker({maxDate: '%y-%M-%d', dateFmt: 'yyyy-MM', isShowToday: false, isShowClear: false});
+
+};
+
+

@@ -6,6 +6,7 @@ import com.subway.domain.workOrder.VworkOrderStationCompareVo;
 import com.subway.service.portal.PortalService;
 import com.subway.service.workOrder.WorkOrderReportCartService;
 import com.subway.domain.workOrder.VlineMonth;
+import com.subway.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -98,6 +99,16 @@ public class PortalController {
     @ResponseBody
     public List<VworkOrderStationCompareVo> findByReportMonthAndStatusOrderByStationNoAsc(@RequestParam("reportMonth") String reportMonth, @RequestParam("status") String status) {
         return portalService.findByReportMonthAndStatusOrderByStationNoAsc(reportMonth, status);
+    }
+
+    /**
+     * @return 获取最近的几个月
+     */
+    @RequestMapping(value = "/getLatestMonths", method = RequestMethod.POST)
+    @ResponseBody
+    public String getLatestMonths() {
+
+     return   DateUtils.getLatestNMonths(3);
     }
 
 }

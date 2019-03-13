@@ -8176,8 +8176,8 @@ fieldset[disabled] .btn-yellow.active {
 
 .box.border.blue > .box-title {
     color: #FFFFFF !important;
-    background-color: #70afc4;
-    border-bottom: 1px solid #5ea5bd;
+    background-color: #333;
+    border-bottom: 1px solid #999999;
 }
 
 .box.border.blue > .box-title h4 {
